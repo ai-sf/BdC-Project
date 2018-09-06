@@ -30,21 +30,21 @@ height: 1024
 
 # colori disponibili: green, red, blue
 # type: "test", "special", "normal"
-# [qst0]
-# type=normal
-# name=MIG
-# path=prova_schermate/prova.txt
-# color=green
-# bkg=sfondo.png
-# icon=icon.png
-
 [qst0]
 type=normal
-name=Stage
-path=../../bdc_mig_1_25.txt
+name=MIG
+path=prova_schermate/prova.txt
 color=green
 bkg=sfondo.png
 icon=icon.png
+
+# [qst0]
+# type=normal
+# name=Stage
+# path=../../bdc_mig_1_25.txt
+# color=green
+# bkg=sfondo.png
+# icon=icon.png
 
 # colori disponibili: green, red, blue
 # type: "test", "special", "normal"

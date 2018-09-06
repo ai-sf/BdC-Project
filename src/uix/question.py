@@ -230,7 +230,7 @@ class Domanda(GridLayout):
 		id: labelA_temp
         text: 'A'
         disabled: True
-        disabled_color: 0,0,0,1
+        disabled_color: 0,0.8,0,1
         background_color: root.bkg_color_label[root.MODE]
 	AnswerButton:
         id: ansA_temp
@@ -507,15 +507,15 @@ class Domanda(GridLayout):
         self.sideD_button.text = str(count_ans['D'])
         self.sideE_button.text = str(count_ans['E'])
         stringRIGHT_button = 'side'+str(rightans)+'_button'
-        exec("self."+stringRIGHT_button+".background_color=[0,0.5,0,1]")
+        exec("self."+stringRIGHT_button+".background_color=[0,0.4,0,1]")
 
     def show_terna(self):
         self.showterna_button.text = self.terna_risultato
         rightans = app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['OK']
         risp_button = 'ans'+str(rightans)+'_button'
-        exec("self."+risp_button+".background_color=[0,0.5,0,1]")
+        exec("self."+risp_button+".background_color=[0,0.4,0,1]")
         letter_button = 'label'+str(rightans)+'_button'
-        exec("self."+letter_button+".background_color=[0,0.5,0,1]")
+        exec("self."+letter_button+".background_color=[0,0.4,0,1]")
 
     # def printprova(self, name):
     #     if self.debuganswergiven == False:
