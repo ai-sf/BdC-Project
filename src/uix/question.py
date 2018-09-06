@@ -423,7 +423,7 @@ class Domanda(GridLayout):
         self.classdom_button.disabled = False
         self.classdom_button.background_color = [1,1,1,1]
 
-        from utils.calculate_score import update_score, DictOfAnswers, result
+        from utils.calculate_score import update_score, DictOfAnswers, DictOfAnswers_fake, result
 
         if app.NOCONTROLLER is True:
             risposte_date = DictOfAnswers_fake()

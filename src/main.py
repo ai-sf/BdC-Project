@@ -1,4 +1,3 @@
-# -*- coding: utf8 -*-
 '''
 BOTTA DI COULOMB
 
@@ -138,7 +137,7 @@ class BDCApp(App):
     def checkForTimeNow(self):
         time.sleep(0.05)
         if self.start_time is None:
-            if app.NOCONTROLLER is False:
+            if self.NOCONTROLLER is False:
                 self.master.write('timeNow\n')
 
     def readserial(self):
@@ -149,7 +148,7 @@ class BDCApp(App):
         timenow_msg = r"--- TIME NOW -----------------:timeNow=(\d+)"
 
         while True:
-            if app.NOCONTROLLER is False:
+            if self.NOCONTROLLER is False:
                 tmp = self.master.ser.readline()
             else:
                 tmp = "Bella zio!"
@@ -198,7 +197,7 @@ class BDCApp(App):
 
     def on_stop(self):
         t.stop()
-        if app.NOCONTROLLER is False:
+        if self.NOCONTROLLER is False:
             self.master.cleanup()
 
     #adapted from pydelhi_mobile

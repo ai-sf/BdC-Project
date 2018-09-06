@@ -99,7 +99,7 @@ def DictOfAnswers_fake():
     dizionario = {}
     dizionario['2142880870'] = ['A',2.0]
     dizionario['3893145282'] = ['B',3.0]
-    dizionario['2142879773'] = ['C'',4.0]
+    dizionario['2142879773'] = ['C',4.0]
     dizionario['3893136493'] = ['D',5.0]
     dizionario['3893146321'] = ['E',7.0]
     return dizionario
