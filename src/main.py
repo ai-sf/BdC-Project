@@ -94,6 +94,8 @@ class BDCApp(App):
     stop_time = None
     startTimeGiven = False
 
+    main_path = os.path.dirname(os.path.realpath(__file__))
+
     def build(self):
 
         import argparse
