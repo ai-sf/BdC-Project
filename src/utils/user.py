@@ -16,6 +16,7 @@ def setGlobal(init_file):
     except IOError:
         print('cannot open'+init_file)
 
+    app.port_name = config.get("Partenza", "nome_porta")
     app.scalatore = config.getfloat("Grafica","scalatore")
 
     config_path = os.path.dirname(os.path.realpath(init_file))

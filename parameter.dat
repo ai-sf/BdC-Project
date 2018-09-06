@@ -5,8 +5,9 @@
 [Partenza]
 #stabilire se partire dal backup o da capo
 #(il file di backup e' 'backup.dat')
+nome_porta: /dev/ttyUSB0
 backup: False
-NOCONTROLLER: True
+NOCONTROLLER: False
 
 #--------------------------------------------#
 

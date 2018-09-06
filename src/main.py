@@ -11,8 +11,6 @@ Github Repo: http://github.com/
 __version__ = '1.0.0'
 
 import serial
-port_name = "/dev/ttyUSB0"
-
 import os, sys, time
 script_path = os.path.dirname(os.path.realpath(__file__))
 os.environ['KIVY_WINDOW'] = 'sdl2'
@@ -35,8 +33,9 @@ Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
 class Master:
 
-    def __init__(self):
+    def __init__(self, port_name):
         try:
+            print(port_name)
             self.ser = serial.Serial(port_name, 115200, timeout=None)
         except:
             print("Connection to serial port failed")
@@ -126,7 +125,7 @@ class BDCApp(App):
         self.scifi.loop = True
 
         if not self.NOCONTROLLER:
-            self.master = Master()
+            self.master = Master(self.port_name)
             import threading
             t = threading.Thread(target=self.readserial)
             t.daemon = True
