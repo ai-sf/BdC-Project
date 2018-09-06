@@ -31,11 +31,11 @@ def process(filename):
         dict['ans'] = Risposte
         dict['OK'] = filedomande[6+i][0]
         if filedomande[7+i].startswith("none"):
-            dict['img_bf'] = [main_path + "/../" +"logoBdC_bianco.png"]
+            dict['img_bf'] = [app.main_path + "/../" +"logoBdC_bianco.png"]
         else:
             dict['img_bf'] = [filepath + "/" + img for img in filedomande[7+i].split()]
         if filedomande[8+i].startswith("none"):
-            dict['img_af'] = [main_path + "/" +"logoBdC_bianco.png"]
+            dict['img_af'] = [app.main_path + "/" +"logoBdC_bianco.png"]
         else:
             dict['img_af'] = [filepath + "/" + img for img in filedomande[8+i].split()]
 

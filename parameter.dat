@@ -17,10 +17,13 @@ scalatore: 0.8
 #Fullscreen (True o False)
 fullscreen: False
 #if fullscreen == False
-width: 1024
-height: 768
+#width: 1024
+#height: 768
 #width: 2048
 #height: 1536
+###saba
+width: 1280
+height: 1024
 
 #--------------------------------------------#
 
@@ -28,7 +31,7 @@ height: 768
 # type: "test", "special", "normal"
 # [qst0]
 # type=test
-# name=Stage
+# name=MIG
 # path=STAGE/prova1.txt
 # color=green
 # bkg=sfondo.png
@@ -37,7 +40,7 @@ height: 768
 [qst0]
 type=normal
 name=Stage
-path=STAGE/turno2.txt
+path=../../bdc_mig_1_25.txt
 color=green
 bkg=sfondo.png
 icon=icon.png
@@ -87,8 +90,8 @@ random: False
 #--------------------------------------------#
 
 [FIRST_SLIDES]
-1: VALHALLA/regolamento.png 
-#2: prova_schermate/bdc.png
+1: ./regolamento.png 
+2: ./bdc.png
 
 
 
