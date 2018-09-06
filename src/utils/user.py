@@ -115,7 +115,7 @@ def setGlobal(init_file):
 
     app.RANDOM = config.get("Domande","random")
 
-    localtime = datetime.datetime.now()
-    filenameTime = app.FOLDER+'/backup/stat-'+localtime.strftime('%Y%m%d-%H:%M:%S')+'.dat'
-    fs = open(filenameTime,'w')
-    fs.close()
+    # localtime = datetime.datetime.now()
+    # filenameTime = app.FOLDER+'/backup/stat-'+localtime.strftime('%Y%m%d-%H:%M:%S')+'.dat'
+    # fs = open(filenameTime,'w')
+    # fs.close()
