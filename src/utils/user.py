@@ -64,8 +64,8 @@ def setGlobal(init_file):
                 print("intro slide does not exists at "+slidepath)
                 exit()
 
-    if not os.path.exists(app.FOLDER+'/backup'):
-        os.makedirs(app.FOLDER+'/backup')
+    # if not os.path.exists(app.FOLDER+'/backup'):
+    #     os.makedirs(app.FOLDER+'/backup')
 
     app.clock_steps = 100
     if config.get("Grafica","fullscreen") == True:
@@ -81,16 +81,16 @@ def setGlobal(init_file):
 
     app.NOCONTROLLER = config.getboolean("Partenza", "NOCONTROLLER")
 
-    if app.BACKUP:
-        backupfile = open(app.FOLDER+'/backup/backup.dat','r')
-        backuplist = json.loads(backupfile.read())
-        backupfile.close()
-        app.starting_counter = backuplist[0]
-        app.starting_classifica = backuplist[1]
-        app.astensioni_backup = backuplist[2]
-    else:
-        app.starting_counter = 0
-        app.starting_classifica = dict(zip(app.dictIDName.keys(), [0]*len(app.dictIDName.keys())))
+    # if app.BACKUP:
+    #     backupfile = open(app.FOLDER+'/backup/backup.dat','r')
+    #     backuplist = json.loads(backupfile.read())
+    #     backupfile.close()
+    #     app.starting_counter = backuplist[0]
+    #     app.starting_classifica = backuplist[1]
+    #     app.astensioni_backup = backuplist[2]
+    # else:
+    #     app.starting_counter = 0
+    #     app.starting_classifica = dict(zip(app.dictIDName.keys(), [0]*len(app.dictIDName.keys())))
 
     app.provadomande = config.get("Domande","provadomande")
 
