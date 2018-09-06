@@ -138,7 +138,8 @@ class BDCApp(App):
     def checkForTimeNow(self):
         time.sleep(0.05)
         if self.start_time is None:
-            self.master.write('timeNow\n')
+            if app.NOCONTROLLER is False:
+                self.master.write('timeNow\n')
 
     def readserial(self):
 
@@ -148,7 +149,10 @@ class BDCApp(App):
         timenow_msg = r"--- TIME NOW -----------------:timeNow=(\d+)"
 
         while True:
-            tmp = self.master.ser.readline()
+            if app.NOCONTROLLER is False:
+                tmp = self.master.ser.readline()
+            else:
+                tmp = "Bella zio!"
 
             letter = re.match(showman_msg, tmp)
             if letter:
@@ -194,7 +198,8 @@ class BDCApp(App):
 
     def on_stop(self):
         t.stop()
-        self.master.cleanup()
+        if app.NOCONTROLLER is False:
+            self.master.cleanup()
 
     #adapted from pydelhi_mobile
     def load_screen(self, screen, manager=None):

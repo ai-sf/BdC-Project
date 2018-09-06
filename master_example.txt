@@ -1,53 +1,17 @@
---- MESSAGE RECEIVED -------------------
-from=2142880870
-msgText=A
-msgTime=1000000
---- MESSAGE RECEIVED -------------------
-from=3893145282
-msgText=A
-msgTime=4000000
---- MESSAGE RECEIVED -------------------
-from=3893136493
-msgText=A
-msgTime=8000000
---- MESSAGE RECEIVED -------------------
-from=2142879773
-msgText=A
-msgTime=12000000
---- MESSAGE RECEIVED -------------------
-from=3893146321
-msgText=B
-msgTime=1000000
---- MESSAGE RECEIVED -------------------
-from=2142880227
-msgText=C
-msgTime=4000000
---- MESSAGE RECEIVED -------------------
-from=2142880166
-msgText=D
-msgTime=8000000
---- MESSAGE RECEIVED -------------------
-from=3893145819
-msgText=E
-msgTime=12000000
---- MESSAGE RECEIVED -------------------
-from=2142881769
-msgText=A
-msgTime=16000000
---- MESSAGE RECEIVED -------------------
-from=2142881923
-msgText=B
-msgTime=10000000
---- MESSAGE RECEIVED -------------------
-from=3893118944
-msgText=C
-msgTime=3000000
---- MESSAGE RECEIVED -------------------
-from=3893146227
-msgText=E
-msgTime=12000000
---- TIME NOW ---------------------------
-timeNow=15000000
+--- TIME NOW -----------------:timeNow=1000000
+--- MESSAGE RECEIVED ---------:from=2142880870,msgText=A,msgTime=2000000
+--- MESSAGE RECEIVED ---------:from=3893145282,msgText=B,msgTime=3000000
+--- MESSAGE RECEIVED ---------:from=2142879773,msgText=C,msgTime=4000000
+--- MESSAGE RECEIVED ---------:from=3893136493,msgText=D,msgTime=5000000
+--- MESSAGE RECEIVED ---------:from=3893146321,msgText=E,msgTime=6000000
+--- MESSAGE RECEIVED ---------:from=2142880870,msgText=A,msgTime=7000000
+--- MESSAGE RECEIVED ---------:from=2142880227,msgText=B,msgTime=8000000
+--- MESSAGE RECEIVED ---------:from=2142880870,msgText=C,msgTime=9000000
+--- MESSAGE RECEIVED ---------:from=2142881769,msgText=D,msgTime=10000000
+--- MESSAGE RECEIVED ---------:from=3893145819,msgText=E,msgTime=11000000
+--- MESSAGE RECEIVED ---------:from=2142880870,msgText=A,msgTime=12000000
+--- MESSAGE RECEIVED ---------:from=2142881923,msgText=A,msgTime=13000000
+--- TIME NOW -----------------:timeNow=16000000
 
 
 

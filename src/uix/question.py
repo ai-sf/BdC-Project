@@ -384,7 +384,8 @@ class Domanda(GridLayout):
         app.startTimeGiven = False
 
         #we want to be sure the message is received
-        app.master.write('timeNow\n')
+        if app.NOCONTROLLER is False:
+            app.master.write('timeNow\n')
         app.checkForTimeNow()
 
         Clock.schedule_once(self.writetimenow, app.TOTAL_TIME)
@@ -400,14 +401,16 @@ class Domanda(GridLayout):
         Clock.schedule_once(self.sendRAW, app.TOTAL_TIME+6)
 
     def writetimenow(self,dt):
-        app.master.write('timeNow\n')
+        if app.NOCONTROLLER is False:
+            app.master.write('timeNow\n')
 
     def stop_audio(self,dt):
         app.timer.stop()
 
     def sendRAW(self, dt):
         for key, value in self.RAWdic.iteritems():
-            app.master.write('send '+key+' '+value+'\n')
+            if app.NOCONTROLLER is False:
+                app.master.write('send '+key+' '+value+'\n')
             time.sleep(0.05)
 
     def end_time(self, dt):
@@ -422,7 +425,11 @@ class Domanda(GridLayout):
 
         from utils.calculate_score import update_score, DictOfAnswers, result
 
-        risposte_date = DictOfAnswers()
+        if app.NOCONTROLLER is True:
+            risposte_date = DictOfAnswers_fake()
+        else:
+            risposte_date = DictOfAnswers()
+
         result = result(risposte_date)
 
         self.RAWdic = update_score(result, 'RAWdic')
