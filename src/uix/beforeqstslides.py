@@ -31,7 +31,7 @@ class BeforeQstSlides(Screen):
 			size_hint: 0.5, 1.0/12
             text: "Domanda #"+str(app.QST_TOT_CNT+1)
 			text_size: self.size
-			valign: 'center'
+			valign: 'middle'
 			halign: 'center'
 			font_size: 30*app.scalatore
 			background_disabled_normal:''
@@ -44,7 +44,7 @@ class BeforeQstSlides(Screen):
 			size_hint: 0.5, 1.0/12
 			text: "Prosegui"
 			text_size: self.size
-			valign: 'center'
+			valign: 'middle'
 			halign: 'center'
 			font_size: 30*app.scalatore
 			on_press: root.next()

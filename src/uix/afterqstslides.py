@@ -38,7 +38,7 @@ class AfterQstSlides(Screen):
 			size_hint: 1.0/3, 1.0/12
 			text: "INDIETRO"
 			text_size: self.size
-			valign: 'center'
+			valign: 'middle'
 			halign: 'center'
 			font_size: 30*app.scalatore
 			on_press: app.load_screen('Question')
@@ -48,7 +48,7 @@ class AfterQstSlides(Screen):
 			size_hint: 1.0/3, 1.0/12
 			text: root.label_score
 			text_size: self.size
-			valign: 'center'
+			valign: 'middle'
 			halign: 'center'
 			font_size: 30*app.scalatore
 			on_press: root.show_score()
@@ -58,7 +58,7 @@ class AfterQstSlides(Screen):
 			size_hint: 1.0/3, 1.0/12
 			text: "-->"
 			text_size: self.size
-			valign: 'center'
+			valign: 'middle'
 			halign: 'center'
 			font_size: 30*app.scalatore
 			on_press: root.next()

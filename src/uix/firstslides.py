@@ -30,7 +30,7 @@ class FirstSlides(Screen):
 			size_hint: 0.5, 1.0/12
 			text: "Welcome to BdC!"
 			text_size: self.size
-			valign: 'center'
+			valign: 'middle'
 			halign: 'center'
 			font_size: 30*app.scalatore
 			background_color: 0,0,0,0
@@ -42,7 +42,7 @@ class FirstSlides(Screen):
 			size_hint: 0.5, 1.0/12
 			text: "Prosegui"
 			text_size: self.size
-			valign: 'center'
+			valign: 'middle'
 			halign: 'center'
 			font_size: 30*app.scalatore
 			on_press: root.next()

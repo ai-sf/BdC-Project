@@ -28,7 +28,7 @@ class LastScreen(Screen):
 			text_size: self.size
 			font_size: 80*app.scalatore
 			bold:True
-			valign: 'center'
+			valign: 'middle'
 			halign: 'center'
 			font_name: 'font/Ubuntu-L.ttf'
 			color: 1,1,1,1
@@ -39,7 +39,7 @@ class LastScreen(Screen):
 			text_size: self.size
 			font_size: 150*app.scalatore
 			bold:True
-			valign: 'center'
+			valign: 'middle'
 			halign: 'center'
 			font_name: 'font/Cratense.ttf'
 			color: 1,1,1,1

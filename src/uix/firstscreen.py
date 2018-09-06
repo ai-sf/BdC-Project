@@ -24,7 +24,7 @@ class FirstScreen(Screen):
             size_hint: (0.25*709/1063)*16/9, 0.25
         	text: "INIZIA GIOCO"
         	text_size: self.size
-        	valign: 'center'
+        	valign: 'middle'
         	halign: 'center'
         	on_press: app.load_screen('FirstSlides')
         	font_size: 30*app.scalatore
