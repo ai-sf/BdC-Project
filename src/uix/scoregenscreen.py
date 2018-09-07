@@ -43,7 +43,8 @@ class ScoreGenScreen(Screen):
         bar_height = float(Window.height)*0.1
         row_height = (float(Window.height)-bar_height)/(float(len(sorted_x))/2)
         width_icon = row_height/Window.width
-        width_arrow = width_icon*0.75
+        # width_arrow = width_icon*0.75
+        width_arrow = width_icon*0.25
         width_sep = 1.0/50
         width_name = ((1-width_icon*2-width_arrow*2-width_sep)/2)*(1.75/3)
         width_score = ((1-width_icon*2-width_arrow*2-width_sep)/2)*(1.25/3)

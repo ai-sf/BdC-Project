@@ -144,7 +144,7 @@ class ScoreQstScreen(Screen):
         bottomdx = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_name)
         iconBDCdx = Button(disabled=True, background_disabled_down='img/logoBdC_bianco.png',
                             background_disabled_normal='img/logoBdC_bianco.png',background_down='img/logoBdC_bianco.png',
-                            background_normal='img/logoBdC_bianco.png', background_color=[1,1,1,1], size_hint_x=width_icon)
+                            background_normal='img/logoBdC_bianco.png', background_color=[1,1,1,1], size_hint_x=width_score)
 
 
         g.add_widget(lBACK)

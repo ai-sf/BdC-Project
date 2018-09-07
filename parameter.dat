@@ -7,7 +7,7 @@
 #(il file di backup e' 'backup.dat')
 nome_porta: /dev/ttyUSB0
 backup: False
-NOCONTROLLER: True
+NOCONTROLLER: False
 
 #--------------------------------------------#
 
@@ -75,10 +75,10 @@ random: False
 2142879773: Richard FEYNMAN
 3893146321: Enrico FERMI
 2142880227: James MAXWELL
-2142880166: Galileo GALILEI
-3893145819: Alessandro VOLTA
-2142881769: Marie CURIE
-2142881923: Paul DIRAC
+# 2142880166: Galileo GALILEI
+# 3893145819: Alessandro VOLTA
+# 2142881769: Marie CURIE
+# 2142881923: Paul DIRAC
 # 3893118944: Erwin SCHRODINGER
 # 3893146227: Werner HEISENBERG
 # 2486007679: Nikola TESLA

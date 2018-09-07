@@ -109,7 +109,7 @@ class Domanda(GridLayout):
     MODE = StringProperty('OFF_BF')
     ans_opacity = { 'OFF_BF' : 0, 'ON' : 1, 'OFF_AF' : 1}
     side_opacity = { 'OFF_BF' : 0, 'ON' : 0, 'OFF_AF' : 1}
-    bkg_color_label = { 'OFF_BF' : [162,162,162,0.5], 'ON' : [162,162,162,0.5], 'OFF_AF' : [1,1,1,1] }
+    bkg_color_label = { 'OFF_BF' : [162,162,162,0.1], 'ON' : [162,162,162,0.1], 'OFF_AF' : [1,1,1,1] }
     bkg_color_answer = { 'OFF_BF' : [0,0,0,1], 'ON' : [0,0,0,1], 'OFF_AF' : [1,1,1,1] }
     bkg_color_side = { 'OFF_BF' : [162,162,162,0], 'ON' : [162,162,162,0], 'OFF_AF' : [1,1,1,1] }
 
@@ -203,8 +203,8 @@ class Domanda(GridLayout):
 #		size_hint_y: None
 		text_size: self.width, None
 #		height: self.texture_size[1]
-		background_down: 'img/valhalla_bdc.png'
-		background_normal: 'img/valhalla_bdc.png'
+#		background_down: 'img/valhalla_bdc.png'
+#		background_normal: 'img/valhalla_bdc.png'
         background_color: 1,1,1,0.5
 		height: 7* root.height / 9
 		padding_x: 0.05*self.width
@@ -310,7 +310,7 @@ class Domanda(GridLayout):
 		id: labelE_temp
         text: 'E'
         disabled: True
-        disabled_color: 0,0,0.8,1
+        disabled_color: 0,0.4,1,1
         background_color: root.bkg_color_label[root.MODE]
 	AnswerButton:
         id: ansE_temp
