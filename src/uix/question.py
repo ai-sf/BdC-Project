@@ -203,8 +203,9 @@ class Domanda(GridLayout):
 #		size_hint_y: None
 		text_size: self.width, None
 #		height: self.texture_size[1]
-#		background_down: 'img/valhalla_bdc.png'
-#		background_normal: 'img/valhalla_bdc.png'
+		background_down: 'img/mig_bdc.png'
+		background_normal: 'img/mig_bdc.png'
+
         background_color: 1,1,1,0.5
 		height: 7* root.height / 9
 		padding_x: 0.05*self.width
