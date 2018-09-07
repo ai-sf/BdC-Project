@@ -81,13 +81,13 @@ def setGlobal(init_file):
 
     app.NOCONTROLLER = config.getboolean("Partenza", "NOCONTROLLER")
 
-    if app.BACKUP:
-         app.starting_counter = backuplist[0]
-         app.starting_classifica = backuplist[1]
-         app.astensioni_backup = backuplist[2]
-    else:
-         app.starting_counter = 0
-         app.starting_classifica = dict(zip(app.dictIDName.keys(), [0]*len(app.dictIDName.keys())))
+    # if app.BACKUP:
+    #      app.starting_counter = backuplist[0]
+    #      app.starting_classifica = backuplist[1]
+    #      app.astensioni_backup = backuplist[2]
+    # else:
+    app.starting_counter = 0
+    app.starting_classifica = dict(zip(app.dictIDName.keys(), [0]*len(app.dictIDName.keys())))
 
     app.provadomande = config.get("Domande","provadomande")
 

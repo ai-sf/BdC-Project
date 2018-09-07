@@ -5,6 +5,8 @@ from kivy.uix.button import Button
 from kivy.uix.stacklayout import StackLayout
 from kivy.properties import ObjectProperty, NumericProperty, StringProperty, BooleanProperty
 
+import json
+
 app = App.get_running_app()
 
 class AfterQstSlides(Screen):
@@ -96,6 +98,7 @@ class AfterQstSlides(Screen):
             if app.QST_PAR_CNT+1 == len(app.QUESTIONS[app.SEC_CNT]):
                 app.QST_PAR_CNT = 0
                 if app.SEC_CNT+1 == len(app.QUESTIONS):
+                    self.do_backup()
                     app.load_screen('LastScreen')
                 else:
                     app.SEC_CNT += 1
@@ -103,9 +106,20 @@ class AfterQstSlides(Screen):
                         app.QST_DSP_CNT = str(app.QST_NOR_CNT)
                     if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
                         app.QST_DSP_CNT = "P"
+                    self.do_backup()
                     app.load_screen("BeforeQstSlides")
             else:
                 app.QST_PAR_CNT += 1
+                self.do_backup()
                 app.load_screen("BeforeQstSlides")
         else:
+            self.do_backup()
             self.counter +=1
+
+    def do_backup(self):
+        # #saving backup
+        savefile = open(app.filepath+'/backup.dat','w')
+        savestringa = json.dumps([app.QST_DSP_CNT, app.QST_NOR_CNT, app.QST_TOT_CNT, app.QST_PAR_CNT, app.SEC_CNT, app.HISTORY, app.ABSTENTIONS,app.GENERAL_SCORE, app.QUESTION_SCORE,app.SECTION_SCORE,app.ANSWERS_GIVEN])
+        savefile.write(savestringa)
+        savefile.close()
+        print("Backup written!!")

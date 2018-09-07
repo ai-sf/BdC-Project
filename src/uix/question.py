@@ -440,12 +440,6 @@ class Domanda(GridLayout):
         #creating button's text
         self.terna_risultato = '[color=008000]:-) '+str(RAW['R'])+'[/color][color=FF0000]   :-( '+str(RAW['W'])+'[/color][color=FFE118]   :-| '+str(RAW['A'])+'[/color]'
 
-        # #saving backup
-        savefile = open(app.filepath+'/backup.dat','w')
-        savestringa = json.dumps([app.QST_DSP_CNT,app.QST_TOT_CNT, app.QST_PAR_CNT, app.SEC_CNT, app.HISTORY, app.ABSTENTIONS,app.GENERAL_SCORE, app.QUESTION_SCORE,app.SECTION_SCORE,app.ANSWERS_GIVEN])
-        savefile.write(savestringa)
-        savefile.close()
-
         # #saving statistics
         # with open(filenameTime,'r') as f:
         #     statcontent = f.read()

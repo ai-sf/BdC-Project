@@ -10,6 +10,7 @@ Github Repo: http://github.com/
 __version__ = '1.0.0'
 
 import serial
+import json
 import os, sys, time
 script_path = os.path.dirname(os.path.realpath(__file__))
 os.environ['KIVY_WINDOW'] = 'sdl2'
@@ -111,6 +112,24 @@ class BDCApp(App):
 
         self.RisposteDateList = [[0,0,0,0,0]]*self.starting_counter
         self.RisposteOK = [0] * self.NUMERO_GIOCATORI
+
+        if self.BACKUP:
+            with open(self.filepath+'/backup.dat','r') as f:
+                bckcontent = f.read()
+                bcklist = json.loads(bckcontent)
+                print("---------Using backup!!------------")
+                print(bcklist)
+                self.QST_DSP_CNT = bcklist[0]
+                self.QST_NOR_CNT = bcklist[1]
+                self.QST_TOT_CNT = bcklist[2]
+                self.QST_PAR_CNT = bcklist[3]
+                self.SEC_CNT = bcklist[4]
+                self.HISTORY = bcklist[5]
+                self.ABSTENTIONS = bcklist[6]
+                self.GENERAL_SCORE = bcklist[7]
+                self.QUESTION_SCORE = bcklist[8]
+                self.SECTION_SCORE = bcklist[9]
+                self.ANSWERS_GIVEN = bcklist[10]
 
         #music
         from kivy.core.audio import SoundLoader
