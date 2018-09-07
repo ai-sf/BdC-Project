@@ -9,7 +9,7 @@ else
     git add $1
     echo --------------- $1 ADDED ------------------
     if [ -z "$2" ]; then
-	git commit -m $1
+	git commit -m "default comment"
 	echo ---------- COMMITTED WITH DEFAULT COMMENT --------
     else
 	git commit -m $2
