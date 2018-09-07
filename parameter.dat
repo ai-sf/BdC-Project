@@ -38,16 +38,16 @@ height: 1024
 # bkg=sfondo.png
 # icon=icon.png
 
-# [qst0]
-# type=test
-# name=Stage
-# #path=MIG/bdc_mig_1_25.txt
-# path=MIG/mig_prova1.txt
-# color=green
-# bkg=sfondo.png
-# icon=icon.png
-
 [qst0]
+type=test
+name=Stage
+#path=MIG/bdc_mig_1_25.txt
+path=MIG/mig_prova1.txt
+color=green
+bkg=sfondo.png
+icon=icon.png
+
+[qst1]
 type=normal
 name=Stage
 #path=MIG/bdc_mig_1_25.txt

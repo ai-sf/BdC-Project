@@ -89,7 +89,9 @@ class AfterQstSlides(Screen):
 
     def next(self):
         if self.counter+1 == len(app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['img_af']):
-            app.QST_DSP_CNT += 1
+            if app.SECTIONS[app.SEC_CNT]['type'] == 'normal':
+                app.QST_DSP_CNT = str(int(app.QST_DSP_CNT)+1)
+                app.QST_NOR_CNT += 1
             app.QST_TOT_CNT += 1
             if app.QST_PAR_CNT+1 == len(app.QUESTIONS[app.SEC_CNT]):
                 app.QST_PAR_CNT = 0
@@ -97,6 +99,10 @@ class AfterQstSlides(Screen):
                     app.load_screen('LastScreen')
                 else:
                     app.SEC_CNT += 1
+                    if app.SECTIONS[app.SEC_CNT]['type'] == 'normal':
+                        app.QST_DSP_CNT = str(app.QST_NOR_CNT)
+                    if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
+                        app.QST_DSP_CNT = "P"
                     app.load_screen("BeforeQstSlides")
             else:
                 app.QST_PAR_CNT += 1

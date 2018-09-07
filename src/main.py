@@ -23,7 +23,7 @@ sys.path.insert(0, module_path)
 
 # import App this is the main Class that manages UI's event loop
 from kivy.app import App
-from kivy.properties import NumericProperty, ListProperty, DictProperty, OptionProperty
+from kivy.properties import NumericProperty, ListProperty, DictProperty, OptionProperty, StringProperty
 
 #disable red point which appears with dx touch
 from kivy.config import Config
@@ -64,9 +64,10 @@ class BDCApp(App):
 
     icons_path = script_path + '/volti_fisici/'
 
-    QST_DSP_CNT = NumericProperty(1)
+    QST_DSP_CNT = StringProperty()
     QST_TOT_CNT = NumericProperty(0)
     QST_PAR_CNT = NumericProperty(0)
+    QST_NOR_CNT = NumericProperty(1)
     QUESTIONS = []
 
     SEC_CNT = NumericProperty(0)

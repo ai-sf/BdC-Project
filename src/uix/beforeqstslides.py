@@ -29,7 +29,7 @@ class BeforeQstSlides(Screen):
 			id: domanda_label
 			disabled: True
 			size_hint: 0.5, 1.0/12
-            text: "Domanda #"+str(app.QST_TOT_CNT+1)
+            text: "Domanda #"+app.QST_DSP_CNT
 			text_size: self.size
 			valign: 'middle'
 			halign: 'center'
@@ -58,7 +58,11 @@ class BeforeQstSlides(Screen):
     """)
 
     def on_enter(self):
-        pass
+        if app.QST_DSP_CNT == '':
+            if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
+                app.QST_DSP_CNT = "P"
+            else:
+                app.QST_DSP_CNT = "1"
 
     def next(self):
         if self.counter+1 == len(app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['img_bf']):
