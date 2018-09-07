@@ -1,12 +1,12 @@
 Qual è l'ordine di grandezza della resistenza di un corpo umano?
-0
+Zero
 Qualche Mega Ohm
-Qualche k Ohm
+Qualche kilo Ohm
 Come un comune filo di rame
 Come l'acqua minerale
 B
 none
-none
+bdc.png
 
 Di che colore e' il Silicio puro?
 Nero
@@ -16,7 +16,7 @@ Azzurro
 Trasparente
 A
 none
-none
+bdc.png
 
 Qual è un valore plausibile per la corrente prodotta da un fulmine?
 Un centesimo di Ampere
@@ -26,7 +26,7 @@ Un centesimo di Ampere
 100 milioni di Ampere
 D
 img/23_intro_fulmine.png
-none
+bdc.png
 
 La potenza della bomba più potente fatta esplodere dall'uomo è pari a circa...
 1 bomba di Hiroshima
@@ -36,7 +36,7 @@ circa 700 bombe di Hiroshima
 circa 3000 bombe di Hiroshima
 E
 none
-none
+bdc.png
 
 Devi decifrare un messaggio nazista in codice. Dove si trova la più vicina macchina ENIGMA?
 Trento
@@ -106,9 +106,9 @@ Centinaia di TeV
 Alcuni joule
 E
 none
-none
+bdc.png
 
-[--]Quanto pesa all'incirca un cucchiaino di stella di neutroni?
+Quanto pesa all'incirca un cucchiaino di stella di neutroni?
 1 kg
 10 quintali
 1 milione di tonnellate
@@ -136,7 +136,7 @@ Carlo Rovelli
 Bruno Pontecorvo
 E
 none
-none
+bdc.png
 
 Che potenza di fascio non deve superare un puntatore laser per essere considerato sicuro?
 1 mW
@@ -166,9 +166,9 @@ Alice e Bob
 Tutti e tre
 B
 none
-none
+bdc.png
 
-[--]E' Agosto e Billy ha molto caldo. Ad un certo punto, ha un'idea: aprire lo sportello del freezer per rinfrescare la stanza. Nonostante la paura di scongelare i surgelati nel freezer, decide di provare. Cosa accadrà?
+E' Agosto e Billy ha molto caldo. Ad un certo punto, ha un'idea: aprire lo sportello del freezer per rinfrescare la stanza. Nonostante la paura di scongelare i surgelati nel freezer, decide di provare. Cosa accadrà?
 Surgelati scongelati e temperatura stanza aumentata
 Surgelati scongelati ma temperatura stanza diminuita
 Surgelati congelati e temperatura diminuita
@@ -198,7 +198,7 @@ D
 none
 img/32_spieg_alpha_mig.png
 
-[--]Quanto vale il diametro della Terra?
+Quanto vale il diametro della Terra?
 10 volte Milano - Roma
 27 volte Milano - Roma
 51 volte Milano - Roma
@@ -219,16 +219,16 @@ none
 img/205_spieg_elefante.PNG
 
 Se il MIG fosse un' unità di misura, e il nucleo del carbonio avesse un raggio di 1 MIG, allora io sarei alto circa
-7 x 10^11 MIG
-7 x 10^14 MIG
-7 x 10^17 MIG
-7 x 10^21 MIG
-7 x 10^24 MIG
+7 x 10[sup]11[/sup] MIG
+7 x 10[sup]14[/sup] MIG
+7 x 10[sup]17[/sup] MIG
+7 x 10[sup]21[/sup] MIG
+7 x 10[sup]24[/sup] MIG
 B
 none
-none
+bdc.png
 
-[--]Radio AM e radio FM... cosa significa "M"?
+Radio AM e radio FM... cosa significa "M"?
 Modulazione
 Momento
 Modo
@@ -236,9 +236,9 @@ Meccanico
 Moltiplicazione
 A
 none
-none
+bdc.png
 
-[--]Quante volte devi piegare un foglio di carta affinché il suo spessore raggiunga la Luna?
+Quante volte devi piegare un foglio di carta affinché il suo spessore raggiunga la Luna?
 25
 42
 78
