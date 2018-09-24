@@ -7,24 +7,33 @@ from kivy.properties import ObjectProperty, NumericProperty, StringProperty
 
 app = App.get_running_app()
 
+import sys
+sys.path.insert(0, app.main_path)
+import iconfonts.iconfonts as iconfonts
+
 class LastScreen(Screen):
 
     counter = NumericProperty(int(app.NUMERO_GIOCATORI-1))
+
+    labeltesto = ObjectProperty()
 
     Builder.load_string("""
 <LastScreen>:
 
     name: 'LastScreen'
 
-	FloatLayout:
+    labeltesto: testo_tmp
+
+    FloatLayout:
 		Button:
 			size_hint: 0.5*root.height/root.width, 0.5
 			pos_hint: {'center_x':0.5, 'center_y':0.7}
 			disabled: True
 			background_disabled_normal: app.icons_path+app.dictIDicona[app.sorted_x[root.counter][0]]
 		Label:
+            id: testo_tmp
 			pos_hint: {'center_x':0.5, 'center_y': 0.35}
-			text: str(root.counter+1)+' - '+app.dictIDName[app.sorted_x[root.counter][0]]
+			text: '???'
 			text_size: self.size
 			font_size: 80*app.scalatore
 			bold:True
@@ -61,14 +70,31 @@ class LastScreen(Screen):
 			on_press: root.backpos()
     """)
 
+    def on_enter(self):
+
+        # reloading testo
+        self.labeltesto.text = str(self.counter+1)+' - '+app.dictIDName[app.sorted_x[self.counter][0]]
+        if app.sorted_x[self.counter][0] in app.WINNER_OF_SECTIONS.keys():
+            for ic in app.WINNER_OF_SECTIONS[app.sorted_x[self.counter][0]]:
+                self.labeltesto.text += " "+"%s"%(iconfonts.icon(ic))
 
     def nextpos(self):
 
         if self.counter > 0:
             self.counter -= 1
+            # reloading testo
+            self.labeltesto.text = str(self.counter+1)+' - '+app.dictIDName[app.sorted_x[self.counter][0]]
+            if app.sorted_x[self.counter][0] in app.WINNER_OF_SECTIONS.keys():
+                for ic in app.WINNER_OF_SECTIONS[app.sorted_x[self.counter][0]]:
+                    self.labeltesto.text += " "+"%s"%(iconfonts.icon(ic))
         else:
             pass
 
     def backpos(self):
 
         self.counter += 1
+        # reloading testo
+        self.labeltesto.text = str(self.counter+1)+' - '+app.dictIDName[app.sorted_x[self.counter][0]]
+        if app.sorted_x[self.counter][0] in app.WINNER_OF_SECTIONS.keys():
+            for ic in app.WINNER_OF_SECTIONS[app.sorted_x[self.counter][0]]:
+                self.labeltesto.text += " "+"%s"%(iconfonts.icon(ic))

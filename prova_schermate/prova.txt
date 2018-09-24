@@ -5,5 +5,5 @@ LENA
 LHC
 LISA
 A
-intro8.png spieg8.png bdc.png
+asdrubale.png
 spieg8.png

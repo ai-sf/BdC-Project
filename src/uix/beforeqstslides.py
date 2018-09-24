@@ -51,22 +51,32 @@ class BeforeQstSlides(Screen):
 
 		Button:
 			id: slide_img
-			size_hint: 1, 11.0/12
-			disabled: True
+            size_hint: 1, 11.0/12
+            disabled: True
             background_disabled_down: app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['img_bf'][root.counter]
             background_disabled_normal: app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['img_bf'][root.counter]
     """)
 
     def on_enter(self):
+        self.counter = 0
         if app.QST_DSP_CNT == '':
             if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
                 app.QST_DSP_CNT = "P"
             else:
                 app.QST_DSP_CNT = "1"
+        # initialize the section dictionary for collection of sct scores
+        if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
+            if app.SECTION_SCORE.has_key(app.SEC_CNT):
+                pass
+            else:
+                print("Created key = "+str(app.SEC_CNT))
+                app.SECTION_SCORE[app.SEC_CNT] = dict(zip(app.dictIDName.keys(),[0]*len(app.dictIDName.keys())))
+            print app.SECTION_SCORE[app.SEC_CNT]
 
     def next(self):
         if self.counter+1 == len(app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['img_bf']):
             app.qst_done = False
+            self.counter = 0
             app.load_screen("Question")
         else:
             self.counter +=1

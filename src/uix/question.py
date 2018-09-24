@@ -14,6 +14,10 @@ import json
 
 app = App.get_running_app()
 
+import sys
+sys.path.insert(0, app.main_path)
+import iconfonts.iconfonts as iconfonts
+
 class Question(Screen):
 
     Builder.load_string("""
@@ -203,8 +207,8 @@ class Domanda(GridLayout):
 #		size_hint_y: None
 		text_size: self.width, None
 #		height: self.texture_size[1]
-		background_down: 'img/mig_bdc.png'
-		background_normal: 'img/mig_bdc.png'
+		background_down: app.SECTIONS[app.SEC_CNT]['bkg']
+		background_normal: app.SECTIONS[app.SEC_CNT]['bkg']
 
         background_color: 1,1,1,0.5
 		height: 7* root.height / 9
@@ -216,8 +220,9 @@ class Domanda(GridLayout):
 		disabled: True
 		text: '?'
 		disabled_color: 1,1,1,1
-		font_size: 200*app.scalatore
+		font_size: 150*app.scalatore
 		font_name: 'UbuntuMono-B.ttf'
+        #padding_x: 0.5*self.width
 		background_disabled_down: ''
 		background_disabled_normal: ''
 		background_down: 'img/bulb.png'
@@ -371,9 +376,22 @@ class Domanda(GridLayout):
         self.showterna_button.text = ''
         self.spiegazione_button.background_color = [0,0,0,0]
         self.classdom_button.background_color = [0,0,0,0]
-        self.spiegazione_button.text = '?'
+
+        print(app.SECTIONS[app.SEC_CNT]['icon'])
+
+        # if special section, then icon instead of '?'
+        if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
+            ic = app.SECTIONS[app.SEC_CNT]['icon']
+            self.spiegazione_button.markup = True
+            self.spiegazione_button.text = "%s"%(iconfonts.icon(ic))
+        else:
+            self.spiegazione_button.markup = False
+            self.spiegazione_button.text = '?'
 
     def start_time(self):
+
+        print("Sezione: "+str(app.SEC_CNT+1)+"/"+str(len(app.SECTIONS)))
+        print("Domanda in sezione: "+str(app.QST_PAR_CNT+1)+"/"+str(len(app.QUESTIONS[app.SEC_CNT].keys())))
 
         self.MODE = 'ON'
 
@@ -467,13 +485,14 @@ class Domanda(GridLayout):
         app.score_gen_ready = False
 
         app.Score = [(key, app.GENERAL_SCORE[key]) for key in app.GENERAL_SCORE.keys()]
-
         app.sorted_x = sorted(app.Score, key=operator.itemgetter(1), reverse= True)
-        print(app.sorted_x)
+
+        if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
+            app.Score_sct = [(key, app.SECTION_SCORE[app.SEC_CNT][key]) for key in app.SECTION_SCORE[app.SEC_CNT].keys()]
+            app.sorted_x_sct = sorted(app.Score_sct, key=operator.itemgetter(1), reverse= True)
 
         if app.Position:
             app.PositionBefore = app.Position
-
         app.Position = {}
         for name in app.dictIDName.keys():
             app.Position[name] = [j[0] for j in app.sorted_x].index(name)

@@ -18,7 +18,7 @@ class AfterQstSlides(Screen):
     showScoreGen = BooleanProperty(True)
 
     next_button = ObjectProperty()
-    score_button = ObjectProperty()
+    jolly_button = ObjectProperty()
     back_button = ObjectProperty()
 
     Builder.load_string("""
@@ -74,8 +74,15 @@ class AfterQstSlides(Screen):
     """)
 
     def on_enter(self):
+        self.counter = 0
+        if (app.NUM_OF_QST - app.QST_TOT_CNT) < 5:
+            self.jolly_button.disabled = True
         if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
             self.label_score = 'CLASSIFICA SEZIONE'
+            if app.QST_PAR_CNT+1 == len(app.QUESTIONS[app.SEC_CNT].keys()):
+                self.jolly_button.disabled = False
+            else:
+                self.jolly_button.disabled = True
         if app.SECTIONS[app.SEC_CNT]['type'] == 'normal':
             self.label_score = 'CLASSIFICA GENERALE'
         if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
@@ -83,37 +90,55 @@ class AfterQstSlides(Screen):
 
     def show_score(self):
         if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
-            app.load_screen('ScoreSecScreen')
+            app.load_screen('ScoreSctScreen')
         if app.SECTIONS[app.SEC_CNT]['type'] == 'normal':
             app.load_screen('ScoreGenScreen')
         if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
             app.load_screen('ScoreGenScreen')
 
     def next(self):
+        print("QST_DSP_CNT = "+str(app.QST_DSP_CNT))
+        print("QST_NOR_CNT = "+str(app.QST_NOR_CNT))
         if self.counter+1 == len(app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['img_af']):
-            if app.SECTIONS[app.SEC_CNT]['type'] == 'normal':
-                app.QST_DSP_CNT = str(int(app.QST_DSP_CNT)+1)
-                app.QST_NOR_CNT += 1
             app.QST_TOT_CNT += 1
-            if app.QST_PAR_CNT+1 == len(app.QUESTIONS[app.SEC_CNT]):
+            if app.QST_PAR_CNT+1 == len(app.QUESTIONS[app.SEC_CNT].keys()):
                 app.QST_PAR_CNT = 0
-                if app.SEC_CNT+1 == len(app.QUESTIONS):
+                #-----------------------------------------------------------
+                if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
+                    # creating a list with the ids of the section winners
+                    app.SCT_FIRST_NAMES = []
+                    for idx in range(len(app.sorted_x_sct)):
+                        app.SCT_FIRST_NAMES.append(app.sorted_x_sct[idx][0])
+                        if idx+1 < len(app.sorted_x_sct):
+                            if app.sorted_x_sct[idx][1] > app.sorted_x_sct[idx+1][1]:
+                                break
+                            else:
+                                continue
+                        else:
+                            break
+                    # assigning the icons and the money PRIZE
+                    num_winner = len(app.SCT_FIRST_NAMES)
+                    for winner in app.SCT_FIRST_NAMES:
+                        if not app.WINNER_OF_SECTIONS.has_key(winner):
+                            app.WINNER_OF_SECTIONS[winner] = [app.SECTIONS[app.SEC_CNT]['icon']]
+                        else:
+                            app.WINNER_OF_SECTIONS[winner].append(app.SECTIONS[app.SEC_CNT]['icon'])
+                        app.GENERAL_SCORE[winner] += app.PRIZE/num_winner
+                #-----------------------------------------------------------
+                if app.SEC_CNT+1 == len(app.SECTIONS):
                     self.do_backup()
                     app.load_screen('LastScreen')
                 else:
-                    app.SEC_CNT += 1
-                    if app.SECTIONS[app.SEC_CNT]['type'] == 'normal':
-                        app.QST_DSP_CNT = str(app.QST_NOR_CNT)
-                    if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
-                        app.QST_DSP_CNT = "P"
                     self.do_backup()
-                    app.load_screen("BeforeQstSlides")
+                    app.load_screen("ScoreGenFinScreen")
             else:
+                if app.SECTIONS[app.SEC_CNT]['type'] == 'normal' or app.SECTIONS[app.SEC_CNT]['type'] == 'special':
+                    app.QST_DSP_CNT = str(int(app.QST_DSP_CNT)+1)
+                    app.QST_NOR_CNT += 1
                 app.QST_PAR_CNT += 1
                 self.do_backup()
                 app.load_screen("BeforeQstSlides")
         else:
-            self.do_backup()
             self.counter +=1
 
     def do_backup(self):

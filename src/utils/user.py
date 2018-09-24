@@ -28,10 +28,10 @@ def setGlobal(init_file):
         tmp_dict = {}
         tmp_dict['type'] = config.get(section_name, "type")
         tmp_dict['name'] = config.get(section_name, "name")
-        tmp_dict['color'] = config.get(section_name, "color")
+        tmp_dict['icon'] = config.get(section_name, "icon")
+        tmp_dict['intro'] = config_path + "/" + config.get(section_name, "intro")
         tmp_dict['path'] = config_path + "/" + config.get(section_name, "path")
         tmp_dict['bkg'] = config_path + "/" + config.get(section_name, "bkg")
-        tmp_dict['icon'] = config_path + "/" + config.get(section_name, "icon")
 
         app.SECTIONS.append(tmp_dict)
         tmp += 1
@@ -40,6 +40,10 @@ def setGlobal(init_file):
 
     from utils.questions import retriveQuestions
     retriveQuestions()
+
+    print([qst for sublist in app.QUESTIONS for qst in sublist])
+    app.NUM_OF_QST = len([qst for sublist in app.QUESTIONS for qst in sublist])
+    print(app.NUM_OF_QST)
 
     app.dictIDName = {}
     for id in config['Squadre']:

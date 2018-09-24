@@ -13,7 +13,7 @@ NOCONTROLLER: True
 
 [Grafica]
 #Parametro di scala per risoluzione schermo
-scalatore: 0.8
+scalatore: 1.0
 #Santa Maria Gualtieri: 1.5
 #Fullscreen (True o False)
 fullscreen: False
@@ -22,50 +22,61 @@ fullscreen: False
 #height: 768
 #width: 2048
 #height: 1536
-###saba
-width: 1280
-height: 1024
+width: 1600
+height: 1200
+##saba
+#width: 1280
+#height: 1024
 
 #--------------------------------------------#
-
-# colori disponibili: green, red, blue
 # type: "test", "special", "normal"
-# [qst0]
-# type=normal
-# name=MIG
-# path=prova_schermate/prova.txt
-# color=green
-# bkg=sfondo.png
-# icon=icon.png
-
 [qst0]
 type=test
-name=Stage
-#path=MIG/bdc_mig_1_25.txt
-path=MIG/mig_prova1.txt
-color=green
-bkg=sfondo.png
-icon=icon.png
+name=Test
+icon=asdasdas
+path=prova_schermate/prova.txt
+intro=prova_schermate/bdc.png
+bkg=none
 
 [qst1]
 type=normal
 name=Stage
-#path=MIG/bdc_mig_1_25.txt
-path=MIG/bdc_mig_2_25.txt
-color=green
-bkg=sfondo.png
 icon=icon.png
+path=prova_schermate/domande.txt
+intro=prova_schermate/bdc.png
+bkg=none
 
-# colori disponibili: green, red, blue
-# type: "test", "special", "normal"
-#[qst1]
-#type=normal
-#name=Normale
-#path=sezioni/normale.txt
-#color=green
-#bkg=sfondo.png
-#icon=icon.png
+[qst2]
+type=special
+name=meDiCina
+icon=fa-heartbeat
+path=prova_schermate/sezione_med.txt
+intro=intro_images/medicina.jpg
+bkg=bkg_images/chimica.png
 
+[qst3]
+type=normal
+name=Stage
+icon=icon.png
+path=prova_schermate/domande.txt
+intro=prova_schermate/bdc.png
+bkg=none
+
+[qst4]
+type=special
+name=BiOloGia
+icon=fa-leaf
+path=prova_schermate/sezione_bio.txt
+intro=intro_images/biologia.jpg
+bkg=bkg_images/chimica.png
+
+[qst5]
+type=normal
+name=Mig
+icon=icon.png
+path=prova_schermate/domande_finale.txt
+intro=prova_schermate/bdc.png
+bkg=none
 
 [Domande]
 folder: prova_schermate
@@ -85,12 +96,12 @@ random: False
 2142879773: Richard FEYNMAN
 3893146321: Enrico FERMI
 2142880227: James MAXWELL
-# 2142880166: Galileo GALILEI
-# 3893145819: Alessandro VOLTA
-# 2142881769: Marie CURIE
-# 2142881923: Paul DIRAC
-# 3893118944: Erwin SCHRODINGER
-# 3893146227: Werner HEISENBERG
+3893118944: Erwin SCHRODINGER
+2142880166: Galileo GALILEI
+3893145819: Alessandro VOLTA
+2142881769: Marie CURIE
+3893146227: Werner HEISENBERG
+#2142881923: Paul DIRAC
 # 2486007679: Nikola TESLA
 # 2486014145: Niels BOHR 
 # 2142880856: James JOULE
@@ -103,14 +114,6 @@ random: False
 [FIRST_SLIDES]
 1: ./regolamento.png 
 2: ./bdc.png
-
-
-
-
-
-
-
-
 
 
 

@@ -12,8 +12,11 @@ from kivy.core.window import Window
 import time
 import operator
 
-
 app = App.get_running_app()
+
+import sys
+sys.path.insert(0, app.main_path)
+import iconfonts.iconfonts as iconfonts
 
 class ScoreGenScreen(Screen):
 
@@ -28,11 +31,25 @@ class ScoreGenScreen(Screen):
             pass
         else:
             self.clear_widgets()
+
+            app.Score = [(key, app.GENERAL_SCORE[key]) for key in app.GENERAL_SCORE.keys()]
+            app.sorted_x = sorted(app.Score, key=operator.itemgetter(1), reverse= True)
+            if app.Position:
+                app.PositionBefore = app.Position
+            app.Position = {}
+            for name in app.dictIDName.keys():
+                app.Position[name] = [j[0] for j in app.sorted_x].index(name)
+
             self.Score = app.Score
             self.Position = app.Position
             self.PositionBefore = app.PositionBefore
 
-            self.buildClassifica(app.sorted_x)
+            sorted_x = app.sorted_x
+            # if odd, add a fake name
+            if len(sorted_x) % 2 == 1:
+                sorted_x.append(('5355053550', -9999999))
+
+            self.buildClassifica(sorted_x)
 
     def buildClassifica(self, sorted_x):
 
@@ -79,7 +96,14 @@ class ScoreGenScreen(Screen):
                             size_hint_x=width_arrow)
 
             name = app.dictIDName[sx[0]].split()
-            NAMEsx = Button(text=name[0]+'\n'+name[1], halign='center',disabled=True, background_disabled_normal='',
+            textstr_sx = name[0]+'\n'+name[1]
+            print(app.WINNER_OF_SECTIONS.keys())
+            if sx[0] in app.WINNER_OF_SECTIONS.keys():
+                textstr_sx += '\n'
+                for ic in app.WINNER_OF_SECTIONS[sx[0]]:
+                    textstr_sx += "[color=#6666cc]%s[/color]"%(iconfonts.icon(ic))
+
+            NAMEsx = Button(text=textstr_sx, markup=True, halign='center',disabled=True, background_disabled_normal='',
                             background_color=[0,0,0,0], color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
                             font_name='UbuntuMono-B.ttf')
             SCOREsx = Button(text=str(int(sx[1])), disabled=True,  background_disabled_normal='', background_color=[0,0,0,0],
@@ -87,32 +111,44 @@ class ScoreGenScreen(Screen):
 
             sep = Button(disabled=True, background_disabled_normal='', background_color=[1,1,1,1],size_hint_x=width_sep)
 
-            ICONdx = Button(disabled=True, size_hint_x=width_icon, border=[0,0,0,0],
-                            background_normal=app.icons_path+app.dictIDicona[dx[0]],
-                            background_down=app.icons_path+app.dictIDicona[dx[0]],
-                            background_disabled_normal=app.icons_path+app.dictIDicona[dx[0]],
-                            background_disabled_down=app.icons_path+app.dictIDicona[dx[0]] )
+            if dx[0] == '5355053550':
+                ICONdx = Button(disabled=True, size_hint_x=width_icon, background_disabled_normal='', background_color=[0,0,0,0])
+                ARROWdx = Button(disabled=True, size_hint_x=width_arrow, background_disabled_normal='', background_color=[0,0,0,0])
+                NAMEdx = Button(disabled=True, size_hint_x=width_name, background_disabled_normal='', background_color=[0,0,0,0])
+                SCOREdx = Button(disabled=True, size_hint_x=width_score, background_disabled_normal='', background_color=[0,0,0,0])
+            else:
+                ICONdx = Button(disabled=True, size_hint_x=width_icon, border=[0,0,0,0],
+                                background_normal=app.icons_path+app.dictIDicona[dx[0]],
+                                background_down=app.icons_path+app.dictIDicona[dx[0]],
+                                background_disabled_normal=app.icons_path+app.dictIDicona[dx[0]],
+                                background_disabled_down=app.icons_path+app.dictIDicona[dx[0]] )
 
-            if self.Position[dx[0]] < self.PositionBefore[dx[0]]:
-                arrow = 'img/arrow_green.png'
-            if self.Position[dx[0]] == self.PositionBefore[dx[0]]:
-                arrow = 'img/arrow_yellow.png'
-            if self.Position[dx[0]] > self.PositionBefore[dx[0]]:
-                arrow = 'img/arrow_red.png'
+                if self.Position[dx[0]] < self.PositionBefore[dx[0]]:
+                    arrow = 'img/arrow_green.png'
+                if self.Position[dx[0]] == self.PositionBefore[dx[0]]:
+                    arrow = 'img/arrow_yellow.png'
+                if self.Position[dx[0]] > self.PositionBefore[dx[0]]:
+                    arrow = 'img/arrow_red.png'
 
-            ARROWdx = Button(disabled=True,
-                            background_normal=arrow,
-                            background_down=arrow,
-                            background_disabled_normal=arrow,
-                            background_disabled_down=arrow,
-                            size_hint_x=width_arrow)
+                ARROWdx = Button(disabled=True,
+                                background_normal=arrow,
+                                background_down=arrow,
+                                background_disabled_normal=arrow,
+                                background_disabled_down=arrow,
+                                size_hint_x=width_arrow)
 
-            name = app.dictIDName[dx[0]].split()
-            NAMEdx = Button(text=name[0]+'\n'+name[1], halign='center',disabled=True, background_disabled_normal='',
-                            background_color=[0,0,0,0], color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
-                            font_name='UbuntuMono-B.ttf')
-            SCOREdx = Button(text=str(int(dx[1])), disabled=True,background_disabled_normal='', background_color=[0,0,0,0], bold=True,
-                             font_size = 35*app.scalatore,size_hint_x=width_score)
+                name = app.dictIDName[dx[0]].split()
+                textstr_dx = name[0]+'\n'+name[1]
+                if dx[0] in app.WINNER_OF_SECTIONS.keys():
+                    textstr_dx += '\n'
+                    for ic in app.WINNER_OF_SECTIONS[dx[0]]:
+                        textstr_dx += "[color=#6666cc]%s[/color]"%(iconfonts.icon(ic))
+
+                NAMEdx = Button(text=textstr_dx, markup=True, halign='center',disabled=True, background_disabled_normal='',
+                                background_color=[0,0,0,0], color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
+                                font_name='UbuntuMono-B.ttf')
+                SCOREdx = Button(text=str(int(dx[1])), disabled=True,background_disabled_normal='', background_color=[0,0,0,0], bold=True,
+                                 font_size = 35*app.scalatore,size_hint_x=width_score)
 
             g.add_widget(ICONsx)
             g.add_widget(ARROWsx)

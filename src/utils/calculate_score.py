@@ -39,6 +39,11 @@ def result(qst_ans):
         if app.SECTIONS[app.SEC_CNT]['type'] != 'test':
             app.GENERAL_SCORE[key] += result
 
+        # if special section, collecting result in sct score
+        if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
+            app.SECTION_SCORE[app.SEC_CNT][key] += result
+            print("pirola: "+str(app.SECTION_SCORE[app.SEC_CNT]))
+
     print app.ABSTENTIONS
 
     app.QUESTION_SCORE.append(tmp)
@@ -97,11 +102,11 @@ def DictOfAnswers():
 #return a dictionary {ID: [char, time], ...}
 def DictOfAnswers_fake():
     dizionario = {}
-    dizionario['2142880870'] = ['A',2.0]
-    dizionario['3893145282'] = ['B',3.0]
-    dizionario['2142879773'] = ['C',4.0]
-    dizionario['3893136493'] = ['D',5.0]
-    dizionario['3893146321'] = ['E',7.0]
+    # dizionario['2142880870'] = ['A',2.0]
+    # dizionario['3893145282'] = ['B',3.0]
+    # dizionario['2142879773'] = ['C',4.0]
+    # dizionario['3893136493'] = ['D',5.0]
+    # dizionario['3893146321'] = ['E',7.0]
     return dizionario
 
 

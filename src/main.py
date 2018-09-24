@@ -30,6 +30,21 @@ from kivy.properties import NumericProperty, ListProperty, DictProperty, OptionP
 from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
+#load icon font
+import iconfonts.iconfonts as iconfonts
+# Biologia
+iconfonts.register('fa-leaf', script_path+'/iconfonts/fontawesome-webfont.ttf', script_path+'/iconfonts/font-awesome.fontd')
+# Medicina
+iconfonts.register('fa-heartbeat', script_path+'/iconfonts/fontawesome-webfont.ttf', script_path+'/iconfonts/font-awesome.fontd')
+# Nutrizione
+iconfonts.register('fa-cutlery', script_path+'/iconfonts/fontawesome-webfont.ttf', script_path+'/iconfonts/font-awesome.fontd')
+# Chimica
+iconfonts.register('fa-flask', script_path+'/iconfonts/fontawesome-webfont.ttf', script_path+'/iconfonts/font-awesome.fontd')
+# Fisica
+iconfonts.register('fa-magnet', script_path+'/iconfonts/fontawesome-webfont.ttf', script_path+'/iconfonts/font-awesome.fontd')
+# Tecnologia
+iconfonts.register('fa-cogs', script_path+'/iconfonts/fontawesome-webfont.ttf', script_path+'/iconfonts/font-awesome.fontd')
+
 
 class Master:
 
@@ -68,7 +83,7 @@ class BDCApp(App):
     QST_DSP_CNT = StringProperty()
     QST_TOT_CNT = NumericProperty(0)
     QST_PAR_CNT = NumericProperty(0)
-    QST_NOR_CNT = NumericProperty(1)
+    QST_NOR_CNT = NumericProperty(0)
     QUESTIONS = []
 
     SEC_CNT = NumericProperty(0)
@@ -82,10 +97,13 @@ class BDCApp(App):
     # list of dictionary: [ { id : [score, time], ... } ...] with len(list) = number of questions
     QUESTION_SCORE = []
     # dictionary of dictionary: { section : { id : score, ... } ...} with len(list) = number of sections
-    SECTION_SCORE = []
+    SECTION_SCORE = {}
     # dictionary of list { id : [answer to qst 1, answer to qst 2, ...] }
     # 'None' means abstention
     ANSWERS_GIVEN = []
+
+    # dictionary: { id_winner: [list of section_icon(s)] }
+    WINNER_OF_SECTIONS = {}
 
     saved_ans = {}
     times = []
@@ -94,7 +112,11 @@ class BDCApp(App):
     stop_time = None
     startTimeGiven = False
 
+    stringa = u"\U0001F389"
+
     main_path = os.path.dirname(os.path.realpath(__file__))
+
+    PRIZE = 300
 
     def build(self):
 

@@ -30,15 +30,33 @@ def process(filename):
             Risposte.append(filedomande[1+j+i])
         dict['ans'] = Risposte
         dict['OK'] = filedomande[6+i][0]
+
+        def_img = app.main_path + "/../" +"logoBdC_bianco.png"
+
         if filedomande[7+i].startswith("none"):
-            dict['img_bf'] = [app.main_path + "/../" +"logoBdC_bianco.png"]
+            dict['img_bf'] = [def_img]
         else:
-            dict['img_bf'] = [filepath + "/" + img for img in filedomande[7+i].split()]
+            #dict['img_bf'] = [filepath + "/" + img for img in filedomande[7+i].split()]
+            dict['img_bf'] = checkImgEx(filedomande[7+i].split(), def_img)
+
         if filedomande[8+i].startswith("none"):
-            dict['img_af'] = [app.main_path + "/" +"logoBdC_bianco.png"]
+            dict['img_af'] = [def_img]
         else:
-            dict['img_af'] = [filepath + "/" + img for img in filedomande[8+i].split()]
+            #dict['img_af'] = [filepath + "/" + img for img in filedomande[8+i].split()]
+            dict['img_af'] = checkImgEx(filedomande[8+i].split(), def_img)
 
         domande[i/10] = dict
 
     return domande
+
+def checkImgEx(imglist, default_img):
+
+    newimglist = []
+    for img in imglist:
+        fname = app.filepath + "/" + img
+        if os.path.isfile(fname):
+            newimglist.append(fname)
+        else:
+            newimglist.append(default_img)
+
+    return newimglist
