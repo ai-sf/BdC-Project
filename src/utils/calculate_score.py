@@ -42,9 +42,7 @@ def result(qst_ans):
         # if special section, collecting result in sct score
         if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
             app.SECTION_SCORE[app.SEC_CNT][key] += result
-            print("pirola: "+str(app.SECTION_SCORE[app.SEC_CNT]))
 
-    print app.ABSTENTIONS
 
     app.QUESTION_SCORE.append(tmp)
     return tmp
@@ -78,10 +76,8 @@ def DictOfAnswers():
 
 #    start_time = int(app.times[0])
     start_time = app.start_time
-    print(start_time)
 #    stop_time = int(app.times[-1])
     stop_time = app.stop_time
-    print(stop_time)
 
     app.start_time = None
     app.stop_time = None

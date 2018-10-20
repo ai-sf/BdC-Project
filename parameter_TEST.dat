@@ -1,0 +1,122 @@
+#------------- BOTTA DI COULOMB -------------#
+#---------- file di configurazione ----------#
+#--------------------------------------------#
+
+[Partenza]
+#stabilire se partire dal backup o da capo
+#(il file di backup e' 'backup.dat')
+nome_porta: /dev/ttyUSB0
+backup: False
+NOCONTROLLER: True
+
+#--------------------------------------------#
+
+[Grafica]
+#Parametro di scala per risoluzione schermo
+scalatore: 1.0
+#Santa Maria Gualtieri: 1.5
+#Fullscreen (True o False)
+fullscreen: False
+#if fullscreen == False
+#width: 1024
+#height: 768
+#width: 2048
+#height: 1536
+width: 1600
+height: 1200
+##saba
+#width: 1280
+#height: 1024
+
+#--------------------------------------------#
+# type: "test", "special", "normal"
+[qst0]
+type=test
+name=Test
+icon=asdasdas
+path=prova_schermate/prova.txt
+intro=prova_schermate/bdc.png
+bkg=prova_schermate/ERN_sfondo_domanda.png
+
+[qst1]
+type=normal
+name=Stage
+icon=icon.png
+path=prova_schermate/domande.txt
+intro=prova_schermate/bdc.png
+bkg=none
+
+[qst2]
+type=special
+name=meDiCina
+icon=fa-heartbeat
+path=prova_schermate/sezione_med.txt
+intro=intro_images/medicina.jpg
+bkg=bkg_images/chimica.png
+
+[qst3]
+type=normal
+name=Stage
+icon=icon.png
+path=prova_schermate/domande.txt
+intro=prova_schermate/bdc.png
+bkg=none
+
+[qst4]
+type=special
+name=BiOloGia
+icon=fa-leaf
+path=prova_schermate/sezione_bio.txt
+intro=intro_images/biologia.jpg
+bkg=bkg_images/chimica.png
+
+[qst5]
+type=normal
+name=Mig
+icon=icon.png
+path=prova_schermate/domande_finale.txt
+intro=prova_schermate/bdc.png
+bkg=none
+
+[Domande]
+folder: prova_schermate
+#Se True, permette di cliccare sulle domande
+#e printare la risposta come ('A',3)
+provadomande: True
+#se random, le domande sono disposte casualmente
+random: False
+
+#--------------------------------------------#
+
+[Squadre]
+#Indicare tutti le coppie ID-nome squadra
+2142880870: Albert EINSTEIN
+3893145282: Isaac NEWTON
+3893136493: Max PLANCK
+2142879773: Richard FEYNMAN
+3893146321: Enrico FERMI
+2142880227: James MAXWELL
+3893118944: Erwin SCHRODINGER
+2142880166: Galileo GALILEI
+3893145819: Alessandro VOLTA
+2142881769: Marie CURIE
+3893146227: Werner HEISENBERG
+#2142881923: Paul DIRAC
+# 2486007679: Nikola TESLA
+# 2486014145: Niels BOHR 
+# 2142880856: James JOULE
+# 2486008734: Wolfgang PAULI 
+# 2486014355: Michael FARADAY
+# 2486007740: Ernest RUTHERFORD
+
+#--------------------------------------------#
+
+[FIRST_SLIDES]
+1: ./bdc.png
+
+
+
+
+
+
+

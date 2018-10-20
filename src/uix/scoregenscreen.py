@@ -97,11 +97,10 @@ class ScoreGenScreen(Screen):
 
             name = app.dictIDName[sx[0]].split()
             textstr_sx = name[0]+'\n'+name[1]
-            print(app.WINNER_OF_SECTIONS.keys())
             if sx[0] in app.WINNER_OF_SECTIONS.keys():
                 textstr_sx += '\n'
                 for ic in app.WINNER_OF_SECTIONS[sx[0]]:
-                    textstr_sx += "[color=#6666cc]%s[/color]"%(iconfonts.icon(ic))
+                    textstr_sx += " [color=#6666cc]%s[/color] "%(iconfonts.icon(ic))
 
             NAMEsx = Button(text=textstr_sx, markup=True, halign='center',disabled=True, background_disabled_normal='',
                             background_color=[0,0,0,0], color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
@@ -142,7 +141,7 @@ class ScoreGenScreen(Screen):
                 if dx[0] in app.WINNER_OF_SECTIONS.keys():
                     textstr_dx += '\n'
                     for ic in app.WINNER_OF_SECTIONS[dx[0]]:
-                        textstr_dx += "[color=#6666cc]%s[/color]"%(iconfonts.icon(ic))
+                        textstr_dx += " [color=#6666cc]%s[/color] "%(iconfonts.icon(ic))
 
                 NAMEdx = Button(text=textstr_dx, markup=True, halign='center',disabled=True, background_disabled_normal='',
                                 background_color=[0,0,0,0], color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,

@@ -97,9 +97,8 @@ class AfterQstSlides(Screen):
             app.load_screen('ScoreGenScreen')
 
     def next(self):
-        print("QST_DSP_CNT = "+str(app.QST_DSP_CNT))
-        print("QST_NOR_CNT = "+str(app.QST_NOR_CNT))
         if self.counter+1 == len(app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['img_af']):
+            self.counter = 0
             app.QST_TOT_CNT += 1
             if app.QST_PAR_CNT+1 == len(app.QUESTIONS[app.SEC_CNT].keys()):
                 app.QST_PAR_CNT = 0
@@ -144,7 +143,7 @@ class AfterQstSlides(Screen):
     def do_backup(self):
         # #saving backup
         savefile = open(app.filepath+'/backup.dat','w')
-        savestringa = json.dumps([app.QST_DSP_CNT, app.QST_NOR_CNT, app.QST_TOT_CNT, app.QST_PAR_CNT, app.SEC_CNT, app.HISTORY, app.ABSTENTIONS,app.GENERAL_SCORE, app.QUESTION_SCORE,app.SECTION_SCORE,app.ANSWERS_GIVEN])
+        savestringa = json.dumps([app.QST_DSP_CNT, app.QST_NOR_CNT, app.QST_TOT_CNT, app.QST_PAR_CNT, app.SEC_CNT, app.HISTORY, app.ABSTENTIONS,app.GENERAL_SCORE, app.QUESTION_SCORE,app.SECTION_SCORE,app.ANSWERS_GIVEN, app.WINNER_OF_SECTIONS, app.SCT_FIRST_NAMES])
         savefile.write(savestringa)
         savefile.close()
         print("Backup written!!")

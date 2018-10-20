@@ -36,20 +36,14 @@ def setGlobal(init_file):
         app.SECTIONS.append(tmp_dict)
         tmp += 1
 
-    print app.SECTIONS
-
     from utils.questions import retriveQuestions
     retriveQuestions()
 
-    print([qst for sublist in app.QUESTIONS for qst in sublist])
     app.NUM_OF_QST = len([qst for sublist in app.QUESTIONS for qst in sublist])
-    print(app.NUM_OF_QST)
 
     app.dictIDName = {}
     for id in config['Squadre']:
         app.dictIDName[id] = config.get('Squadre',id)
-
-    print app.dictIDName
 
     app.PositionBefore = dict(zip(app.dictIDName.keys(), [0]*len(app.dictIDName.keys())))
     app.Position = dict(zip(app.dictIDName.keys(), [0]*len(app.dictIDName.keys())))

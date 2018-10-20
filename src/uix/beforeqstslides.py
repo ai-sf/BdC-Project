@@ -69,9 +69,7 @@ class BeforeQstSlides(Screen):
             if app.SECTION_SCORE.has_key(app.SEC_CNT):
                 pass
             else:
-                print("Created key = "+str(app.SEC_CNT))
                 app.SECTION_SCORE[app.SEC_CNT] = dict(zip(app.dictIDName.keys(),[0]*len(app.dictIDName.keys())))
-            print app.SECTION_SCORE[app.SEC_CNT]
 
     def next(self):
         if self.counter+1 == len(app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['img_bf']):

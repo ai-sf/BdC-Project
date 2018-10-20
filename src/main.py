@@ -105,6 +105,8 @@ class BDCApp(App):
     # dictionary: { id_winner: [list of section_icon(s)] }
     WINNER_OF_SECTIONS = {}
 
+    SCT_FIRST_NAMES = []
+
     saved_ans = {}
     times = []
 
@@ -130,7 +132,6 @@ class BDCApp(App):
 
         self.ABSTENTIONS = dict(zip(self.dictIDName.keys(),[0]*len(self.dictIDName.keys())))
         self.GENERAL_SCORE = dict(zip(self.dictIDName.keys(),[0]*len(self.dictIDName.keys())))
-        print self.GENERAL_SCORE
 
         self.RisposteDateList = [[0,0,0,0,0]]*self.starting_counter
         self.RisposteOK = [0] * self.NUMERO_GIOCATORI
@@ -140,7 +141,6 @@ class BDCApp(App):
                 bckcontent = f.read()
                 bcklist = json.loads(bckcontent)
                 print("---------Using backup!!------------")
-                print(bcklist)
                 self.QST_DSP_CNT = bcklist[0]
                 self.QST_NOR_CNT = bcklist[1]
                 self.QST_TOT_CNT = bcklist[2]
@@ -152,6 +152,8 @@ class BDCApp(App):
                 self.QUESTION_SCORE = bcklist[8]
                 self.SECTION_SCORE = bcklist[9]
                 self.ANSWERS_GIVEN = bcklist[10]
+                self.WINNER_OF_SECTIONS = bcklist[11]
+                self.SCT_FIRST_NAMES = bcklist[12]
 
         #music
         from kivy.core.audio import SoundLoader

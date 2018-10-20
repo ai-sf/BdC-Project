@@ -9,7 +9,6 @@ def retriveQuestions():
         qst_sec = process(d['path'])
         app.QUESTIONS.append(qst_sec)
 
-    print app.QUESTIONS
 
 def process(filename):
 
@@ -22,7 +21,6 @@ def process(filename):
 
     domande = {}
     for i in range(0,len(filedomande),10):
-        print str(i/10)+': '+filedomande[0+i]
         dict = {}
         dict['qst'] = filedomande[0+i]
         Risposte = []

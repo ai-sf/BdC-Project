@@ -377,8 +377,6 @@ class Domanda(GridLayout):
         self.spiegazione_button.background_color = [0,0,0,0]
         self.classdom_button.background_color = [0,0,0,0]
 
-        print(app.SECTIONS[app.SEC_CNT]['icon'])
-
         # if special section, then icon instead of '?'
         if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
             ic = app.SECTIONS[app.SEC_CNT]['icon']
@@ -390,6 +388,7 @@ class Domanda(GridLayout):
 
     def start_time(self):
 
+        print("Domanda visualizzata: "+str(app.QST_DSP_CNT))
         print("Sezione: "+str(app.SEC_CNT+1)+"/"+str(len(app.SECTIONS)))
         print("Domanda in sezione: "+str(app.QST_PAR_CNT+1)+"/"+str(len(app.QUESTIONS[app.SEC_CNT].keys())))
 
@@ -502,8 +501,6 @@ class Domanda(GridLayout):
         rightans = app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['OK']
 
         count_ans = {'A': 0, 'B': 0, 'C': 0, 'D': 0, 'E': 0}
-
-        print app.HISTORY[-1]
 
         for value in app.HISTORY[-1].values():
             label = value[0]

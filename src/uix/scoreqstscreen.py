@@ -50,7 +50,6 @@ class ScoreQstScreen(Screen):
 
         rows_dict = dict(zip(range(len(listrighe)), [row_height]*len(listrighe)))
         rows_dict[len(listrighe)] = bar_height
-        print(rows_dict)
         g = GridLayout(id='grid',cols=7,rows_minimum=rows_dict)
 
         for [sx,dx] in listrighe:
