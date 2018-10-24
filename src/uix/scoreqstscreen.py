@@ -26,8 +26,9 @@ class ScoreQstScreen(Screen):
             pass
         else:
             self.clear_widgets()
-            self.Score = [(key, app.QUESTION_SCORE[-1][key][0]) for key in app.QUESTION_SCORE[-1].keys()]
-            sorted_x = sorted(self.Score, key=operator.itemgetter(1), reverse= True)
+            self.Score = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1]) for key in app.QUESTION_SCORE[-1].keys()]
+            sorted_x = sorted(self.Score, key=operator.itemgetter(2))
+            sorted_x = sorted(sorted_x, key=operator.itemgetter(1), reverse= True)
 
             # if odd, add a fake name
             if len(sorted_x) % 2 == 1:
