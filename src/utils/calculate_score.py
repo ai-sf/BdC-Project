@@ -90,7 +90,7 @@ def DictOfAnswers():
         ID = app.saved_ans[key][0]
         if dizionario.has_key(ID) and dizionario[ID][1] < dt:
             pass
-        else:
+        elif key <= stop_time or (key - start_time < 15000000 and key - start_time > 0):
             dizionario[ID] = [app.saved_ans[key][1], dt]
 
     return dizionario
