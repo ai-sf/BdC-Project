@@ -58,10 +58,10 @@ class FirstSlides(Screen):
 
     def on_enter(self):
         if not app.FIRST_SLIDES:
-            app.load_screen('BeforeQstSlides')
+            app.load_screen('ScoreGenBegin')
 
     def next(self):
         if self.counter+1 == len(app.FIRST_SLIDES):
-            app.load_screen('BeforeQstSlides')
+            app.load_screen('ScoreGenBegin')
         else:
             self.counter +=1
