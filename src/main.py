@@ -131,7 +131,7 @@ class BDCApp(App):
         setGlobal(args.config_file)
 
         self.ABSTENTIONS = dict(zip(self.dictIDName.keys(),[0]*len(self.dictIDName.keys())))
-        self.GENERAL_SCORE = dict(zip(self.dictIDName.keys(),[0]*len(self.dictIDName.keys())))
+        self.GENERAL_SCORE = self.dictIDBonus
 
         self.RisposteDateList = [[0,0,0,0,0]]*self.starting_counter
         self.RisposteOK = [0] * self.NUMERO_GIOCATORI
