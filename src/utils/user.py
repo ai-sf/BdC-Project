@@ -49,6 +49,7 @@ def setGlobal(init_file):
 
     app.PositionBefore = dict(zip(app.dictIDName.keys(), [0]*len(app.dictIDName.keys())))
     app.Position = dict(zip(app.dictIDName.keys(), [0]*len(app.dictIDName.keys())))
+    app.newPositionBefore = False
 
     app.NUMERO_GIOCATORI = len(app.dictIDName.keys())
 
@@ -91,7 +92,7 @@ def setGlobal(init_file):
 
     app.provadomande = config.get("Domande","provadomande")
 
-    app.dictIDicona = { "2142880870" : "einstein.png",
+    app.dictIDicona = { "2142880870": "einstein.png",
                         "3893145282": "newton.png",
                         "3893136493": "planck.png",
                         "2142879773": "feynman.png",

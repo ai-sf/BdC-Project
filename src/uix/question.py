@@ -490,8 +490,6 @@ class Domanda(GridLayout):
             app.Score_sct = [(key, app.SECTION_SCORE[app.SEC_CNT][key]) for key in app.SECTION_SCORE[app.SEC_CNT].keys()]
             app.sorted_x_sct = sorted(app.Score_sct, key=operator.itemgetter(1), reverse= True)
 
-        if app.Position:
-            app.PositionBefore = app.Position
         app.Position = {}
         for name in app.dictIDName.keys():
             app.Position[name] = [j[0] for j in app.sorted_x].index(name)

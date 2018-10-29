@@ -71,6 +71,10 @@ class BeforeQstSlides(Screen):
             else:
                 app.SECTION_SCORE[app.SEC_CNT] = dict(zip(app.dictIDName.keys(),[0]*len(app.dictIDName.keys())))
 
+        if app.newPositionBefore:
+            app.PositionBefore = app.Position
+            app.newPositionBefore = False
+
     def next(self):
         if self.counter+1 == len(app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['img_bf']):
             app.qst_done = False
