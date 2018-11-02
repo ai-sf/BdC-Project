@@ -455,7 +455,7 @@ class Domanda(GridLayout):
         app.HISTORY.append(risposte_date)
 
         #creating button's text
-        self.terna_risultato = '[color=008000]:-) '+str(RAW['R'])+'[/color][color=FF0000]   :-( '+str(RAW['W'])+'[/color][color=FFE118]   :-| '+str(RAW['A'])+'[/color]'
+        self.terna_risultato = '[color=00cc00]%s'%(iconfonts.icon('fa-check-circle'))+' '+str(RAW['R'])+'      '+'[/color][color=ff0000]%s'%(iconfonts.icon('fa-times-circle'))+' '+str(RAW['W'])+'      '+'[/color][color=ffcc00]%s'%(iconfonts.icon('fa-minus-circle'))+' '+str(RAW['A'])+'[/color]'
 
         # #saving statistics
         # with open(filenameTime,'r') as f:
