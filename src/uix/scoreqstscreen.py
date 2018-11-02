@@ -38,6 +38,9 @@ class ScoreQstScreen(Screen):
 
             sorted_x = sorted_R+self.Score_A+sorted_W
 
+            while len(sorted_x) < 5:
+                sorted_x.append(('5355053550', -9999999))
+
             # if odd, add a fake name
             if len(sorted_x) % 2 == 1:
                 sorted_x.append(('5355053550', -9999999))
@@ -62,46 +65,50 @@ class ScoreQstScreen(Screen):
         g = GridLayout(id='grid',cols=7,rows_minimum=rows_dict)
 
         for [sx,dx] in listrighe:
+            if sx[0] == '5355053550':
+                ICONsx = Button(disabled=True, size_hint_x=width_icon, background_disabled_normal='', background_color=[0,0,0,0])
+                NAMEsx = Button(disabled=True, size_hint_x=width_name, background_disabled_normal='', background_color=[0,0,0,0])
+                SCOREsx = Button(disabled=True, size_hint_x=width_score, background_disabled_normal='', background_color=[0,0,0,0])
+            else:
+                ICONsx = Button(disabled=True,
+                                background_normal=app.icons_path+app.dictIDicona[sx[0]],
+                                background_down=app.icons_path+app.dictIDicona[sx[0]],
+                                background_disabled_normal=app.icons_path+app.dictIDicona[sx[0]],
+                                background_disabled_down=app.icons_path+app.dictIDicona[sx[0]],
+                                size_hint_x=width_icon, border=[0,0,0,0])
 
-            ICONsx = Button(disabled=True,
-                            background_normal=app.icons_path+app.dictIDicona[sx[0]],
-                            background_down=app.icons_path+app.dictIDicona[sx[0]],
-                            background_disabled_normal=app.icons_path+app.dictIDicona[sx[0]],
-                            background_disabled_down=app.icons_path+app.dictIDicona[sx[0]],
-                            size_hint_x=width_icon, border=[0,0,0,0])
 
+                name = app.dictIDName[sx[0]].split()
+                NAMEsx = Button(text=name[0]+'\n'+name[1],
+                                halign='center',
+                                disabled=True,
+                                background_disabled_normal='',
+                                background_color=[0,0,0,0],
+                                color=[1,1,1,1],
+                                font_size=40*app.scalatore,
+                                size_hint_x = width_name,
+                                font_name='font/UbuntuMono-B.ttf')
 
-            name = app.dictIDName[sx[0]].split()
-            NAMEsx = Button(text=name[0]+'\n'+name[1],
-                            halign='center',
-                            disabled=True,
-                            background_disabled_normal='',
-                            background_color=[0,0,0,0],
-                            color=[1,1,1,1],
-                            font_size=40*app.scalatore,
-                            size_hint_x = width_name,
-                            font_name='font/UbuntuMono-B.ttf')
-
-            if int(sx[1]) > 0:
-                colore = [0,0.8,0,1]
-                colorehtml = '#00cc00'
-                timesx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(sx[0])][1],2)))+"\'\'"
-            if int(sx[1]) == 0:
-                colore = [1,0.75,0.095,1]
-                colorehtml = '#ffcc00'
-                timesx = '-'
-            if int(sx[1]) < 0:
-                colore = [0.8,0,0,1]
-                colorehtml = '#ff0000'
-                if app.QUESTION_SCORE[-1][str(sx[0])][1] is None:
-                    timesx = '-'
-                else:
+                if int(sx[1]) > 0:
+                    colore = [0,0.8,0,1]
+                    colorehtml = '#00cc00'
                     timesx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(sx[0])][1],2)))+"\'\'"
+                if int(sx[1]) == 0:
+                    colore = [1,0.75,0.095,1]
+                    colorehtml = '#ffcc00'
+                    timesx = '-'
+                if int(sx[1]) < 0:
+                    colore = [0.8,0,0,1]
+                    colorehtml = '#ff0000'
+                    if app.QUESTION_SCORE[-1][str(sx[0])][1] is None:
+                        timesx = '-'
+                    else:
+                        timesx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(sx[0])][1],2)))+"\'\'"
 
-            scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(sx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']\n'+timesx+'[/color][/size]'
-            SCOREsx = Button(text=scoresx_string, disabled=True, background_disabled_normal='',
-                            background_color=[0,0,0,0],markup=True,
-                            font_size = 35*app.scalatore,size_hint_x=width_score,halign='center')
+                scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(sx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']\n'+timesx+'[/color][/size]'
+                SCOREsx = Button(text=scoresx_string, disabled=True, background_disabled_normal='',
+                                background_color=[0,0,0,0],markup=True,
+                                font_size = 35*app.scalatore,size_hint_x=width_score,halign='center')
 
             sep = Button(disabled=True, background_disabled_normal='', background_color=[1,1,1,1],size_hint_x=width_sep)
 

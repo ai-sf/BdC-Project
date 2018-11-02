@@ -41,6 +41,10 @@ class ScoreSctScreen(Screen):
                 break
 
         sorted_x_sct = app.sorted_x_sct
+
+        while len(sorted_x_sct) < 5:
+            sorted_x_sct.append(('5355053550', -9999999))
+
         # if odd, add a fake name
         if len(sorted_x_sct) % 2 == 1:
             sorted_x_sct.append(('5355053550', -9999999))
@@ -68,27 +72,32 @@ class ScoreSctScreen(Screen):
 
         for [sx,dx] in listrighe:
 
-            ICONsx = Button(disabled=True,
-                            background_normal=app.icons_path+app.dictIDicona[sx[0]],
-                            background_down=app.icons_path+app.dictIDicona[sx[0]],
-                            background_disabled_normal=app.icons_path+app.dictIDicona[sx[0]],
-                            background_disabled_down=app.icons_path+app.dictIDicona[sx[0]],
-                            size_hint_x=width_icon, border=[0,0,0,0])
-
-            name = app.dictIDName[sx[0]].split()
-            num_win = len(app.SCT_FIRST_NAMES)
-            if sx[0] in app.SCT_FIRST_NAMES:
-                points = str(app.PRIZE/num_win)
-                NAMEsx = Button(text="[color=#6666cc]"+name[0]+'\n'+name[1]+'\n'+"[b]+"+points+"[/b][/color]", markup=True, halign='center',disabled=True, background_disabled_normal='',
-                                background_color=[0,0,0,0], color=[0.5,0.5,0.5,1], font_size=35*app.scalatore, size_hint_x = width_name,
-                                font_name='UbuntuMono-B.ttf')
+            if sx[0] == '5355053550':
+                ICONsx = Button(disabled=True, size_hint_x=width_icon, background_disabled_normal='', background_color=[0,0,0,0])
+                NAMEsx = Button(disabled=True, size_hint_x=width_name, background_disabled_normal='', background_color=[0,0,0,0])
+                SCOREsx = Button(disabled=True, size_hint_x=width_score, background_disabled_normal='', background_color=[0,0,0,0])
             else:
-                NAMEsx = Button(text=name[0]+'\n'+name[1], halign='center',disabled=True, background_disabled_normal='',
-                                background_color=[0,0,0,0], color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
-                                font_name='UbuntuMono-B.ttf')
+                ICONsx = Button(disabled=True,
+                                background_normal=app.icons_path+app.dictIDicona[sx[0]],
+                                background_down=app.icons_path+app.dictIDicona[sx[0]],
+                                background_disabled_normal=app.icons_path+app.dictIDicona[sx[0]],
+                                background_disabled_down=app.icons_path+app.dictIDicona[sx[0]],
+                                size_hint_x=width_icon, border=[0,0,0,0])
 
-            SCOREsx = Button(text=str(int(sx[1])), disabled=True,  background_disabled_normal='', background_color=[0,0,0,0],
-                            bold=True, font_size = 35*app.scalatore,size_hint_x=width_score)
+                name = app.dictIDName[sx[0]].split()
+                num_win = len(app.SCT_FIRST_NAMES)
+                if sx[0] in app.SCT_FIRST_NAMES:
+                    points = str(app.PRIZE/num_win)
+                    NAMEsx = Button(text="[color=#6666cc]"+name[0]+'\n'+name[1]+'\n'+"[b]+"+points+"[/b][/color]", markup=True, halign='center',disabled=True, background_disabled_normal='',
+                                    background_color=[0,0,0,0], color=[0.5,0.5,0.5,1], font_size=35*app.scalatore, size_hint_x = width_name,
+                                    font_name='UbuntuMono-B.ttf')
+                else:
+                    NAMEsx = Button(text=name[0]+'\n'+name[1], halign='center',disabled=True, background_disabled_normal='',
+                                    background_color=[0,0,0,0], color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
+                                    font_name='UbuntuMono-B.ttf')
+
+                SCOREsx = Button(text=str(int(sx[1])), disabled=True,  background_disabled_normal='', background_color=[0,0,0,0],
+                                bold=True, font_size = 35*app.scalatore,size_hint_x=width_score)
 
             sep = Button(disabled=True, background_disabled_normal='', background_color=[1,1,1,1],size_hint_x=width_sep)
 
