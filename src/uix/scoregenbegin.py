@@ -34,15 +34,12 @@ class ScoreGenBegin(Screen):
 
             app.Score = [(key, app.GENERAL_SCORE[key]) for key in app.GENERAL_SCORE.keys()]
             app.sorted_x = sorted(app.Score, key=operator.itemgetter(1), reverse= True)
-            if app.Position:
-                app.PositionBefore = app.Position
             app.Position = {}
             for name in app.dictIDName.keys():
                 app.Position[name] = [j[0] for j in app.sorted_x].index(name)
 
             self.Score = app.Score
             self.Position = app.Position
-            self.PositionBefore = app.PositionBefore
 
             sorted_x = app.sorted_x
             # if odd, add a fake name
