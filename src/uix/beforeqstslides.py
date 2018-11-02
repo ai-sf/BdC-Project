@@ -64,6 +64,10 @@ class BeforeQstSlides(Screen):
                 app.QST_DSP_CNT = "P"
             else:
                 app.QST_DSP_CNT = "1"
+
+        if str(app.QST_DSP_CNT) == "1" or (str(app.QST_DSP_CNT) == "P" and app.QST_PAR_CNT+1 == 1):
+            app.score_seen = False
+
         # initialize the section dictionary for collection of sct scores
         if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
             if app.SECTION_SCORE.has_key(app.SEC_CNT):

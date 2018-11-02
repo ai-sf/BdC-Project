@@ -72,6 +72,12 @@ class ScoreGenScreen(Screen):
         g = GridLayout(cols=9,#row_default_height=row_height,row_force_default=True,
                        rows_minimum=rows_dict)
 
+        if str(app.QST_DSP_CNT) == "1" or (str(app.QST_DSP_CNT) == "P" and app.QST_PAR_CNT+1 == 1) or not app.score_seen:
+            arrow_opacity=0
+        else:
+            arrow_opacity=1
+
+        app.score_seen = True
 
         for [sx,dx] in listrighe:
 
@@ -90,6 +96,7 @@ class ScoreGenScreen(Screen):
                 arrow = 'img/arrow_red.png'
 
             ARROWsx = Button(disabled=True,
+                            opacity=arrow_opacity,
                             background_normal=arrow,
                             background_down=arrow,
                             background_disabled_normal=arrow,
@@ -131,6 +138,7 @@ class ScoreGenScreen(Screen):
                     arrow = 'img/arrow_red.png'
 
                 ARROWdx = Button(disabled=True,
+                                opacity=arrow_opacity,
                                 background_normal=arrow,
                                 background_down=arrow,
                                 background_disabled_normal=arrow,
