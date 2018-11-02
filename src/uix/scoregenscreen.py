@@ -46,6 +46,10 @@ class ScoreGenScreen(Screen):
             app.newPositionBefore = True
 
             sorted_x = app.sorted_x
+
+            while len(sorted_x) < 5:
+                sorted_x.append(('5355053550', -9999999))
+
             # if odd, add a fake name
             if len(sorted_x) % 2 == 1:
                 sorted_x.append(('5355053550', -9999999))
@@ -80,56 +84,61 @@ class ScoreGenScreen(Screen):
         app.score_seen = True
 
         for [sx,dx] in listrighe:
+            if sx[0] == '5355053550':
+                ICONsx = Button(disabled=True, size_hint_x=width_icon, background_disabled_normal='', background_color=[0,0,0,0])
+                ARROWsx = Button(disabled=True, size_hint_x=width_arrow, background_disabled_normal='', background_color=[0,0,0,0])
+                NAMEsx = Button(disabled=True, size_hint_x=width_name, background_disabled_normal='', background_color=[0,0,0,0])
+                SCOREsx = Button(disabled=True, size_hint_x=width_score, background_disabled_normal='', background_color=[0,0,0,0])
+            else:
+                ICONsx = Button(disabled=True,
+                                background_normal=app.icons_path+app.dictIDicona[sx[0]],
+                                background_down=app.icons_path+app.dictIDicona[sx[0]],
+                                background_disabled_normal=app.icons_path+app.dictIDicona[sx[0]],
+                                background_disabled_down=app.icons_path+app.dictIDicona[sx[0]],
+                                size_hint_x=width_icon, border=[0,0,0,0])
 
-            ICONsx = Button(disabled=True,
-                            background_normal=app.icons_path+app.dictIDicona[sx[0]],
-                            background_down=app.icons_path+app.dictIDicona[sx[0]],
-                            background_disabled_normal=app.icons_path+app.dictIDicona[sx[0]],
-                            background_disabled_down=app.icons_path+app.dictIDicona[sx[0]],
-                            size_hint_x=width_icon, border=[0,0,0,0])
+                if self.Position[sx[0]] < self.PositionBefore[sx[0]]:
+                    #arrow = 'img/arrow_green.png'
+                    arrow = 'fa-arrow-up'
+                    arrow_color = '#00cc00'
+                if self.Position[sx[0]] == self.PositionBefore[sx[0]]:
+                    #arrow = 'img/arrow_yellow.png'
+                    arrow = 'fa-minus'
+                    arrow_color = '#ffcc00'
+                if self.Position[sx[0]] > self.PositionBefore[sx[0]]:
+                    #arrow = 'img/arrow_red.png'
+                    arrow = 'fa-arrow-down'
+                    arrow_color = '#ff0000'
 
-            if self.Position[sx[0]] < self.PositionBefore[sx[0]]:
-                #arrow = 'img/arrow_green.png'
-                arrow = 'fa-arrow-up'
-                arrow_color = '#00cc00'
-            if self.Position[sx[0]] == self.PositionBefore[sx[0]]:
-                #arrow = 'img/arrow_yellow.png'
-                arrow = 'fa-minus'
-                arrow_color = '#ffcc00'
-            if self.Position[sx[0]] > self.PositionBefore[sx[0]]:
-                #arrow = 'img/arrow_red.png'
-                arrow = 'fa-arrow-down'
-                arrow_color = '#ff0000'
+                # ARROWsx = Button(disabled=True,
+                #                 opacity=arrow_opacity,
+                #                 background_normal=arrow,
+                #                 background_down=arrow,
+                #                 background_disabled_normal=arrow,
+                #                 background_disabled_down=arrow,
+                #                 size_hint_x=width_arrow)
 
-            # ARROWsx = Button(disabled=True,
-            #                 opacity=arrow_opacity,
-            #                 background_normal=arrow,
-            #                 background_down=arrow,
-            #                 background_disabled_normal=arrow,
-            #                 background_disabled_down=arrow,
-            #                 size_hint_x=width_arrow)
+                ARROWsx = Button(disabled=True,
+                                opacity=arrow_opacity,
+                                size_hint_x=width_arrow,
+                                background_color=[0,0,0,0],
+                                font_size=50*app.scalatore,
+                                markup=True,
+                                text="[color="+arrow_color+"]%s[/color] "%(iconfonts.icon(arrow))
+                                )
 
-            ARROWsx = Button(disabled=True,
-                            opacity=arrow_opacity,
-                            size_hint_x=width_arrow,
-                            background_color=[0,0,0,0],
-                            font_size=35*app.scalatore,
-                            markup=True,
-                            text="[color="+arrow_color+"]%s[/color] "%(iconfonts.icon(arrow))
-                            )
+                name = app.dictIDName[sx[0]].split()
+                textstr_sx = name[0]+'\n'+name[1]
+                if sx[0] in app.WINNER_OF_SECTIONS.keys():
+                    textstr_sx += '\n'
+                    for ic in app.WINNER_OF_SECTIONS[sx[0]]:
+                        textstr_sx += " [color=#6666cc]%s[/color] "%(iconfonts.icon(ic))
 
-            name = app.dictIDName[sx[0]].split()
-            textstr_sx = name[0]+'\n'+name[1]
-            if sx[0] in app.WINNER_OF_SECTIONS.keys():
-                textstr_sx += '\n'
-                for ic in app.WINNER_OF_SECTIONS[sx[0]]:
-                    textstr_sx += " [color=#6666cc]%s[/color] "%(iconfonts.icon(ic))
-
-            NAMEsx = Button(text=textstr_sx, markup=True, halign='center',disabled=True, background_disabled_normal='',
-                            background_color=[0,0,0,0], color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
-                            font_name='UbuntuMono-B.ttf')
-            SCOREsx = Button(text=str(int(sx[1])), disabled=True,  background_disabled_normal='', background_color=[0,0,0,0],
-                            bold=True, font_size = 35*app.scalatore,size_hint_x=width_score)
+                NAMEsx = Button(text=textstr_sx, markup=True, halign='center',disabled=True, background_disabled_normal='',
+                                background_color=[0,0,0,0], color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
+                                font_name='UbuntuMono-B.ttf')
+                SCOREsx = Button(text=str(int(sx[1])), disabled=True,  background_disabled_normal='', background_color=[0,0,0,0],
+                                bold=True, font_size = 35*app.scalatore,size_hint_x=width_score)
 
             sep = Button(disabled=True, background_disabled_normal='', background_color=[1,1,1,1],size_hint_x=width_sep)
 
@@ -170,7 +179,7 @@ class ScoreGenScreen(Screen):
                                 opacity=arrow_opacity,
                                 size_hint_x=width_arrow,
                                 background_color=[0,0,0,0],
-                                font_size=35*app.scalatore,
+                                font_size=50*app.scalatore,
                                 markup=True,
                                 text="[color="+arrow_color+"]%s[/color] "%(iconfonts.icon(arrow))
                                 )
