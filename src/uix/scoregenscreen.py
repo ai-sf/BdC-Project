@@ -89,19 +89,34 @@ class ScoreGenScreen(Screen):
                             size_hint_x=width_icon, border=[0,0,0,0])
 
             if self.Position[sx[0]] < self.PositionBefore[sx[0]]:
-                arrow = 'img/arrow_green.png'
+                #arrow = 'img/arrow_green.png'
+                arrow = 'fa-arrow-up'
+                arrow_color = '#00cc00'
             if self.Position[sx[0]] == self.PositionBefore[sx[0]]:
-                arrow = 'img/arrow_yellow.png'
+                #arrow = 'img/arrow_yellow.png'
+                arrow = 'fa-minus'
+                arrow_color = '#ffcc00'
             if self.Position[sx[0]] > self.PositionBefore[sx[0]]:
-                arrow = 'img/arrow_red.png'
+                #arrow = 'img/arrow_red.png'
+                arrow = 'fa-arrow-down'
+                arrow_color = '#ff0000'
+
+            # ARROWsx = Button(disabled=True,
+            #                 opacity=arrow_opacity,
+            #                 background_normal=arrow,
+            #                 background_down=arrow,
+            #                 background_disabled_normal=arrow,
+            #                 background_disabled_down=arrow,
+            #                 size_hint_x=width_arrow)
 
             ARROWsx = Button(disabled=True,
                             opacity=arrow_opacity,
-                            background_normal=arrow,
-                            background_down=arrow,
-                            background_disabled_normal=arrow,
-                            background_disabled_down=arrow,
-                            size_hint_x=width_arrow)
+                            size_hint_x=width_arrow,
+                            background_color=[0,0,0,0],
+                            font_size=35*app.scalatore,
+                            markup=True,
+                            text="[color="+arrow_color+"]%s[/color] "%(iconfonts.icon(arrow))
+                            )
 
             name = app.dictIDName[sx[0]].split()
             textstr_sx = name[0]+'\n'+name[1]
@@ -131,19 +146,34 @@ class ScoreGenScreen(Screen):
                                 background_disabled_down=app.icons_path+app.dictIDicona[dx[0]] )
 
                 if self.Position[dx[0]] < self.PositionBefore[dx[0]]:
-                    arrow = 'img/arrow_green.png'
+                    #arrow = 'img/arrow_green.png'
+                    arrow = 'fa-arrow-up'
+                    arrow_color = '#00cc00'
                 if self.Position[dx[0]] == self.PositionBefore[dx[0]]:
-                    arrow = 'img/arrow_yellow.png'
+                    #arrow = 'img/arrow_yellow.png'
+                    arrow = 'fa-minus'
+                    arrow_color = '#ffcc00'
                 if self.Position[dx[0]] > self.PositionBefore[dx[0]]:
-                    arrow = 'img/arrow_red.png'
+                    #arrow = 'img/arrow_red.png'
+                    arrow = 'fa-arrow-down'
+                    arrow_color = '#ff0000'
+
+                # ARROWdx = Button(disabled=True,
+                #                 opacity=arrow_opacity,
+                #                 background_normal=arrow,
+                #                 background_down=arrow,
+                #                 background_disabled_normal=arrow,
+                #                 background_disabled_down=arrow,
+                #                 size_hint_x=width_arrow)
 
                 ARROWdx = Button(disabled=True,
                                 opacity=arrow_opacity,
-                                background_normal=arrow,
-                                background_down=arrow,
-                                background_disabled_normal=arrow,
-                                background_disabled_down=arrow,
-                                size_hint_x=width_arrow)
+                                size_hint_x=width_arrow,
+                                background_color=[0,0,0,0],
+                                font_size=35*app.scalatore,
+                                markup=True,
+                                text="[color="+arrow_color+"]%s[/color] "%(iconfonts.icon(arrow))
+                                )
 
                 name = app.dictIDName[dx[0]].split()
                 textstr_dx = name[0]+'\n'+name[1]
