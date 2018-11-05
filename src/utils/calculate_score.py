@@ -36,8 +36,7 @@ def result(qst_ans):
         tmp[key] = [result, time]
 
         # updating also general score
-        if app.SECTIONS[app.SEC_CNT]['type'] != 'test':
-            app.GENERAL_SCORE[key] += result
+        app.GENERAL_SCORE[key] += result
 
         # if special section, collecting result in sct score
         if app.SECTIONS[app.SEC_CNT]['type'] == 'special':

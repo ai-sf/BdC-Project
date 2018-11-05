@@ -28,6 +28,11 @@ class ScoreGenFinScreen(Screen):
     def on_enter(self):
         self.clear_widgets()
 
+        #reset classifica dopo sezione di prova
+        if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
+            app.GENERAL_SCORE = app.dictIDReset
+            app.score_new = True
+
         app.Score = [(key, app.GENERAL_SCORE[key]) for key in app.GENERAL_SCORE.keys()]
         app.sorted_x = sorted(app.Score, key=operator.itemgetter(1), reverse= True)
         if app.Position:
@@ -39,6 +44,8 @@ class ScoreGenFinScreen(Screen):
         self.Score = app.Score
         self.Position = app.Position
         self.PositionBefore = app.PositionBefore
+
+        app.newPositionBefore = True
 
         sorted_x = app.sorted_x
 
@@ -92,6 +99,7 @@ class ScoreGenFinScreen(Screen):
         g = GridLayout(cols=9,#row_default_height=row_height,row_force_default=True,
                        rows_minimum=rows_dict)
 
+        app.score_seen = True
 
         for [sx,dx] in listrighe:
             if sx[0] == '5355053550':
@@ -107,18 +115,32 @@ class ScoreGenFinScreen(Screen):
                                 background_disabled_down=app.icons_path+app.dictIDicona[sx[0]],
                                 size_hint_x=width_icon, border=[0,0,0,0])
 
-                if self.Position[sx[0]] < self.PositionBefore[sx[0]]:
-                    #arrow = 'img/arrow_green.png'
-                    arrow = 'fa-arrow-up'
-                    arrow_color = '#00cc00'
-                if self.Position[sx[0]] == self.PositionBefore[sx[0]]:
-                    #arrow = 'img/arrow_yellow.png'
-                    arrow = 'fa-minus'
-                    arrow_color = '#ffcc00'
-                if self.Position[sx[0]] > self.PositionBefore[sx[0]]:
-                    #arrow = 'img/arrow_red.png'
-                    arrow = 'fa-arrow-down'
-                    arrow_color = '#ff0000'
+                if app.score_new:
+                    if sx[1] > 0:
+                        #arrow = 'img/arrow_green.png'
+                        arrow = 'fa-arrow-up'
+                        arrow_color = '#00cc00'
+                    elif sx[1] == 0:
+                        #arrow = 'img/arrow_yellow.png'
+                        arrow = 'fa-minus'
+                        arrow_color = '#ffcc00'
+                    elif sx[1] < 0:
+                        #arrow = 'img/arrow_red.png'
+                        arrow = 'fa-arrow-down'
+                        arrow_color = '#ff0000'
+                else:
+                    if self.Position[sx[0]] < self.PositionBefore[sx[0]]:
+                        #arrow = 'img/arrow_green.png'
+                        arrow = 'fa-arrow-up'
+                        arrow_color = '#00cc00'
+                    if self.Position[sx[0]] == self.PositionBefore[sx[0]]:
+                        #arrow = 'img/arrow_yellow.png'
+                        arrow = 'fa-minus'
+                        arrow_color = '#ffcc00'
+                    if self.Position[sx[0]] > self.PositionBefore[sx[0]]:
+                        #arrow = 'img/arrow_red.png'
+                        arrow = 'fa-arrow-down'
+                        arrow_color = '#ff0000'
 
                 # ARROWsx = Button(disabled=True,
                 #                 background_normal=arrow,
@@ -162,18 +184,32 @@ class ScoreGenFinScreen(Screen):
                                 background_disabled_normal=app.icons_path+app.dictIDicona[dx[0]],
                                 background_disabled_down=app.icons_path+app.dictIDicona[dx[0]] )
 
-                if self.Position[dx[0]] < self.PositionBefore[dx[0]]:
-                    #arrow = 'img/arrow_green.png'
-                    arrow = 'fa-arrow-up'
-                    arrow_color = '#00cc00'
-                if self.Position[dx[0]] == self.PositionBefore[dx[0]]:
-                    #arrow = 'img/arrow_yellow.png'
-                    arrow = 'fa-minus'
-                    arrow_color = '#ffcc00'
-                if self.Position[dx[0]] > self.PositionBefore[dx[0]]:
-                    #arrow = 'img/arrow_red.png'
-                    arrow = 'fa-arrow-down'
-                    arrow_color = '#ff0000'
+                if app.score_new:
+                    if sx[1] > 0:
+                        #arrow = 'img/arrow_green.png'
+                        arrow = 'fa-arrow-up'
+                        arrow_color = '#00cc00'
+                    elif sx[1] == 0:
+                        #arrow = 'img/arrow_yellow.png'
+                        arrow = 'fa-minus'
+                        arrow_color = '#ffcc00'
+                    elif sx[1] < 0:
+                        #arrow = 'img/arrow_red.png'
+                        arrow = 'fa-arrow-down'
+                        arrow_color = '#ff0000'
+                else:
+                    if self.Position[dx[0]] < self.PositionBefore[dx[0]]:
+                        #arrow = 'img/arrow_green.png'
+                        arrow = 'fa-arrow-up'
+                        arrow_color = '#00cc00'
+                    if self.Position[dx[0]] == self.PositionBefore[dx[0]]:
+                        #arrow = 'img/arrow_yellow.png'
+                        arrow = 'fa-minus'
+                        arrow_color = '#ffcc00'
+                    if self.Position[dx[0]] > self.PositionBefore[dx[0]]:
+                        #arrow = 'img/arrow_red.png'
+                        arrow = 'fa-arrow-down'
+                        arrow_color = '#ff0000'
 
                 # ARROWdx = Button(disabled=True,
                 #                 background_normal=arrow,
@@ -213,6 +249,8 @@ class ScoreGenFinScreen(Screen):
             g.add_widget(NAMEdx)
             g.add_widget(SCOREdx)
 
+
+        app.score_new = False
 
         lBACK = Button(text='Avanti',font_size=30*app.scalatore,bold=True, halign='center', size_hint_x=width_icon)
         lBACK.bind(on_press= lambda x : self.next())
