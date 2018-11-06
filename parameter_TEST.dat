@@ -7,29 +7,20 @@
 #(il file di backup e' 'backup.dat')
 nome_porta: /dev/ttyUSB0
 backup: False
-NOCONTROLLER: True
+NOCONTROLLER: False
 
 #--------------------------------------------#
 
 [Grafica]
 #Parametro di scala per risoluzione schermo
 scalatore: 1.0
-#Santa Maria Gualtieri: 1.5
-#Fullscreen (True o False)
 fullscreen: False
-#if fullscreen == False
-#width: 1024
-#height: 768
-#width: 2048
-#height: 1536
 width: 1600
 height: 1200
-##saba
-#width: 1280
-#height: 1024
 
 #--------------------------------------------#
 # type: "test", "special", "normal"
+# DEVE esserci al massimo una sezione test e DEVE essere la prima
 [qst0]
 type=test
 name=Test
@@ -108,15 +99,7 @@ random: False
 # 2486008734: 0,Wolfgang PAULI
 # 2486014355: 0,Michael FARADAY
 # 2486007740: 0,Ernest RUTHERFORD
-
 #--------------------------------------------#
 
 [FIRST_SLIDES]
 1: ./bdc.png
-
-
-
-
-
-
-
