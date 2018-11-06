@@ -4,7 +4,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 from kivy.uix.stacklayout import StackLayout
 from kivy.properties import ObjectProperty, NumericProperty, StringProperty, BooleanProperty
-
+import operator
 import json
 
 app = App.get_running_app()
@@ -123,6 +123,32 @@ class AfterQstSlides(Screen):
                         else:
                             app.WINNER_OF_SECTIONS[winner].append(app.SECTIONS[app.SEC_CNT]['icon'])
                         app.GENERAL_SCORE[winner] += app.PRIZE/num_winner
+
+                    #print classifica generale dopo sezione speciale a terminale
+                    Score_term = [(key, app.GENERAL_SCORE[key]) for key in app.GENERAL_SCORE.keys()]
+                    sorted_x_term = sorted(Score_term, key=operator.itemgetter(1), reverse= True)
+                    print "\033[1;35m"
+                    print "CLASSIFICA GENERALE ----------------------------"
+                    for i in range(len(sorted_x_term)):
+                        spacer = ""
+                        if sorted_x_term[i][1] >= 0:
+                            if sorted_x_term[i][1] < 10000:
+                                spacer += " "
+                            if sorted_x_term[i][1] < 1000:
+                                spacer += " "
+                            if sorted_x_term[i][1] < 100:
+                                spacer += " "
+                            if sorted_x_term[i][1] < 10:
+                                spacer += " "
+                        else:
+                            if sorted_x_term[i][1] > -1000:
+                                spacer += " "
+                            if sorted_x_term[i][1] > -100:
+                                spacer += " "
+                            if sorted_x_term[i][1] > -10:
+                                spacer += " "
+                        print spacer + str(sorted_x_term[i][1]) + " " + str(app.dictIDName[sorted_x_term[i][0]])
+                    print "------------------------------------------------\033[0m"
                 #-----------------------------------------------------------
                 if app.SEC_CNT+1 == len(app.SECTIONS):
                     self.do_backup()

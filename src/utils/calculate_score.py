@@ -72,6 +72,34 @@ def result(qst_ans):
         print spacer + str(sorted_x_quest_term[i][1]) + " " + str(app.dictIDName[sorted_x_quest_term[i][0]])
     print "------------------------------------------------\033[0m"
 
+    #print classifica sezione a terminale
+    if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
+        Score_sect_term = [(key, app.SECTION_SCORE[app.SEC_CNT][key]) for key in app.SECTION_SCORE[app.SEC_CNT].keys()]
+        sorted_x_sect_term = sorted(Score_sect_term, key=operator.itemgetter(1), reverse= True)
+        print "\033[1;33m"
+        print "CLASSIFICA SEZIONE -----------------------------"
+        for i in range(len(sorted_x_sect_term)):
+            spacer = ""
+            if sorted_x_sect_term[i][1] >= 0:
+                if sorted_x_sect_term[i][1] < 10000:
+                    spacer += " "
+                if sorted_x_sect_term[i][1] < 1000:
+                    spacer += " "
+                if sorted_x_sect_term[i][1] < 100:
+                    spacer += " "
+                if sorted_x_sect_term[i][1] < 10:
+                    spacer += " "
+            else:
+                if sorted_x_sect_term[i][1] > -1000:
+                    spacer += " "
+                if sorted_x_sect_term[i][1] > -100:
+                    spacer += " "
+                if sorted_x_sect_term[i][1] > -10:
+                    spacer += " "
+            print spacer + str(sorted_x_sect_term[i][1]) + " " + str(app.dictIDName[sorted_x_sect_term[i][0]])
+        print "------------------------------------------------\033[0m"
+
+
     #print classifica generale a terminale
     Score_term = [(key, app.GENERAL_SCORE[key]) for key in app.GENERAL_SCORE.keys()]
     sorted_x_term = sorted(Score_term, key=operator.itemgetter(1), reverse= True)
