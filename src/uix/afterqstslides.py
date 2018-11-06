@@ -127,10 +127,10 @@ class AfterQstSlides(Screen):
                     #print classifica generale dopo sezione speciale a terminale
                     Score_term = [(key, app.GENERAL_SCORE[key]) for key in app.GENERAL_SCORE.keys()]
                     sorted_x_term = sorted(Score_term, key=operator.itemgetter(1), reverse= True)
-                    print "\033[1;35m"
-                    print "CLASSIFICA GENERALE ----------------------------"
+                    print "\033[1;97m\033[1;100m"
+                    print "CLASSIFICA GENERALE ----------------------------\n"
                     for i in range(len(sorted_x_term)):
-                        spacer = ""
+                        spacer = "\033[1;96m"
                         if sorted_x_term[i][1] >= 0:
                             if sorted_x_term[i][1] < 10000:
                                 spacer += " "
@@ -147,8 +147,8 @@ class AfterQstSlides(Screen):
                                 spacer += " "
                             if sorted_x_term[i][1] > -10:
                                 spacer += " "
-                        print spacer + str(sorted_x_term[i][1]) + " " + str(app.dictIDName[sorted_x_term[i][0]])
-                    print "------------------------------------------------\033[0m"
+                        print spacer + str(sorted_x_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_term[i][0]])
+                    print "\033[0m\n"
                 #-----------------------------------------------------------
                 if app.SEC_CNT+1 == len(app.SECTIONS):
                     self.do_backup()
