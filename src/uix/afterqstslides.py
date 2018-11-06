@@ -128,7 +128,8 @@ class AfterQstSlides(Screen):
                     Score_term = [(key, app.GENERAL_SCORE[key]) for key in app.GENERAL_SCORE.keys()]
                     sorted_x_term = sorted(Score_term, key=operator.itemgetter(1), reverse= True)
                     print "\033[1;97m\033[1;100m"
-                    print "CLASSIFICA GENERALE ----------------------------\n"
+                    print "CLASSIFICA GENERALE ----------------------------"
+                    print "                                AST"
                     for i in range(len(sorted_x_term)):
                         spacer = "\033[1;96m"
                         if sorted_x_term[i][1] >= 0:
@@ -147,7 +148,15 @@ class AfterQstSlides(Screen):
                                 spacer += " "
                             if sorted_x_term[i][1] > -10:
                                 spacer += " "
-                        print spacer + str(sorted_x_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_term[i][0]])
+                        if app.ABSTENTIONS[sorted_x_term[i][0]] < 5:
+                            spacer_ast = "\033[1;92m"
+                        elif app.ABSTENTIONS[sorted_x_term[i][0]] == 5:
+                            spacer_ast = "\033[1;93m"
+                        else:
+                            spacer_ast = "\033[1;91m"
+                        if app.ABSTENTIONS[sorted_x_term[i][0]] < 10:
+                            spacer_ast += " "
+                        print spacer + str(sorted_x_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_term[i][0]]) + "\t\t" + spacer_ast + str(app.ABSTENTIONS[sorted_x_term[i][0]])
                     print "\033[0m\n"
                 #-----------------------------------------------------------
                 if app.SEC_CNT+1 == len(app.SECTIONS):
