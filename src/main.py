@@ -73,26 +73,35 @@ class internalShell(cmd.Cmd):
     #    print "bonus to", line
 
     def do_brightness(self, line):
-        num_lum = int(line)
+        'brightness [num_percent] - sets the slave LEDs to num_percent% brightness'
+        try:
+            num_lum = int(line)
+        except:
+            print "'" + str(line) + "' isn't a number"
+            return False
+
         if num_lum > 100:
             num_lum = 100
         elif num_lum < 0:
             num_lum = 0
+
         print "brightness set to " + str(num_lum) + "%"
         self.mast.write("lum"+str(num_lum).zfill(3)+"\n")
 
     def do_EOF(self, line):
+        'EOF (or ^D) - exits from the shell'
         print "exit"
         return True
 
     def do_exit(self, line):
+        'exit - exits from the shell'
         print "exit"
         return True
 
 class BDCApp(App):
 
     #------------------
-    TOTAL_TIME = 15
+    TOTAL_TIME = 2
     #------------------
 
     dictANS={'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5}
