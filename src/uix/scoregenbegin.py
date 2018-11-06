@@ -43,6 +43,31 @@ class ScoreGenBegin(Screen):
 
             sorted_x = app.sorted_x
 
+            #print classifica a terminale
+            print "\033[1;34m"
+            print "CLASSIFICA INIZIALE ----------------------------"
+            for i in range(len(sorted_x)):
+                spacer = ""
+                if sorted_x[i][1] >= 0:
+                    if sorted_x[i][1] < 10000:
+                        spacer += " "
+                    if sorted_x[i][1] < 1000:
+                        spacer += " "
+                    if sorted_x[i][1] < 100:
+                        spacer += " "
+                    if sorted_x[i][1] < 10:
+                        spacer += " "
+                else:
+                    if sorted_x[i][1] > -1000:
+                        spacer += " "
+                    if sorted_x[i][1] > -100:
+                        spacer += " "
+                    if sorted_x[i][1] > -10:
+                        spacer += " "
+
+                print spacer + str(sorted_x[i][1]) + " " + str(app.dictIDName[sorted_x[i][0]])
+            print "------------------------------------------------\033[0m"
+
             while len(sorted_x) < 5:
                 sorted_x.append(('5355053550', -9999999))
 

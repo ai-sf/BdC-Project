@@ -1,6 +1,7 @@
 from kivy.app import App
 import re
 import math
+import operator
 
 app = App.get_running_app()
 
@@ -42,8 +43,61 @@ def result(qst_ans):
         if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
             app.SECTION_SCORE[app.SEC_CNT][key] += result
 
-
     app.QUESTION_SCORE.append(tmp)
+
+    #print classifica domanda a terminale
+    Score_R_quest_term = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] > 0]
+    Score_A_quest_term = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] == 0]
+    Score_W_quest_term = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] < 0]
+    sorted_R_quest_term = sorted(Score_R_quest_term, key=operator.itemgetter(2))
+    sorted_R_quest_term = sorted(sorted_R_quest_term, key=operator.itemgetter(1), reverse= True)
+    sorted_W_quest_term = sorted(Score_W_quest_term, key=operator.itemgetter(2), reverse=True)
+    sorted_W_quest_term = sorted(sorted_W_quest_term, key=operator.itemgetter(1), reverse= True)
+    sorted_x_quest_term = sorted_R_quest_term+Score_A_quest_term+sorted_W_quest_term
+    print "\033[1;36m"
+    print "CLASSIFICA DOMANDA -----------------------------"
+    for i in range(len(sorted_x_quest_term)):
+        spacer = " "
+        if sorted_x_quest_term[i][1] >= 0:
+            spacer += " "
+            if sorted_x_quest_term[i][1] < 100:
+                spacer += " "
+            if sorted_x_quest_term[i][1] < 10:
+                spacer += " "
+        else:
+            if sorted_x_quest_term[i][1] > -100:
+                spacer += " "
+            if sorted_x_quest_term[i][1] > -10:
+                spacer += " "
+        print spacer + str(sorted_x_quest_term[i][1]) + " " + str(app.dictIDName[sorted_x_quest_term[i][0]])
+    print "------------------------------------------------\033[0m"
+
+    #print classifica generale a terminale
+    Score_term = [(key, app.GENERAL_SCORE[key]) for key in app.GENERAL_SCORE.keys()]
+    sorted_x_term = sorted(Score_term, key=operator.itemgetter(1), reverse= True)
+    print "\033[1;35m"
+    print "CLASSIFICA GENERALE ----------------------------"
+    for i in range(len(sorted_x_term)):
+        spacer = ""
+        if sorted_x_term[i][1] >= 0:
+            if sorted_x_term[i][1] < 10000:
+                spacer += " "
+            if sorted_x_term[i][1] < 1000:
+                spacer += " "
+            if sorted_x_term[i][1] < 100:
+                spacer += " "
+            if sorted_x_term[i][1] < 10:
+                spacer += " "
+        else:
+            if sorted_x_term[i][1] > -1000:
+                spacer += " "
+            if sorted_x_term[i][1] > -100:
+                spacer += " "
+            if sorted_x_term[i][1] > -10:
+                spacer += " "
+        print spacer + str(sorted_x_term[i][1]) + " " + str(app.dictIDName[sorted_x_term[i][0]])
+    print "------------------------------------------------\033[0m"
+
     return tmp
 
 def update_score(result, option='ans'):

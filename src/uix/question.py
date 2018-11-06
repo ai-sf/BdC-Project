@@ -388,9 +388,12 @@ class Domanda(GridLayout):
 
     def start_time(self):
 
+        print "\033[1;32m"
+        print "STATO DOMANDE ----------------------------------"
         print("Domanda visualizzata: "+str(app.QST_DSP_CNT))
-        print("Sezione: "+str(app.SEC_CNT+1)+"/"+str(len(app.SECTIONS)))
-        print("Domanda in sezione: "+str(app.QST_PAR_CNT+1)+"/"+str(len(app.QUESTIONS[app.SEC_CNT].keys())))
+        print("  Domanda in sezione: "+str(app.QST_PAR_CNT+1)+"/"+str(len(app.QUESTIONS[app.SEC_CNT].keys())))
+        print("             Sezione: "+str(app.SEC_CNT+1)+"/"+str(len(app.SECTIONS)))
+        print "------------------------------------------------\033[0m"
 
         self.MODE = 'ON'
 
