@@ -185,15 +185,15 @@ class ScoreGenFinScreen(Screen):
                                 background_disabled_down=app.icons_path+app.dictIDicona[dx[0]] )
 
                 if app.score_new:
-                    if sx[1] > 0:
+                    if dx[1] > 0:
                         #arrow = 'img/arrow_green.png'
                         arrow = 'fa-arrow-up'
                         arrow_color = '#00cc00'
-                    elif sx[1] == 0:
+                    elif dx[1] == 0:
                         #arrow = 'img/arrow_yellow.png'
                         arrow = 'fa-minus'
                         arrow_color = '#ffcc00'
-                    elif sx[1] < 0:
+                    elif dx[1] < 0:
                         #arrow = 'img/arrow_red.png'
                         arrow = 'fa-arrow-down'
                         arrow_color = '#ff0000'
