@@ -12,6 +12,9 @@ __version__ = '1.0.0'
 import serial
 import json
 import os, sys, time
+
+import cmd
+
 script_path = os.path.dirname(os.path.realpath(__file__))
 os.environ['KIVY_WINDOW'] = 'sdl2'
 
@@ -61,6 +64,30 @@ class Master:
 
     def cleanup(self):
         self.ser.close()
+
+class internalShell(cmd.Cmd):
+
+    mast = Master('/dev/ttyUSB0') #prendere da config [TODO]
+
+    #def do_bonus(self, line):
+    #    print "bonus to", line
+
+    def do_brightness(self, line):
+        num_lum = int(line)
+        if num_lum > 100:
+            num_lum = 100
+        elif num_lum < 0:
+            num_lum = 0
+        print "brightness set to " + str(num_lum) + "%"
+        self.mast.write("lum"+str(num_lum).zfill(3)+"\n")
+
+    def do_EOF(self, line):
+        print "exit"
+        return True
+
+    def do_exit(self, line):
+        print "exit"
+        return True
 
 class BDCApp(App):
 
@@ -167,6 +194,9 @@ class BDCApp(App):
         self.scifi.volume = 0.5
         self.scifi.loop = True
 
+        #shell
+        self.shell = internalShell()
+
         if not self.NOCONTROLLER:
             self.master = Master(self.port_name)
             import threading
@@ -177,6 +207,9 @@ class BDCApp(App):
         from uix.screenmanager import BDCScreenManager
         sm = BDCScreenManager()
         return sm
+
+    def cmd_line_start(self):
+        self.shell.cmdloop("inserisci comando")
 
     def checkForTimeNow(self):
         time.sleep(0.05)
