@@ -183,7 +183,7 @@ class BDCApp(App):
         return sm
 
     def cmd_line_start(self):
-        self.shell.cmdloop("inserisci comando")
+        self.shell.cmdloop("type commands")
 
     def checkForTimeNow(self):
         time.sleep(0.05)

@@ -44,10 +44,12 @@ def setGlobal(init_file):
     app.dictIDName = {}
     app.dictIDBonus = {}
     app.dictIDReset = {}
+    app.dictIDLastName = {}
     for id in config['Squadre']:
         app.dictIDBonus[id] = int(config.get('Squadre',id).split(',')[0])
         app.dictIDReset[id] = int(config.get('Squadre',id).split(',')[0])
         app.dictIDName[id] = config.get('Squadre',id).split(',')[1]
+        app.dictIDLastName[id] = config.get('Squadre',id).split(',')[1].split(' ')[1].lower()
 
     app.PositionBefore = dict(zip(app.dictIDName.keys(), [0]*len(app.dictIDName.keys())))
     app.Position = dict(zip(app.dictIDName.keys(), [0]*len(app.dictIDName.keys())))
