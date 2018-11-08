@@ -76,6 +76,8 @@ class CircleTime(Widget):
 		center_x: root.center_x
 		center_y: root.center_y
 		color: 1,1,1,1
+        outline_color: 0,0,0,1
+        outline_width: 5
 		font_size: 80*app.scalatore
 		background_normal: ''
 		background_down: ''
@@ -85,9 +87,8 @@ class CircleTime(Widget):
 
     def update(self, dt):
         if self.count <= app.clock_steps:
-            self.label.text = ''
+            self.label.text = str(int((100-self.count)*app.TOTAL_TIME/100.)+1)
             self.circle.angle_end = 360 - self.count*(360.0/app.clock_steps)
-            #self.label.text = str(10 - self.count)
             if self.count > float(app.clock_steps)/2:
                 self.circle.circleColor = (1,1,0)
             if self.count > float(app.clock_steps)*3/4:
