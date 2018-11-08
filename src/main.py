@@ -13,8 +13,6 @@ import serial
 import json
 import os, sys, time
 
-import cmd
-
 script_path = os.path.dirname(os.path.realpath(__file__))
 os.environ['KIVY_WINDOW'] = 'sdl2'
 
@@ -65,43 +63,10 @@ class Master:
     def cleanup(self):
         self.ser.close()
 
-class internalShell(cmd.Cmd):
-
-    mast = Master('/dev/ttyUSB0') #prendere da config [TODO]
-
-    #def do_bonus(self, line):
-    #    print "bonus to", line
-
-    def do_brightness(self, line):
-        'brightness [num_percent] - sets the slave LEDs to num_percent% brightness'
-        try:
-            num_lum = int(line)
-        except:
-            print "'" + str(line) + "' isn't a number"
-            return False
-
-        if num_lum > 100:
-            num_lum = 100
-        elif num_lum < 0:
-            num_lum = 0
-
-        print "brightness set to " + str(num_lum) + "%"
-        self.mast.write("lum"+str(num_lum).zfill(3)+"\n")
-
-    def do_EOF(self, line):
-        'EOF (or ^D) - exits from the shell'
-        print "exit"
-        return True
-
-    def do_exit(self, line):
-        'exit - exits from the shell'
-        print "exit"
-        return True
-
 class BDCApp(App):
 
     #------------------
-    TOTAL_TIME = 2
+    TOTAL_TIME = 15
     #------------------
 
     dictANS={'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5}
@@ -203,7 +168,7 @@ class BDCApp(App):
         self.scifi.volume = 0.5
         self.scifi.loop = True
 
-        #shell
+        from utils.internalshell import internalShell
         self.shell = internalShell()
 
         if not self.NOCONTROLLER:
