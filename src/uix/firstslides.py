@@ -4,6 +4,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 from kivy.uix.stacklayout import StackLayout
 from kivy.properties import ObjectProperty, NumericProperty
+import iconfonts.iconfonts as iconfonts
 
 app = App.get_running_app()
 
@@ -57,6 +58,11 @@ class FirstSlides(Screen):
 
 
     def on_enter(self):
+
+        self.next_button.markup = True
+        self.next_button.text = "%s"%(iconfonts.icon('fa-forward'))
+        self.next_button.font_size = 50*app.scalatore
+
         if not app.FIRST_SLIDES:
             app.load_screen('ScoreGenBegin')
 

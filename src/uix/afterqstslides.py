@@ -6,6 +6,7 @@ from kivy.uix.stacklayout import StackLayout
 from kivy.properties import ObjectProperty, NumericProperty, StringProperty, BooleanProperty
 import operator
 import json
+import iconfonts.iconfonts as iconfonts
 
 app = App.get_running_app()
 
@@ -75,18 +76,31 @@ class AfterQstSlides(Screen):
 
     def on_enter(self):
         self.counter = 0
+
+        self.next_button.markup = True
+        self.next_button.text = "%s"%(iconfonts.icon('fa-forward'))
+        self.next_button.font_size = 50*app.scalatore
+
+        self.back_button.markup = True
+        self.back_button.text = "%s"%(iconfonts.icon('fa-backward'))
+        self.back_button.font_size = 50*app.scalatore
+
+        self.jolly_button.markup = True
+        self.jolly_button.font_size = 50*app.scalatore
+
         if (app.NUM_OF_QST - app.QST_TOT_CNT) < 5:
             self.jolly_button.disabled = True
         if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
-            self.label_score = 'CLASSIFICA SEZIONE'
+            ic = app.SECTIONS[app.SEC_CNT]['icon']
+            self.label_score = "%s"%(iconfonts.icon('fa-list-ol')) + " " + "%s"%(iconfonts.icon(ic))
             if app.QST_PAR_CNT+1 == len(app.QUESTIONS[app.SEC_CNT].keys()):
                 self.jolly_button.disabled = False
             else:
                 self.jolly_button.disabled = True
         if app.SECTIONS[app.SEC_CNT]['type'] == 'normal':
-            self.label_score = 'CLASSIFICA GENERALE'
+            self.label_score = "%s"%(iconfonts.icon('fa-list-ol'))
         if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
-            self.label_score = 'CLASSIFICA GENERALE'
+            self.label_score = "%s"%(iconfonts.icon('fa-list-ol'))
 
     def show_score(self):
         if app.SECTIONS[app.SEC_CNT]['type'] == 'special':

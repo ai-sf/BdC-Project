@@ -4,6 +4,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 from kivy.uix.stacklayout import StackLayout
 from kivy.properties import ObjectProperty
+import iconfonts.iconfonts as iconfonts
 
 app = App.get_running_app()
 
@@ -32,6 +33,11 @@ class FirstScreen(Screen):
         	bold:True
         	background_color: 1,1,1,0.5
     """)
+
+    def on_enter(self):
+        self.next_button.markup = True
+        self.next_button.text = "%s"%(iconfonts.icon('fa-play'))
+        self.next_button.font_size = 50*app.scalatore
 
 class BackImage(StackLayout):
 

@@ -8,6 +8,7 @@ from kivy.uix.widget import Widget
 from kivy.uix.gridlayout import GridLayout
 from kivy.clock import Clock
 from kivy.core.window import Window
+import iconfonts.iconfonts as iconfonts
 
 import time
 import operator
@@ -16,7 +17,6 @@ app = App.get_running_app()
 
 import sys
 sys.path.insert(0, app.main_path)
-import iconfonts.iconfonts as iconfonts
 
 class ScoreGenScreen(Screen):
 
@@ -208,7 +208,7 @@ class ScoreGenScreen(Screen):
             g.add_widget(SCOREdx)
 
 
-        lBACK = Button(text='back',font_size=30*app.scalatore,bold=True, halign='center', size_hint_x=width_icon)
+        lBACK = Button(text="%s"%(iconfonts.icon('fa-backward')),font_size=50*app.scalatore,bold=True, halign='center', size_hint_x=width_icon, markup=True)
         lBACK.bind(on_press=lambda x : app.load_screen("AfterQstSlides"))
 
         absx = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_arrow)
@@ -226,7 +226,7 @@ class ScoreGenScreen(Screen):
                         background_disabled_normal='img/logoBdC_bianco.png',background_down='img/logoBdC_bianco.png',
                         background_normal='img/logoBdC_bianco.png', background_color=[1,1,1,1], size_hint_x=width_score)
         iconBDCdx.bind(on_press=lambda x : app.cmd_line_start())
-        
+
         g.add_widget(lBACK)
         g.add_widget(absx)
         g.add_widget(bmsx)

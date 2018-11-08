@@ -4,6 +4,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 from kivy.uix.stacklayout import StackLayout
 from kivy.properties import ObjectProperty, NumericProperty
+import iconfonts.iconfonts as iconfonts
 
 app = App.get_running_app()
 
@@ -59,6 +60,11 @@ class BeforeQstSlides(Screen):
 
     def on_enter(self):
         self.counter = 0
+
+        self.next_button.markup = True
+        self.next_button.text = "%s"%(iconfonts.icon('fa-forward'))
+        self.next_button.font_size = 50*app.scalatore
+
         if app.QST_DSP_CNT == '':
             if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
                 app.QST_DSP_CNT = "P"

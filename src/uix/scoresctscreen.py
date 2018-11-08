@@ -8,8 +8,8 @@ from kivy.uix.widget import Widget
 from kivy.uix.gridlayout import GridLayout
 from kivy.clock import Clock
 from kivy.core.window import Window
-
 import iconfonts.iconfonts as iconfonts
+
 
 import time
 import operator
@@ -133,7 +133,7 @@ class ScoreSctScreen(Screen):
             g.add_widget(NAMEdx)
             g.add_widget(SCOREdx)
 
-        lBACK = Button(text='back',font_size=30*app.scalatore,bold=True, halign='center', size_hint_x=width_icon)
+        lBACK = Button(text="%s"%(iconfonts.icon('fa-backward')),font_size=50*app.scalatore,bold=True, halign='center', size_hint_x=width_icon, markup=True)
         lBACK.bind(on_press=lambda x : app.load_screen("AfterQstSlides"))
 
         bmsx = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_name)
