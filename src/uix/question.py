@@ -27,7 +27,7 @@ class Question(Screen):
 
     next_button: dom_temp.spiegazione_button
     jolly_button: dom_temp.classdom_button
-    back_button: dom_temp.clock.label
+    timer_button: dom_temp.clock.label
 	id_dom: dom_temp
 
 	Domanda:

@@ -30,6 +30,9 @@ class ScoreGenBegin(Screen):
     name : 'ScoreGenBegin'
     """)
 
+    next_button = Button()
+    next_button.bind(on_press=lambda x : app.load_screen("BeforeQstSlides"))
+
     def on_enter(self):
 
         if app.score_gen_ready == True:

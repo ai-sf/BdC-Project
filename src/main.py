@@ -66,7 +66,7 @@ class Master:
 class BDCApp(App):
 
     #------------------
-    TOTAL_TIME = 15
+    TOTAL_TIME = 2
     #------------------
 
     dictANS={'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5}
@@ -208,19 +208,23 @@ class BDCApp(App):
             if letter:
                 letter = letter.group(1)
                 print "Showman:", letter
-                if letter == "RED":
+                if letter == "GREEN":
                     if hasattr(self.current_screen(), "next_button"):
                         if not self.current_screen().next_button.disabled:
-                            self.current_screen().next_button.trigger_action()
-                if letter == "GREEN":
+                            self.current_screen().next_button.trigger_action(0)
+                if letter == "RED":
                     if hasattr(self.current_screen(), "back_button"):
                         if not self.current_screen().back_button.disabled:
-                            self.current_screen().back_button.trigger_action()
+                            self.current_screen().back_button.trigger_action(0)
                 if letter == "YELLOW":
                     if hasattr(self.current_screen(), "jolly_button"):
                         if not self.current_screen().jolly_button.disabled:
-                            self.current_screen().jolly_button.trigger_action()
-                if letter == "WHITE":
+                            self.current_screen().jolly_button.trigger_action(0)
+                if letter == "BLUE":
+                    if hasattr(self.current_screen(), "timer_button"):
+                        if not self.current_screen().timer_button.disabled:
+                            self.current_screen().timer_button.trigger_action(0)
+                if letter == "BLACK":
                         print("Current screen is:", self.root.current)
                         self.current_screen().canvas.ask_update()
 

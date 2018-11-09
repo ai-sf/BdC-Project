@@ -27,6 +27,9 @@ class ScoreSctScreen(Screen):
     name : 'ScoreSctScreen'
     """)
 
+    back_button = Button()
+    back_button.bind(on_press=lambda x : app.load_screen("AfterQstSlides"))
+
     def on_enter(self):
         self.clear_widgets()
         self.Score = app.Score_sct

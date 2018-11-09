@@ -26,6 +26,9 @@ class ScoreQstScreen(Screen):
     name : 'ScoreQstScreen'
     """)
 
+    back_button = Button()
+    back_button.bind(on_press=lambda x : app.load_screen("Question"))
+
     def on_enter(self):
 
         if app.score_qst_ready == True:

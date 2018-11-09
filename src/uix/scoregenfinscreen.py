@@ -30,8 +30,12 @@ class ScoreGenFinScreen(Screen):
     name : 'ScoreGenFinScreen'
     """)
 
+    next_button = Button()
+
     def on_enter(self):
         self.clear_widgets()
+
+        self.next_button.bind(on_press=lambda x : self.next())
 
         #reset classifica dopo sezione di prova
         if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
