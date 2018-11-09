@@ -46,13 +46,25 @@ class Circle(Widget):
     Builder.load_string("""
 <Circle>:
 	angle_end: 360
-	circleColor: 0, 0.5, 0
+	circleColorBig: 1, 1, 1
+	canvas:
+		Color:
+			rgb: self.circleColorBig
+		Ellipse:
+			pos: self.center_x-self.width*9/10*0.5, self.center_y-self.width*9/10*0.5
+			size: self.width*9/10, self.width*9/10
+			angle_start: 0
+			angle_end: self.angle_end
+
+<Circle>:
+	angle_end: 360
+	circleColor: 0.2, 0.2, 0.2
 	canvas:
 		Color:
 			rgb: self.circleColor
 		Ellipse:
-			pos: self.center_x-self.width*0.5, self.center_y-self.width*0.5
-			size: self.width, self.width
+			pos: self.center_x-self.width*7/9*0.5, self.center_y-self.width*7/9*0.5
+			size: self.width*7/9, self.width*7/9
 			angle_start: 0
 			angle_end: self.angle_end
 """)
@@ -74,11 +86,12 @@ class CircleTime(Widget):
 	Button:
 		id: button_temp
 		center_x: root.center_x
-		center_y: root.center_y
+		center_y: root.center_y+root.width/22
 		color: 1,1,1,1
         outline_color: 0,0,0,1
-        outline_width: 5
+        outline_width: 10
 		font_size: 80*app.scalatore
+
 		background_normal: ''
 		background_down: ''
 		background_color: 0,0,0,0
@@ -92,11 +105,21 @@ class CircleTime(Widget):
             else:
                 self.label.text = ''
             self.circle.angle_end = 360 - self.count*(360.0/app.clock_steps)
-            if self.count > float(app.clock_steps)/2:
-                self.circle.circleColor = (1,1,0)
-            if self.count > float(app.clock_steps)*3/4:
-                self.circle.circleColor = (1,0,0)
+
+            if self.count <= float(app.clock_steps)/3:
+                self.circle.circleColor = (0,0.2,0)
+                self.circle.circleColorBig = (0,1,0)
+                self.label.color = [0,1,0,1]
+            elif self.count < float(app.clock_steps)*2/3:
+                self.circle.circleColor = (0.15,0.15,0)
+                self.circle.circleColorBig = (1,1,0)
+                self.label.color = [1,1,0,1]
+            else:
+                self.circle.circleColor = (0.2,0,0)
+                self.circle.circleColorBig = (1,0,0)
+                self.label.color = [1,0,0,1]
             self.count += 1
+
         else:
             self.parent.time_finished = True
             self.label.text = '0'
@@ -106,7 +129,7 @@ class CircleTime(Widget):
 
     def reset(self):
         self.circle.angle_end = 360
-        self.circle.circleColor = (0,0.5,0)
+        self.circle.circleColor = (0.2,0.2,0.2)
         self.label.text = str(app.QST_DSP_CNT)
         self.label.color = [1,1,1,1]
         self.label.disabled = False
