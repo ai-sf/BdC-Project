@@ -19,6 +19,8 @@ def setGlobal(init_file):
     app.port_name = config.get("Partenza", "nome_porta")
     app.scalatore = config.getfloat("Grafica","scalatore")
 
+    app.show_timer = config.getboolean("Partenza", "countdown_domanda")
+
     config_path = os.path.dirname(os.path.realpath(init_file))
 
     tmp = 0

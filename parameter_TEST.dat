@@ -7,7 +7,8 @@
 #(il file di backup e' 'backup.dat')
 nome_porta: /dev/ttyUSB0
 backup: False
-NOCONTROLLER: False
+NOCONTROLLER: True
+countdown_domanda: True
 
 #--------------------------------------------#
 
