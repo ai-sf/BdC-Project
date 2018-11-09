@@ -130,6 +130,7 @@ class CircleTime(Widget):
     def reset(self):
         self.circle.angle_end = 360
         self.circle.circleColor = (0.2,0.2,0.2)
+        self.circle.circleColorBig = (1,1,1)
         self.label.text = str(app.QST_DSP_CNT)
         self.label.color = [1,1,1,1]
         self.label.disabled = False
