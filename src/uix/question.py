@@ -111,7 +111,7 @@ class CircleTime(Widget):
             if self.count <= float(app.clock_steps)/3:
                 if not self.sound_fast:
                     app.timer_slow.play()
-                self.sound_fast = True
+                    self.sound_fast = True
                 app.timer_slow.volume = self.count*3/float(app.clock_steps)
                 self.circle.circleColor = (0,0.2,0)
                 self.circle.circleColorBig = (0,1,0)
@@ -124,13 +124,14 @@ class CircleTime(Widget):
                 if self.sound_fast:
                     app.timer_slow.stop()
                     app.timer_fast.play()
-                self.sound_fast = False
+                    self.sound_fast = False
                 self.circle.circleColor = (0.2,0,0)
                 self.circle.circleColorBig = (1,0,0)
                 self.label.color = [1,0,0,1]
             self.count += 1
 
         else:
+            app.timer_slow.stop()
             app.timer_fast.stop()
             app.timer_gong.play()
             self.parent.time_finished = True
@@ -479,6 +480,9 @@ class Domanda(GridLayout):
 
     def end_time(self, dt):
 
+        app.timer_slow.stop()
+        app.timer_fast.stop()
+        app.timer_gong.stop()
         app.dance.play()
 
         self.spiegazione_button.disabled = False
