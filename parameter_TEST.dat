@@ -9,6 +9,7 @@ nome_porta: /dev/ttyUSB0
 backup: False
 NOCONTROLLER: True
 countdown_domanda: True
+tempo_risposta: 15
 
 #--------------------------------------------#
 
@@ -94,12 +95,12 @@ random: False
   2142881769: 0,Marie CURIE
   3893146227: 0,Werner HEISENBERG
   2142881923: 0,Paul DIRAC
-# 2486007679: 0,Nikola TESLA
-# 2486014145: 0,Niels BOHR
-# 2142880856: 0,James JOULE
-# 2486008734: 0,Wolfgang PAULI
-# 2486014355: 0,Michael FARADAY
-# 2486007740: 0,Ernest RUTHERFORD
+  2486007679: 0,Nikola TESLA
+  2486014145: 0,Niels BOHR
+  2142880856: 0,James JOULE
+  2486008734: 0,Wolfgang PAULI
+  2486014355: 0,Michael FARADAY
+  2486007740: 0,Ernest RUTHERFORD
 #--------------------------------------------#
 
 [FIRST_SLIDES]

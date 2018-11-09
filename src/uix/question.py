@@ -75,6 +75,8 @@ class CircleTime(Widget):
     circle = ObjectProperty(None)
     count = 1
 
+    sound_fast = False
+
     Builder.load_string("""
 <CircleTime>:
 	circle: circle_temp
@@ -107,6 +109,10 @@ class CircleTime(Widget):
             self.circle.angle_end = 360 - self.count*(360.0/app.clock_steps)
 
             if self.count <= float(app.clock_steps)/3:
+                if not self.sound_fast:
+                    app.timer_slow.play()
+                self.sound_fast = True
+                app.timer_slow.volume = self.count*3/float(app.clock_steps)
                 self.circle.circleColor = (0,0.2,0)
                 self.circle.circleColorBig = (0,1,0)
                 self.label.color = [0,1,0,1]
@@ -115,12 +121,18 @@ class CircleTime(Widget):
                 self.circle.circleColorBig = (1,1,0)
                 self.label.color = [1,1,0,1]
             else:
+                if self.sound_fast:
+                    app.timer_slow.stop()
+                    app.timer_fast.play()
+                self.sound_fast = False
                 self.circle.circleColor = (0.2,0,0)
                 self.circle.circleColorBig = (1,0,0)
                 self.label.color = [1,0,0,1]
             self.count += 1
 
         else:
+            app.timer_fast.stop()
+            app.timer_gong.play()
             self.parent.time_finished = True
             self.label.text = '0'
             self.label.color = [1,0,0,1]
@@ -451,10 +463,6 @@ class Domanda(GridLayout):
 
         app.scifi.stop()
 
-        if app.TOTAL_TIME == 15:
-            app.timer.play()
-            Clock.schedule_once(self.stop_audio, app.timer.length)
-
         Clock.schedule_once(self.end_time, app.TOTAL_TIME+5)
         Clock.schedule_interval(self.clock.update, float(app.TOTAL_TIME)/app.clock_steps)
         Clock.schedule_once(self.sendRAW, app.TOTAL_TIME+6)
@@ -462,9 +470,6 @@ class Domanda(GridLayout):
     def writetimenow(self,dt):
         if app.NOCONTROLLER is False:
             app.master.write('timeNow\n')
-
-    def stop_audio(self,dt):
-        app.timer.stop()
 
     def sendRAW(self, dt):
         for key, value in self.RAWdic.iteritems():

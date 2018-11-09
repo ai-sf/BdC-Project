@@ -65,10 +65,6 @@ class Master:
 
 class BDCApp(App):
 
-    #------------------
-    TOTAL_TIME = 2
-    #------------------
-
     dictANS={'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5}
 
     end_score = False
@@ -162,8 +158,14 @@ class BDCApp(App):
         self.dance.volume = 0.5
         self.dance.loop = True
         self.dance.play()
-        self.timer = SoundLoader.load(music_path+'audio_risposta_15s.wav')
-        self.timer.loop = False
+
+        self.timer_slow = SoundLoader.load(music_path+'timer_slow.wav')
+        self.timer_slow.loop = True
+        self.timer_fast = SoundLoader.load(music_path+'timer_fast.wav')
+        self.timer_fast.loop = True
+        self.timer_gong = SoundLoader.load(music_path+'timer_gong.wav')
+        self.timer_gong.loop = False
+
         self.scifi = SoundLoader.load(music_path+'bensound-scifi.wav')
         self.scifi.volume = 0.5
         self.scifi.loop = True
