@@ -16,3 +16,6 @@ Per far funzionare alcuni elementi grafici serve sdl2 (come da documentazione ki
 - libsdl2-image-dev
 - libsdl2-gfx-dev
 - libsdl2-dev
+
+Per evitare messaggi di errore di libpng convertire le immagini con imagemagick:
+- convert *.png -set filename:base "%[base]" "%[filename:base].png"
