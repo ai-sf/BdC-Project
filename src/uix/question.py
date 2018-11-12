@@ -75,7 +75,7 @@ class CircleTime(Widget):
     circle = ObjectProperty(None)
     count = 1
 
-    sound_fast = False
+    sound_status = ObjectProperty(None)
 
     Builder.load_string("""
 <CircleTime>:
@@ -109,9 +109,10 @@ class CircleTime(Widget):
             self.circle.angle_end = 360 - self.count*(360.0/app.clock_steps)
 
             if self.count <= float(app.clock_steps)/3:
-                if not self.sound_fast:
+                if self.sound_status == 0:
                     app.timer_slow.play()
-                    self.sound_fast = True
+                    app.timer_slow.loop = True
+                    self.sound_status = 1
                 app.timer_slow.volume = self.count*3/float(app.clock_steps)
                 self.circle.circleColor = (0,0.2,0)
                 self.circle.circleColorBig = (0,1,0)
@@ -121,10 +122,12 @@ class CircleTime(Widget):
                 self.circle.circleColorBig = (1,1,0)
                 self.label.color = [1,1,0,1]
             else:
-                if self.sound_fast:
+                if self.sound_status == 1:
                     app.timer_slow.stop()
+                    app.timer_slow.loop = False
                     app.timer_fast.play()
-                    self.sound_fast = False
+                    app.timer_fast.loop = True
+                    self.sound_status = 2
                 self.circle.circleColor = (0.2,0,0)
                 self.circle.circleColorBig = (1,0,0)
                 self.label.color = [1,0,0,1]
@@ -132,7 +135,9 @@ class CircleTime(Widget):
 
         else:
             app.timer_slow.stop()
+            app.timer_slow.loop = False
             app.timer_fast.stop()
+            app.timer_fast.loop = False
             app.timer_gong.play()
             self.parent.time_finished = True
             self.label.text = '0'
@@ -148,6 +153,7 @@ class CircleTime(Widget):
         self.label.color = [1,1,1,1]
         self.label.disabled = False
         self.count = 1
+        self.sound_status = 0
 
 class Domanda(GridLayout):
 
@@ -480,9 +486,6 @@ class Domanda(GridLayout):
 
     def end_time(self, dt):
 
-        app.timer_slow.stop()
-        app.timer_fast.stop()
-        app.timer_gong.stop()
         app.dance.play()
 
         self.spiegazione_button.disabled = False
