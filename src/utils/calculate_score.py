@@ -57,34 +57,45 @@ def result(qst_ans):
 
     print "\033[1;97m\033[1;100m"
     print "CLASSIFICA DOMANDA -----------------------------"
-    print "                                RIS"
+    print "                                RIS    TEM"
     for i in range(len(sorted_x_quest_term)):
         spacer = " "
         if sorted_x_quest_term[i][1] > 0:
-            spacer += "\033[1;92m "
+            spacer += "\033[1;92m"
+            spacer_2 = " "
             if sorted_x_quest_term[i][1] < 100:
-                spacer += " "
+                spacer_2 += " "
             if sorted_x_quest_term[i][1] < 10:
-                spacer += " "
+                spacer_2 += " "
         elif sorted_x_quest_term[i][1] == 0:
-            spacer += "\033[1;93m "
+            spacer += "\033[1;93m"
+            spacer_2 = " "
             if sorted_x_quest_term[i][1] < 100:
-                spacer += " "
+                spacer_2 += " "
             if sorted_x_quest_term[i][1] < 10:
-                spacer += " "
+                spacer_2 += " "
         else:
             spacer += "\033[1;91m"
+            spacer_2 = ""
             if sorted_x_quest_term[i][1] > -100:
-                spacer += " "
+                spacer_2 += " "
             if sorted_x_quest_term[i][1] > -10:
-                spacer += " "
+                spacer_2 += " "
 
         try:
             answer_quest = qst_ans[sorted_x_quest_term[i][0]][0]
+
+            if qst_ans[sorted_x_quest_term[i][0]][1] < 10:
+                time_quest = "  "
+            else:
+                time_quest = " "
+
+            time_quest += "%.2f" % round(qst_ans[sorted_x_quest_term[i][0]][1],2)
         except:
             answer_quest = "-"
+            time_quest = "   -"
 
-        print spacer + str(sorted_x_quest_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_quest_term[i][0]])+ "\t\t " + str(answer_quest)
+        print spacer + spacer_2 + str(sorted_x_quest_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_quest_term[i][0]])+ "\t\t" + spacer + str(answer_quest) + "   " + str(time_quest)
     print "\033[0m\n"
 
     #print classifica sezione a terminale
