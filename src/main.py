@@ -160,9 +160,9 @@ class BDCApp(App):
         self.dance.play()
 
         self.timer_slow = SoundLoader.load(music_path+'timer_slow.wav')
-        self.timer_slow.loop = True
+        self.timer_slow.loop = False
         self.timer_fast = SoundLoader.load(music_path+'timer_fast.wav')
-        self.timer_fast.loop = True
+        self.timer_fast.loop = False
         self.timer_gong = SoundLoader.load(music_path+'timer_gong.wav')
         self.timer_gong.loop = False
 
