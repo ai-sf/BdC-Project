@@ -54,8 +54,10 @@ def result(qst_ans):
     sorted_W_quest_term = sorted(Score_W_quest_term, key=operator.itemgetter(2), reverse=True)
     sorted_W_quest_term = sorted(sorted_W_quest_term, key=operator.itemgetter(1), reverse= True)
     sorted_x_quest_term = sorted_R_quest_term+Score_A_quest_term+sorted_W_quest_term
+
     print "\033[1;97m\033[1;100m"
-    print "CLASSIFICA DOMANDA -----------------------------\n"
+    print "CLASSIFICA DOMANDA -----------------------------"
+    print "                                RIS"
     for i in range(len(sorted_x_quest_term)):
         spacer = " "
         if sorted_x_quest_term[i][1] > 0:
@@ -76,7 +78,13 @@ def result(qst_ans):
                 spacer += " "
             if sorted_x_quest_term[i][1] > -10:
                 spacer += " "
-        print spacer + str(sorted_x_quest_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_quest_term[i][0]])
+
+        try:
+            answer_quest = qst_ans[sorted_x_quest_term[i][0]][0]
+        except:
+            answer_quest = "-"
+
+        print spacer + str(sorted_x_quest_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_quest_term[i][0]])+ "\t\t " + str(answer_quest)
     print "\033[0m\n"
 
     #print classifica sezione a terminale
