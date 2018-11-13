@@ -506,6 +506,7 @@ class Domanda(GridLayout):
         self.RAWdic = update_score(result, 'RAWdic')
         RAW = update_score(result, 'ans')
         app.HISTORY.append(risposte_date)
+        app.lastRisposteDate = risposte_date
 
         #creating button's text
         self.terna_risultato = '[color=00cc00]%s'%(iconfonts.icon('fa-check-circle'))+' '+str(RAW['R'])+'      '+'[/color][color=ff0000]%s'%(iconfonts.icon('fa-times-circle'))+' '+str(RAW['W'])+'      '+'[/color][color=ffcc00]%s'%(iconfonts.icon('fa-minus-circle'))+' '+str(RAW['A'])+'[/color]'

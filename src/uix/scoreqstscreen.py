@@ -35,9 +35,9 @@ class ScoreQstScreen(Screen):
             pass
         else:
             self.clear_widgets()
-            self.Score_R = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] > 0]
-            self.Score_A = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] == 0]
-            self.Score_W = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] < 0]
+            self.Score_R = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1], app.lastRisposteDate[key][0]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] > 0]
+            self.Score_A = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1], '-') for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] == 0]
+            self.Score_W = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1], app.lastRisposteDate[key][0]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] < 0]
 
             sorted_R = sorted(self.Score_R, key=operator.itemgetter(2))
             sorted_R = sorted(sorted_R, key=operator.itemgetter(1), reverse= True)
@@ -45,16 +45,17 @@ class ScoreQstScreen(Screen):
             sorted_W = sorted(self.Score_W, key=operator.itemgetter(2), reverse=True)
             sorted_W = sorted(sorted_W, key=operator.itemgetter(1), reverse= True)
 
-            sorted_x = sorted_R+self.Score_A+sorted_W
+            self.sorted_x = sorted_R+self.Score_A+sorted_W
 
-            while len(sorted_x) < 5:
-                sorted_x.append(('5355053550', -9999999))
+            while len(self.sorted_x) < 5:
+                self.sorted_x.append(('5355053550', -9999999))
 
             # if odd, add a fake name
-            if len(sorted_x) % 2 == 1:
-                sorted_x.append(('5355053550', -9999999))
+            if len(self.sorted_x) % 2 == 1:
+                self.sorted_x.append(('5355053550', -9999999))
 
-            self.buildClassifica(sorted_x)
+            self.letterVisibility = False
+            self.buildClassifica(self.sorted_x)
 
     def buildClassifica(self, sorted_x):
 
@@ -114,7 +115,10 @@ class ScoreQstScreen(Screen):
                     else:
                         timesx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(sx[0])][1],2)))+"\'\'"
 
-                scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(sx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']\n'+timesx+'[/color][/size]'
+                if self.letterVisibility:
+                    scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(sx[3])+'[/b][/size][size='+str(int(30*app.scalatore))+']\n'+timesx+'[/color][/size]'
+                else:
+                    scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(sx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']\n'+timesx+'[/color][/size]'
                 SCOREsx = Button(text=scoresx_string, disabled=True, background_disabled_normal='',
                                 background_color=[0,0,0,0],markup=True,
                                 font_size = 35*app.scalatore,size_hint_x=width_score,halign='center')
@@ -155,7 +159,10 @@ class ScoreQstScreen(Screen):
                         timedx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(dx[0])][1],2)))+"\'\'"
 
 
-                scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(dx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']\n'+timedx+'[/color][/size]'
+                if self.letterVisibility:
+                    scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(dx[3])+'[/b][/size][size='+str(int(30*app.scalatore))+']\n'+timedx+'[/color][/size]'
+                else:
+                    scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(dx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']\n'+timedx+'[/color][/size]'
                 SCOREdx = Button(text=scoredx_string, disabled=True, background_disabled_normal='', background_color=[0,0,0,0], markup=True,
                                  font_size = 35*app.scalatore,size_hint_x=width_score,halign='center')
 
@@ -169,7 +176,9 @@ class ScoreQstScreen(Screen):
 
         lBACK = Button(id='back_tmp', text="%s"%(iconfonts.icon('fa-backward')),font_size=50*app.scalatore,bold=True, halign='center', size_hint_x=width_icon, markup=True)
         lBACK.bind(on_press=lambda x : app.load_screen("Question"))
-        bmsx = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_name)
+        lSHOW = Button(id='show_tmp', text="%s"%(iconfonts.icon('fa-eye')),font_size=50*app.scalatore,bold=True, halign='center', size_hint_x=width_name, markup=True)
+        lSHOW.bind(on_press=lambda x : self.toggleAnswers())
+        #bmsx = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_name)
         iconBDCsx= Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0], size_hint_x=width_score)
 
         separation = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_sep)
@@ -180,7 +189,8 @@ class ScoreQstScreen(Screen):
         iconBDCdx.bind(on_press=lambda x : app.cmd_line_start())
 
         g.add_widget(lBACK)
-        g.add_widget(bmsx)
+        g.add_widget(lSHOW)
+        #g.add_widget(bmsx)
         g.add_widget(iconBDCsx)
         g.add_widget(separation)
         g.add_widget(bmdx)
@@ -191,3 +201,8 @@ class ScoreQstScreen(Screen):
         self.add_widget(g)
 #        self.add_widget(back_button=ObjectProperty('back_button_tmp'))
         app.score_qst_ready = True
+
+    def toggleAnswers(self):
+        self.letterVisibility = not self.letterVisibility
+        self.clear_widgets()
+        self.buildClassifica(self.sorted_x)
