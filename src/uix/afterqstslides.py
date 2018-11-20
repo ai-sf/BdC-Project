@@ -143,7 +143,7 @@ class AfterQstSlides(Screen):
                     sorted_x_term = sorted(Score_term, key=operator.itemgetter(1), reverse= True)
                     print "\033[1;97m\033[1;100m"
                     print "CLASSIFICA GENERALE ----------------------------"
-                    print "                                AST"
+                    print "                                AST     BAT"
                     for i in range(len(sorted_x_term)):
                         spacer = "\033[1;96m"
                         if sorted_x_term[i][1] >= 0:
@@ -170,7 +170,33 @@ class AfterQstSlides(Screen):
                             spacer_ast = "\033[1;91m"
                         if app.ABSTENTIONS[sorted_x_term[i][0]] < 10:
                             spacer_ast += " "
-                        print spacer + str(sorted_x_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_term[i][0]]) + "\t\t" + spacer_ast + str(app.ABSTENTIONS[sorted_x_term[i][0]])
+
+                        if app.BATTERY_STATUS[sorted_x_term[i][0]] >= 200:
+                            battery_level = int(app.BATTERY_STATUS[sorted_x_term[i][0]]) - 200
+                            is_charging = True
+                        else:
+                            battery_level = app.BATTERY_STATUS[sorted_x_term[i][0]]
+                            is_charging = False
+
+                        if battery_level == 100:
+                            batStr = "\033[1;94m" + str(battery_level)
+                        elif battery_level >= 50:
+                            batStr = "\033[1;92m " + str(battery_level)
+                        elif battery_level >= 20:
+                            batStr = "\033[1;93m " + str(battery_level)
+                        elif battery_level >= 10:
+                            batStr = "\033[1;91m " + str(battery_level)
+                        elif is_charging:
+                            batStr = "\033[1;91m  " + str(battery_level)
+                        elif battery_level >= 0:
+                            batStr = "\033[1;91m\033[5m  " + str(battery_level)
+                        else:
+                            batStr = "\033[38;5;238mN/A"
+
+                        if is_charging:
+                            batStr += u"\u26a1"
+
+                        print spacer + str(sorted_x_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_term[i][0]]) + "\t\t" + spacer_ast + str(app.ABSTENTIONS[sorted_x_term[i][0]]) + "\t" + batStr + "\033[25m"
                     print "\033[0m\n"
                 #-----------------------------------------------------------
                 if app.SEC_CNT+1 == len(app.SECTIONS):

@@ -53,7 +53,8 @@ class ScoreGenBegin(Screen):
 
             #print classifica a terminale
             print "\033[1;97m\033[1;100m"
-            print "CLASSIFICA INIZIALE ----------------------------\n"
+            print "CLASSIFICA INIZIALE ----------------------------"
+            print "                                BAT"
             for i in range(len(sorted_x)):
                 spacer = "\033[1;96m"
                 if sorted_x[i][1] >= 0:
@@ -73,7 +74,32 @@ class ScoreGenBegin(Screen):
                     if sorted_x[i][1] > -10:
                         spacer += " "
 
-                print spacer + str(sorted_x[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x[i][0]])
+                if app.BATTERY_STATUS[sorted_x[i][0]] >= 200:
+                    battery_level = int(app.BATTERY_STATUS[sorted_x[i][0]]) - 200
+                    is_charging = True
+                else:
+                    battery_level = app.BATTERY_STATUS[sorted_x[i][0]]
+                    is_charging = False
+
+                if battery_level == 100:
+                    batStr = "\033[1;94m" + str(battery_level)
+                elif battery_level >= 50:
+                    batStr = "\033[1;92m " + str(battery_level)
+                elif battery_level >= 20:
+                    batStr = "\033[1;93m " + str(battery_level)
+                elif battery_level >= 10:
+                    batStr = "\033[1;91m " + str(battery_level)
+                elif is_charging:
+                    batStr = "\033[1;91m  " + str(battery_level)
+                elif battery_level >= 0:
+                    batStr = "\033[1;91m\033[5m  " + str(battery_level)
+                else:
+                    batStr = "\033[38;5;238mN/A"
+
+                if is_charging:
+                    batStr += u"\u26a1"
+
+                print spacer + str(sorted_x[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x[i][0]]) + "\t\t" + batStr + "\033[25m"
             print "\033[0m\n"
 
             while len(sorted_x) < 5:

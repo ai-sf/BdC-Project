@@ -88,6 +88,8 @@ class BDCApp(App):
 
     HISTORY = []
 
+    BATTERY_STATUS = {}
+
     ABSTENTIONS = {}
     # dictionary: { id :  score, ... }
     GENERAL_SCORE = {}
@@ -126,6 +128,8 @@ class BDCApp(App):
 
         from utils.user import setGlobal
         setGlobal(args.config_file)
+
+        self.BATTERY_STATUS = dict(zip(self.dictIDName.keys(),[-1]*len(self.dictIDName.keys())))
 
         self.ABSTENTIONS = dict(zip(self.dictIDName.keys(),[0]*len(self.dictIDName.keys())))
         self.GENERAL_SCORE = self.dictIDBonus
@@ -197,7 +201,7 @@ class BDCApp(App):
 
         import re
         showman_msg = r"--- MESSAGE RECEIVED ---------:from=2131961277,msgText=(\w+),msgTime=\d+"
-        score_msg = r"--- MESSAGE RECEIVED ---------:from=(\d{10}),msgText=([ABCDE]),msgTime=(\d+)"
+        score_msg = r"--- MESSAGE RECEIVED ---------:from=(\d{10}),msgText=([ABCDE]),msgTime=(\d+)(,battery=(-?\d+))?"
         timenow_msg = r"--- TIME NOW -----------------:timeNow=(\d+)"
 
         while True:
@@ -237,6 +241,8 @@ class BDCApp(App):
                 TIME = answer.group(3)
                 self.saved_ans[int(TIME)] = [ID, LETTER]
                 print "Answer message:", LETTER, " from ", self.dictIDName[ID], " at time ", TIME
+                if answer.group(5):
+                    self.BATTERY_STATUS[ID] = int(answer.group(5))
 
             time = re.match(timenow_msg, tmp)
             if time:
