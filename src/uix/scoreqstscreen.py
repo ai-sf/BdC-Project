@@ -121,7 +121,10 @@ class ScoreQstScreen(Screen):
                         timesx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(sx[0])][1],2)))+"\'\'"
 
                 if self.letterVisibility:
-                    scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(sx[3])+'[/b][/size][size='+str(int(30*app.scalatore))+']\n'+timesx+'[/color][/size]'
+                    if sx[3] != '-':
+                        scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+unichr(ord(sx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']\n'+timesx+'[/color][/size]'
+                    else:
+                        scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]-[/font][/b][/size][size='+str(int(30*app.scalatore))+']\n'+timesx+'[/color][/size]'
                 else:
                     scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(sx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']\n'+timesx+'[/color][/size]'
                 SCOREsx = Button(text=scoresx_string, disabled=True, background_disabled_normal='',
@@ -170,7 +173,10 @@ class ScoreQstScreen(Screen):
 
 
                 if self.letterVisibility:
-                    scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(dx[3])+'[/b][/size][size='+str(int(30*app.scalatore))+']\n'+timedx+'[/color][/size]'
+                    if dx[3] != '-':
+                        scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+unichr(ord(dx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']\n'+timedx+'[/color][/size]'
+                    else:
+                        scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]-[/font][/b][/size][size='+str(int(30*app.scalatore))+']\n'+timedx+'[/color][/size]'
                 else:
                     scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(dx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']\n'+timedx+'[/color][/size]'
                 SCOREdx = Button(text=scoredx_string, disabled=True, background_disabled_normal='', background_color=[0,0,0,0], markup=True,
@@ -235,7 +241,7 @@ class ScoreQstScreen(Screen):
         else:
             popup_color = [0.8,0,0,1]
 
-        popup_content = "[size=100]" + popup_answer + "[/size]\n\n[size=40] " + popup_text + " [/size]\n" + popup_text_2
+        popup_content = "[size=100][font=font/Symbola.ttf]" + unichr(ord(popup_answer)+9333) + "[/font][/size]\n[size=40] " + popup_text + " [/size]\n\n" + popup_text_2
         popup = Popup(title=popup_title, title_align='center', title_color=popup_color, title_size='50sp', title_font='font/UbuntuMono-B.ttf', separator_color=popup_color, content=Label(text=popup_content, font_size=80, font_name='font/UbuntuMono-B.ttf', halign='center', markup=True),size_hint=(None, None), size=(800, 600))
         popup.open()
 

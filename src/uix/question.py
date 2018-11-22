@@ -281,7 +281,9 @@ class Domanda(GridLayout):
 # A #--------------------------------------------------------------------------
 	LabelButton:
 		id: labelA_temp
-        text: 'A'
+        font_name: 'font/Symbola.ttf'
+        font_size: 120 * app.scalatore
+        text: u'\u24b6'
         disabled: True
         disabled_color: 0,0.8,0,1
         background_color: root.bkg_color_label[root.MODE]
@@ -301,7 +303,9 @@ class Domanda(GridLayout):
 # B #--------------------------------------------------------------------------
 	LabelButton:
 		id: labelB_temp
-        text: 'B'
+        font_name: 'font/Symbola.ttf'
+        font_size: 120 * app.scalatore
+        text: u'\u24b7'
         disabled: True
         disabled_color: 1,1,1,1
         background_color: root.bkg_color_label[root.MODE]
@@ -321,7 +325,9 @@ class Domanda(GridLayout):
 # C #--------------------------------------------------------------------------
 	LabelButton:
 		id: labelC_temp
-        text: 'C'
+        font_name: 'font/Symbola.ttf'
+        font_size: 120 * app.scalatore
+        text: u'\u24b8'
         disabled: True
         disabled_color: 0.8,0,0,1
         background_color: root.bkg_color_label[root.MODE]
@@ -341,7 +347,9 @@ class Domanda(GridLayout):
 # D #--------------------------------------------------------------------------
 	LabelButton:
 		id: labelD_temp
-        text: 'D'
+        font_name: 'font/Symbola.ttf'
+        font_size: 120 * app.scalatore
+        text: u'\u24b9'
         disabled: True
         disabled_color: 1,0.75,0.095,1
         background_color: root.bkg_color_label[root.MODE]
@@ -361,7 +369,9 @@ class Domanda(GridLayout):
 # E #--------------------------------------------------------------------------
 	LabelButton:
 		id: labelE_temp
-        text: 'E'
+        font_name: 'font/Symbola.ttf'
+        font_size: 120 * app.scalatore
+        text: u'\u24ba'
         disabled: True
         disabled_color: 0,0.4,1,1
         background_color: root.bkg_color_label[root.MODE]
