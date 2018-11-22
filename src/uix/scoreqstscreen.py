@@ -11,6 +11,8 @@ from kivy.core.window import Window
 import iconfonts.iconfonts as iconfonts
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.image import Image
+from kivy.uix.popup import Popup
+from kivy.uix.label import Label
 
 import operator
 
@@ -80,13 +82,16 @@ class ScoreQstScreen(Screen):
                 NAMEsx = Button(disabled=True, size_hint_x=width_name, background_disabled_normal='', background_color=[0,0,0,0])
                 SCOREsx = Button(disabled=True, size_hint_x=width_score, background_disabled_normal='', background_color=[0,0,0,0])
             else:
-                ICONsx = Button(disabled=True,
+                ICONsx = Button(disabled=False,
+                                text=sx[0]+","+sx[3]+","+str(sx[1]),
+                                color=[0,0,0,0],
                                 background_normal=app.icons_path+app.dictIDicona[sx[0]],
                                 background_down=app.icons_path+app.dictIDicona[sx[0]],
                                 background_disabled_normal=app.icons_path+app.dictIDicona[sx[0]],
                                 background_disabled_down=app.icons_path+app.dictIDicona[sx[0]],
                                 size_hint_x=width_icon, border=[0,0,0,0])
 
+                ICONsx.bind(on_press=self.answer_popup)
 
                 name = app.dictIDName[sx[0]].split()
                 NAMEsx = Button(text=name[0]+'\n'+name[1],
@@ -130,12 +135,17 @@ class ScoreQstScreen(Screen):
                 NAMEdx = Button(disabled=True, size_hint_x=width_name, background_disabled_normal='', background_color=[0,0,0,0])
                 SCOREdx = Button(disabled=True, size_hint_x=width_score, background_disabled_normal='', background_color=[0,0,0,0])
             else:
-                ICONdx = Button(disabled=True, size_hint_x=width_icon,
+                ICONdx = Button(disabled=False,
+                                text=dx[0]+","+dx[3]+","+str(dx[1]),
+                                color=[0,0,0,0],
+                                size_hint_x=width_icon,
                                 background_normal=app.icons_path+app.dictIDicona[dx[0]],
                                 background_down=app.icons_path+app.dictIDicona[dx[0]],
                                 background_disabled_normal=app.icons_path+app.dictIDicona[dx[0]],
                                 background_disabled_down=app.icons_path+app.dictIDicona[dx[0]],
                                 border=[0,0,0,0])
+
+                ICONdx.bind(on_press=self.answer_popup)
 
                 name = app.dictIDName[dx[0]].split()
                 NAMEdx = Button(text=name[0]+'\n'+name[1], halign='center', disabled=True, background_disabled_normal='',
@@ -201,6 +211,33 @@ class ScoreQstScreen(Screen):
         self.add_widget(g)
 #        self.add_widget(back_button=ObjectProperty('back_button_tmp'))
         app.score_qst_ready = True
+
+    def answer_popup(self, instance):
+        popup_id = instance.text.split(",")[0]
+        popup_title = "Risposta di " + str(app.dictIDName[popup_id])
+        popup_answer = instance.text.split(",")[1]
+        popup_score = int(instance.text.split(",")[2])
+
+        if popup_answer == app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['OK']:
+            popup_text = app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['ans'][ord(popup_answer)-65]
+            popup_text_2 = '[color=00cc00]%s'%(iconfonts.icon('fa-check-circle'))+'[/color]'
+        elif popup_answer == "-":
+            popup_text = ""
+            popup_text_2 = '[color=ffcc00]%s'%(iconfonts.icon('fa-minus-circle'))+'[/color]'
+        else:
+            popup_text = app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['ans'][ord(popup_answer)-65]
+            popup_text_2 = '[color=ff0000]%s'%(iconfonts.icon('fa-times-circle'))+'[/color]'
+
+        if popup_score > 0:
+            popup_color = [0,0.8,0,1]
+        elif popup_score == 0:
+            popup_color = [1,0.75,0.095,1]
+        else:
+            popup_color = [0.8,0,0,1]
+
+        popup_content = "[size=100]" + popup_answer + "[/size]\n\n[size=40] " + popup_text + " [/size]\n" + popup_text_2
+        popup = Popup(title=popup_title, title_align='center', title_color=popup_color, title_size='50sp', title_font='font/UbuntuMono-B.ttf', separator_color=popup_color, content=Label(text=popup_content, font_size=80, font_name='font/UbuntuMono-B.ttf', halign='center', markup=True),size_hint=(None, None), size=(800, 600))
+        popup.open()
 
     def toggleAnswers(self):
         self.letterVisibility = not self.letterVisibility
