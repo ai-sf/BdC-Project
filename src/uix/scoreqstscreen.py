@@ -246,7 +246,7 @@ class ScoreQstScreen(Screen):
         else:
             popup_content = "[size=100][font=font/Symbola.ttf]-[/font][/size]\n[size=40] " + popup_text + " [/size]\n\n" + popup_text_2
 
-        popup = Popup(title=popup_title, title_align='center', title_color=popup_color, title_size='50sp', title_font='font/UbuntuMono-B.ttf', separator_color=popup_color, content=Label(text=popup_content, font_size=80, font_name='font/UbuntuMono-B.ttf', halign='center', markup=True),size_hint=(None, None), size=(800, 600))
+        popup = Popup(title=popup_title, title_align='center', title_color=popup_color, title_size='50sp', title_font='font/UbuntuMono-B.ttf', separator_color=popup_color, content=Label(text=popup_content, text_size=(950, None), font_size=80, font_name='font/Ubuntu-L.ttf', halign='center', markup=True),size_hint=(None, None), size=(1000, 800))
         popup.open()
 
     def toggleAnswers(self):
