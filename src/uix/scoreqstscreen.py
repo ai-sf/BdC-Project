@@ -37,9 +37,20 @@ class ScoreQstScreen(Screen):
             pass
         else:
             self.clear_widgets()
-            self.Score_R = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1], app.lastRisposteDate[key][0]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] > 0]
-            self.Score_A = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1], '-') for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] == 0]
-            self.Score_W = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1], app.lastRisposteDate[key][0]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] < 0]
+            self.Score_R = []
+            self.Score_A = []
+            self.Score_W = []
+
+            for key in app.QUESTION_SCORE[-1].keys():
+                if app.QUESTION_SCORE[-1][key][0] < 0:
+                    if(key in app.lastRisposteDate.keys()):
+                        self.Score_W.append((key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1], app.lastRisposteDate[key][0]))
+                    else:
+                        self.Score_W.append((key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1], '-'))
+                elif app.QUESTION_SCORE[-1][key][0] > 0:
+                    self.Score_R.append((key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1], app.lastRisposteDate[key][0]))
+                else:
+                    self.Score_A.append((key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1], '-'))
 
             sorted_R = sorted(self.Score_R, key=operator.itemgetter(2))
             sorted_R = sorted(sorted_R, key=operator.itemgetter(1), reverse= True)
