@@ -21,7 +21,7 @@ class internalShell(cmd.Cmd):
             if bonus_amount != 0:
                 app.GENERAL_SCORE[bonus_team_id] += bonus_amount
 
-                print "bonus to " + str(app.dictIDName[bonus_team_id]) + ": " + str(bonus_amount)
+                print "<\033[1;92mDONE   \033[0m> bonus to " + str(app.dictIDName[bonus_team_id]) + ": " + str(bonus_amount)
 
                 if not bonus_hidden:
 
@@ -37,12 +37,12 @@ class internalShell(cmd.Cmd):
                     popup.open()
 
                 if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
-                    print "WARNING: score will reset after test section!"
+                    print "<\033[1;93mWARNING\033[0m> score will reset after test section!"
             else:
-                print "WARNING: no bonus given"
+                print "<\033[1;93mWARNING\033[0m> no bonus given"
 
         except:
-            print "ERROR: see help for usage"
+            print "<\033[1;91mERROR  \033[0m> see help for usage"
 
     def complete_bonus(self, text, line, begidx, endidx):
 
@@ -59,7 +59,7 @@ class internalShell(cmd.Cmd):
         try:
             num_lum = int(line)
         except:
-            print "ERROR: '" + str(line) + "' isn't a number"
+            print "<\033[1;91mERROR  \033[0m> '" + str(line) + "' isn't a number"
             return False
 
         if num_lum > 100:
@@ -67,11 +67,11 @@ class internalShell(cmd.Cmd):
         elif num_lum < 0:
             num_lum = 0
 
-        print "brightness set to " + str(num_lum) + "%"
+        print "<\033[1;92mDONE   \033[0m> brightness set to " + str(num_lum) + "%"
         if app.NOCONTROLLER is False:
             app.master.write("lum"+str(num_lum).zfill(3)+"\n")
         else:
-            print "Serial port not available [NOCONTROLLER = True]"
+            print "<\033[1;91mERROR  \033[0m> serial port not available [NOCONTROLLER = True]"
 
     def do_EOF(self, line):
         'EOF (or ^D) - exits from the shell'
