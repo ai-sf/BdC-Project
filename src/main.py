@@ -30,6 +30,10 @@ from kivy.properties import NumericProperty, ListProperty, DictProperty, OptionP
 #disable red point which appears with dx touch
 from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
+Config.set('kivy', 'exit_on_escape', 0)
+Config.set('graphics', 'position', 'custom')
+Config.set('graphics', 'left', 160)
+Config.set('graphics', 'top',  480)
 
 #load icon font
 import iconfonts.iconfonts as iconfonts
