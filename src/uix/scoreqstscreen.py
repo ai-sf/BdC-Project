@@ -78,18 +78,41 @@ class ScoreQstScreen(Screen):
 
         bar_height = float(Window.height)*0.1
         row_height = (float(Window.height)-bar_height)/(float(len(sorted_x))/2)
+
         width_icon = row_height/Window.width
-        width_sep = 1.0/100
-        width_name = (((1-width_icon*2)-width_sep)/2)*0.65
-        width_score = (((1-width_icon*2)-width_sep)/2)*0.35
+        width_sep = ((1-width_icon*2)/2)*0.05
+        width_pos = ((1-width_icon*2)/2)*0.10
+        width_name = ((1-width_icon*2)/2)*0.5
+        width_score = ((1-width_icon*2)/2)*0.35
 
         rows_dict = dict(zip(range(len(listrighe)), [row_height]*len(listrighe)))
         rows_dict[len(listrighe)] = bar_height
-        g = GridLayout(id='grid',cols=7,rows_minimum=rows_dict)
+        g = GridLayout(id='grid',cols=9,rows_minimum=rows_dict)
+
+        pos_show=0
+        list_of_pos = []
+        score_prev = -123456789
+        time_prev = -1
+
+        for pos_list in range(0,len(sorted_x)):
+            if sorted_x[pos_list][0] == '5355053550':
+                pass
+            elif sorted_x[pos_list][1] != score_prev and sorted_x[pos_list][2] != time_prev:
+                pos_show = pos_show + 1
+                score_prev = sorted_x[pos_list][1]
+                time_prev = sorted_x[pos_list][2]
+                list_of_pos.append(pos_list+1)
+            else:
+                list_of_pos.append(pos_show)
+
+        index_line = 0
 
         for [sx,dx] in listrighe:
+            index_line = index_line + 1
+
             if sx[0] == '5355053550':
                 ICONsx = Button(disabled=True, size_hint_x=width_icon, background_disabled_normal='', background_color=[0,0,0,0])
+                POSsx = Button(disabled=True, size_hint_x=width_pos, background_disabled_normal='', background_color=[0,0,0,0])
                 NAMEsx = Button(disabled=True, size_hint_x=width_name, background_disabled_normal='', background_color=[0,0,0,0])
                 SCOREsx = Button(disabled=True, size_hint_x=width_score, background_disabled_normal='', background_color=[0,0,0,0])
             else:
@@ -103,6 +126,15 @@ class ScoreQstScreen(Screen):
                                 size_hint_x=width_icon, border=[0,0,0,0])
 
                 ICONsx.bind(on_press=self.answer_popup)
+
+                POSsx = Button(disabled=True,
+                                halign='center',
+                                size_hint_x=width_pos,
+                                background_color=[1,1,0,0],
+                                font_size=50*app.scalatore,
+                                markup=True,
+                                text="[color=#ff8000][b]"+str(list_of_pos[index_line-1])+"[/b][/color]"
+                                )
 
                 name = app.dictIDName[sx[0]].decode('utf-8').split()
                 NAMEsx = Button(text=name[0]+'\n'+name[1],
@@ -146,6 +178,7 @@ class ScoreQstScreen(Screen):
 
             if dx[0] == '5355053550':
                 ICONdx = Button(disabled=True, size_hint_x=width_icon, background_disabled_normal='', background_color=[0,0,0,0])
+                POSdx = Button(disabled=True, size_hint_x=width_pos, background_disabled_normal='', background_color=[0,0,0,0])
                 NAMEdx = Button(disabled=True, size_hint_x=width_name, background_disabled_normal='', background_color=[0,0,0,0])
                 SCOREdx = Button(disabled=True, size_hint_x=width_score, background_disabled_normal='', background_color=[0,0,0,0])
             else:
@@ -160,6 +193,15 @@ class ScoreQstScreen(Screen):
                                 border=[0,0,0,0])
 
                 ICONdx.bind(on_press=self.answer_popup)
+
+                POSdx = Button(disabled=True,
+                                halign='center',
+                                size_hint_x=width_pos,
+                                background_color=[0,1,1,0],
+                                font_size=50*app.scalatore,
+                                markup=True,
+                                text="[color=#ff8000][b]"+str(list_of_pos[index_line+len(list1)-1])+"[/b][/color]"
+                                )
 
                 name = app.dictIDName[dx[0]].decode('utf-8').split()
                 NAMEdx = Button(text=name[0]+'\n'+name[1], halign='center', disabled=True, background_disabled_normal='',
@@ -193,10 +235,12 @@ class ScoreQstScreen(Screen):
                 SCOREdx = Button(text=scoredx_string, disabled=True, background_disabled_normal='', background_color=[0,0,0,0], markup=True,
                                  font_size = 35*app.scalatore,size_hint_x=width_score,halign='center')
 
+            g.add_widget(POSsx)
             g.add_widget(ICONsx)
             g.add_widget(NAMEsx)
             g.add_widget(SCOREsx)
             g.add_widget(sep)
+            g.add_widget(POSdx)
             g.add_widget(ICONdx)
             g.add_widget(NAMEdx)
             g.add_widget(SCOREdx)
@@ -210,16 +254,21 @@ class ScoreQstScreen(Screen):
 
         separation = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_sep)
 
+        separation2 = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_pos)
+        separation3 = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_pos)
+
         bmdx = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_icon)
         bottomdx = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_name)
         iconBDCdx = IconButton(source='img/logoBdC_bianco.png', size_hint_x=width_score)
         iconBDCdx.bind(on_press=lambda x : app.cmd_line_start())
 
+        g.add_widget(separation2)
         g.add_widget(lBACK)
         g.add_widget(lSHOW)
         #g.add_widget(bmsx)
         g.add_widget(iconBDCsx)
         g.add_widget(separation)
+        g.add_widget(separation3)
         g.add_widget(bmdx)
         g.add_widget(bottomdx)
         g.add_widget(iconBDCdx)

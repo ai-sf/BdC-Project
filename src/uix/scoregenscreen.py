@@ -72,16 +72,17 @@ class ScoreGenScreen(Screen):
 
         bar_height = float(Window.height)*0.1
         row_height = (float(Window.height)-bar_height)/(float(len(sorted_x))/2)
+
         width_icon = row_height/Window.width
-        # width_arrow = width_icon*0.75
-        width_arrow = width_icon*0.25
-        width_sep = 1.0/50
-        width_name = ((1-width_icon*2-width_arrow*2-width_sep)/2)*(1.75/3)
-        width_score = ((1-width_icon*2-width_arrow*2-width_sep)/2)*(1.25/3)
+        width_arrow = ((1-width_icon*2)/2)*0.05
+        width_sep = ((1-width_icon*2)/2)*0.05
+        width_pos = ((1-width_icon*2)/2)*0.10
+        width_name = ((1-width_icon*2)/2)*0.5
+        width_score = ((1-width_icon*2)/2)*0.3
 
         rows_dict = dict(zip(range(len(list1)), [row_height]*len(list1)))
         rows_dict[len(list1)] = bar_height
-        g = GridLayout(cols=9,#row_default_height=row_height,row_force_default=True,
+        g = GridLayout(cols=11,#row_default_height=row_height,row_force_default=True,
                        rows_minimum=rows_dict)
 
         if (str(app.QST_DSP_CNT) == "P" and app.QST_PAR_CNT+1 == 1) or not app.score_seen:
@@ -91,10 +92,29 @@ class ScoreGenScreen(Screen):
 
         app.score_seen = True
 
+        pos_show=0
+        list_of_pos = []
+        score_prev=-123456789;
+
+        for pos_list in range(0,len(sorted_x)):
+            if sorted_x[pos_list][0] == '5355053550':
+                pass
+            elif sorted_x[pos_list][1] != score_prev:
+                pos_show = pos_show + 1
+                score_prev = sorted_x[pos_list][1]
+                list_of_pos.append(pos_list+1)
+            else:
+                list_of_pos.append(pos_show)
+
+        index_line = 0
+
         for [sx,dx] in listrighe:
+            index_line = index_line + 1
+
             if sx[0] == '5355053550':
                 ICONsx = Button(disabled=True, size_hint_x=width_icon, background_disabled_normal='', background_color=[0,0,0,0])
                 ARROWsx = Button(disabled=True, size_hint_x=width_arrow, background_disabled_normal='', background_color=[0,0,0,0])
+                POSsx = Button(disabled=True, size_hint_x=width_pos, background_disabled_normal='', background_color=[0,0,0,0])
                 NAMEsx = Button(disabled=True, size_hint_x=width_name, background_disabled_normal='', background_color=[0,0,0,0])
                 SCOREsx = Button(disabled=True, size_hint_x=width_score, background_disabled_normal='', background_color=[0,0,0,0])
             else:
@@ -106,33 +126,32 @@ class ScoreGenScreen(Screen):
                                 size_hint_x=width_icon, border=[0,0,0,0])
 
                 if self.Position[sx[0]] < self.PositionBefore[sx[0]]:
-                    #arrow = 'img/arrow_green.png'
                     arrow = 'fa-arrow-up'
                     arrow_color = '#00cc00'
                 if self.Position[sx[0]] == self.PositionBefore[sx[0]]:
-                    #arrow = 'img/arrow_yellow.png'
                     arrow = 'fa-minus'
                     arrow_color = '#ffcc00'
                 if self.Position[sx[0]] > self.PositionBefore[sx[0]]:
-                    #arrow = 'img/arrow_red.png'
                     arrow = 'fa-arrow-down'
                     arrow_color = '#ff0000'
 
-                # ARROWsx = Button(disabled=True,
-                #                 opacity=arrow_opacity,
-                #                 background_normal=arrow,
-                #                 background_down=arrow,
-                #                 background_disabled_normal=arrow,
-                #                 background_disabled_down=arrow,
-                #                 size_hint_x=width_arrow)
-
                 ARROWsx = Button(disabled=True,
+                                halign='center',
                                 opacity=arrow_opacity,
                                 size_hint_x=width_arrow,
                                 background_color=[0,0,0,0],
                                 font_size=50*app.scalatore,
                                 markup=True,
                                 text="[color="+arrow_color+"]%s[/color] "%(iconfonts.icon(arrow))
+                                )
+
+                POSsx = Button(disabled=True,
+                                halign='center',
+                                size_hint_x=width_pos,
+                                background_color=[1,1,0,0],
+                                font_size=50*app.scalatore,
+                                markup=True,
+                                text="[color=#00ffff][b]"+str(list_of_pos[index_line-1])+"[/b][/color]"
                                 )
 
                 name = app.dictIDName[sx[0]].decode('utf-8').split()
@@ -153,43 +172,44 @@ class ScoreGenScreen(Screen):
             if dx[0] == '5355053550':
                 ICONdx = Button(disabled=True, size_hint_x=width_icon, background_disabled_normal='', background_color=[0,0,0,0])
                 ARROWdx = Button(disabled=True, size_hint_x=width_arrow, background_disabled_normal='', background_color=[0,0,0,0])
+                POSdx = Button(disabled=True, size_hint_x=width_pos, background_disabled_normal='', background_color=[0,0,0,0])
                 NAMEdx = Button(disabled=True, size_hint_x=width_name, background_disabled_normal='', background_color=[0,0,0,0])
                 SCOREdx = Button(disabled=True, size_hint_x=width_score, background_disabled_normal='', background_color=[0,0,0,0])
             else:
-                ICONdx = Button(disabled=True, size_hint_x=width_icon, border=[0,0,0,0],
+                ICONdx = Button(disabled=True,
+                                size_hint_x=width_icon, border=[0,0,0,0],
                                 background_normal=app.icons_path+app.dictIDicona[dx[0]],
                                 background_down=app.icons_path+app.dictIDicona[dx[0]],
                                 background_disabled_normal=app.icons_path+app.dictIDicona[dx[0]],
                                 background_disabled_down=app.icons_path+app.dictIDicona[dx[0]] )
 
                 if self.Position[dx[0]] < self.PositionBefore[dx[0]]:
-                    #arrow = 'img/arrow_green.png'
                     arrow = 'fa-arrow-up'
                     arrow_color = '#00cc00'
                 if self.Position[dx[0]] == self.PositionBefore[dx[0]]:
-                    #arrow = 'img/arrow_yellow.png'
                     arrow = 'fa-minus'
                     arrow_color = '#ffcc00'
                 if self.Position[dx[0]] > self.PositionBefore[dx[0]]:
-                    #arrow = 'img/arrow_red.png'
                     arrow = 'fa-arrow-down'
                     arrow_color = '#ff0000'
 
-                # ARROWdx = Button(disabled=True,
-                #                 opacity=arrow_opacity,
-                #                 background_normal=arrow,
-                #                 background_down=arrow,
-                #                 background_disabled_normal=arrow,
-                #                 background_disabled_down=arrow,
-                #                 size_hint_x=width_arrow)
-
                 ARROWdx = Button(disabled=True,
+                                halign='center',
                                 opacity=arrow_opacity,
                                 size_hint_x=width_arrow,
                                 background_color=[0,0,0,0],
                                 font_size=50*app.scalatore,
                                 markup=True,
                                 text="[color="+arrow_color+"]%s[/color] "%(iconfonts.icon(arrow))
+                                )
+
+                POSdx = Button(disabled=True,
+                                halign='center',
+                                size_hint_x=width_pos,
+                                background_color=[0,1,1,0],
+                                font_size=50*app.scalatore,
+                                markup=True,
+                                text="[color=#00ffff][b]"+str(list_of_pos[index_line+len(list1)-1])+"[/b][/color]"
                                 )
 
                 name = app.dictIDName[dx[0]].decode('utf-8').split()
@@ -205,11 +225,13 @@ class ScoreGenScreen(Screen):
                 SCOREdx = Button(text=str(int(dx[1])), disabled=True,background_disabled_normal='', background_color=[0,0,0,0], bold=True,
                                  font_size = 35*app.scalatore,size_hint_x=width_score)
 
+            g.add_widget(POSsx)
             g.add_widget(ICONsx)
             g.add_widget(ARROWsx)
             g.add_widget(NAMEsx)
             g.add_widget(SCOREsx)
             g.add_widget(sep)
+            g.add_widget(POSdx)
             g.add_widget(ICONdx)
             g.add_widget(ARROWdx)
             g.add_widget(NAMEdx)
@@ -226,6 +248,9 @@ class ScoreGenScreen(Screen):
 
         separation = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_sep)
 
+        separation2 = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_pos)
+        separation3 = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_pos)
+
         bmdx = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_icon)
         abdx = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_arrow)
 
@@ -233,11 +258,13 @@ class ScoreGenScreen(Screen):
         iconBDCdx = IconButton(source='img/logoBdC_bianco.png', size_hint_x=width_score)
         iconBDCdx.bind(on_press=lambda x : app.cmd_line_start())
 
+        g.add_widget(separation2)
         g.add_widget(lBACK)
         g.add_widget(absx)
         g.add_widget(bmsx)
         g.add_widget(iconBDCsx)
         g.add_widget(separation)
+        g.add_widget(separation3)
         g.add_widget(bmdx)
         g.add_widget(abdx)
         g.add_widget(bottomdx)

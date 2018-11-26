@@ -77,8 +77,22 @@ class LastScreen(Screen):
 
     def on_enter(self):
 
+        self.pos_show=0
+        self.list_of_pos = []
+        self.score_prev = -123456789
+
+        for pos_list in range(0,len(app.sorted_x)):
+            if app.sorted_x[pos_list][0] == '5355053550':
+                pass
+            elif app.sorted_x[pos_list][1] != self.score_prev:
+                self.pos_show = self.pos_show + 1
+                self.score_prev = app.sorted_x[pos_list][1]
+                self.list_of_pos.append(pos_list+1)
+            else:
+                self.list_of_pos.append(self.pos_show)
+
         # reloading testo
-        self.labeltesto.text = str(self.counter+1)+' - '+app.dictIDName[app.sorted_x[self.counter][0]].decode('utf-8')
+        self.labeltesto.text = str(self.list_of_pos[self.counter])+' - '+app.dictIDName[app.sorted_x[self.counter][0]].decode('utf-8')
         if app.sorted_x[self.counter][0] in app.WINNER_OF_SECTIONS.keys():
             for ic in app.WINNER_OF_SECTIONS[app.sorted_x[self.counter][0]]:
                 self.labeltesto.text += " "+"%s"%(iconfonts.icon(ic))
@@ -88,7 +102,7 @@ class LastScreen(Screen):
         if self.counter > 0:
             self.counter -= 1
             # reloading testo
-            self.labeltesto.text = str(self.counter+1)+' - '+app.dictIDName[app.sorted_x[self.counter][0]].decode('utf-8')
+            self.labeltesto.text = str(self.list_of_pos[self.counter])+' - '+app.dictIDName[app.sorted_x[self.counter][0]].decode('utf-8')
             if app.sorted_x[self.counter][0] in app.WINNER_OF_SECTIONS.keys():
                 for ic in app.WINNER_OF_SECTIONS[app.sorted_x[self.counter][0]]:
                     self.labeltesto.text += " "+"%s"%(iconfonts.icon(ic))
@@ -99,7 +113,7 @@ class LastScreen(Screen):
 
         self.counter += 1
         # reloading testo
-        self.labeltesto.text = str(self.counter+1)+' - '+app.dictIDName[app.sorted_x[self.counter][0]].decode('utf-8')
+        self.labeltesto.text = str(self.list_of_pos[self.counter])+' - '+app.dictIDName[app.sorted_x[self.counter][0]].decode('utf-8')
         if app.sorted_x[self.counter][0] in app.WINNER_OF_SECTIONS.keys():
             for ic in app.WINNER_OF_SECTIONS[app.sorted_x[self.counter][0]]:
                 self.labeltesto.text += " "+"%s"%(iconfonts.icon(ic))
