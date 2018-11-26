@@ -218,7 +218,7 @@ class ScoreGenFinScreen(Screen):
                                 text="[color="+arrow_color+"]%s[/color] "%(iconfonts.icon(arrow))
                                 )
 
-                name = app.dictIDName[sx[0]].split()
+                name = app.dictIDName[sx[0]].decode('utf-8').split()
                 textstr_sx = name[0]+'\n'+name[1]
                 if sx[0] in app.WINNER_OF_SECTIONS.keys():
                     textstr_sx += '\n'
@@ -287,7 +287,7 @@ class ScoreGenFinScreen(Screen):
                                 text="[color="+arrow_color+"]%s[/color] "%(iconfonts.icon(arrow))
                                 )
 
-                name = app.dictIDName[dx[0]].split()
+                name = app.dictIDName[dx[0]].decode('utf-8').split()
                 textstr_dx = name[0]+'\n'+name[1]
                 if dx[0] in app.WINNER_OF_SECTIONS.keys():
                     textstr_dx += '\n'

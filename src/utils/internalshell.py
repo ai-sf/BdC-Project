@@ -11,7 +11,7 @@ class internalShell(cmd.Cmd):
         'bonus [last_name] [amount] ["hidden"] - gives bonus to selected team'
         try:
             bonus_team_lastName = line.split(' ')[0]
-            bonus_team_id = app.dictIDLastName.keys()[app.dictIDLastName.values().index(unicode(bonus_team_lastName))]
+            bonus_team_id = app.dictIDLastName.keys()[app.dictIDLastName.values().index(bonus_team_lastName)]
             bonus_amount = int(line.split(' ')[1])
             try:
                 bonus_hidden = (line.split(' ')[2] == 'hidden')

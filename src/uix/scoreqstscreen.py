@@ -104,7 +104,7 @@ class ScoreQstScreen(Screen):
 
                 ICONsx.bind(on_press=self.answer_popup)
 
-                name = app.dictIDName[sx[0]].split()
+                name = app.dictIDName[sx[0]].decode('utf-8').split()
                 NAMEsx = Button(text=name[0]+'\n'+name[1],
                                 halign='center',
                                 disabled=True,
@@ -161,7 +161,7 @@ class ScoreQstScreen(Screen):
 
                 ICONdx.bind(on_press=self.answer_popup)
 
-                name = app.dictIDName[dx[0]].split()
+                name = app.dictIDName[dx[0]].decode('utf-8').split()
                 NAMEdx = Button(text=name[0]+'\n'+name[1], halign='center', disabled=True, background_disabled_normal='',
                                 background_color=[0,0,0,0], disabled_color=[1,1,1,1], font_size=40*app.scalatore,size_hint_x=width_name,
                                 font_name='font/UbuntuMono-B.ttf')

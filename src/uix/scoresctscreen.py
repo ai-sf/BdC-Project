@@ -90,7 +90,7 @@ class ScoreSctScreen(Screen):
                                 background_disabled_down=app.icons_path+app.dictIDicona[sx[0]],
                                 size_hint_x=width_icon, border=[0,0,0,0])
 
-                name = app.dictIDName[sx[0]].split()
+                name = app.dictIDName[sx[0]].decode('utf-8').split()
                 num_win = len(app.SCT_FIRST_NAMES)
                 if sx[0] in app.SCT_FIRST_NAMES:
                     points = str(app.PRIZE/num_win)
@@ -118,7 +118,7 @@ class ScoreSctScreen(Screen):
                                 background_disabled_normal=app.icons_path+app.dictIDicona[dx[0]],
                                 background_disabled_down=app.icons_path+app.dictIDicona[dx[0]] )
 
-                name = app.dictIDName[dx[0]].split()
+                name = app.dictIDName[dx[0]].decode('utf-8').split()
                 if dx[0] in app.SCT_FIRST_NAMES:
                     points = str(app.PRIZE/num_win)
                     NAMEdx = Button(text="[color=#6666cc]"+name[0]+'\n'+name[1]+'\n'+"[b]+"+points+"[/b][/color]", markup=True, halign='center',disabled=True, background_disabled_normal='',
