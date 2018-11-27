@@ -218,7 +218,7 @@ class AfterQstSlides(Screen):
     def do_backup(self):
         # #saving backup
         savefile = open(app.filepath+'/backup.dat','w')
-        savestringa = json.dumps([app.QST_DSP_CNT, app.QST_NOR_CNT, app.QST_TOT_CNT, app.QST_PAR_CNT, app.SEC_CNT, app.HISTORY, app.ABSTENTIONS,app.GENERAL_SCORE, app.QUESTION_SCORE,app.SECTION_SCORE,app.ANSWERS_GIVEN, app.WINNER_OF_SECTIONS, app.SCT_FIRST_NAMES])
+        savestringa = json.dumps([app.QST_DSP_CNT, app.QST_NOR_CNT, app.QST_TOT_CNT, app.QST_PAR_CNT, app.SEC_CNT, app.HISTORY, app.ABSTENTIONS,app.GENERAL_SCORE, app.QUESTION_SCORE,app.SECTION_SCORE,app.ANSWERS_GIVEN, app.WINNER_OF_SECTIONS, app.SCT_FIRST_NAMES, app.score_new])
         savefile.write(savestringa)
         savefile.close()
         print("Backup written!!")

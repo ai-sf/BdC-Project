@@ -71,9 +71,6 @@ def setGlobal(init_file):
                 print("intro slide does not exists at "+slidepath)
                 exit()
 
-    # if not os.path.exists(app.FOLDER+'/backup'):
-    #     os.makedirs(app.FOLDER+'/backup')
-
     app.clock_steps = 100
     if config.get("Grafica","fullscreen") == True:
         Window.fullscreen = 'auto'
@@ -88,11 +85,6 @@ def setGlobal(init_file):
 
     app.NOCONTROLLER = config.getboolean("Partenza", "NOCONTROLLER")
 
-    # if app.BACKUP:
-    #      app.starting_counter = backuplist[0]
-    #      app.starting_classifica = backuplist[1]
-    #      app.astensioni_backup = backuplist[2]
-    # else:
     app.starting_counter = 0
     app.starting_classifica = dict(zip(app.dictIDName.keys(), [0]*len(app.dictIDName.keys())))
 
@@ -118,8 +110,3 @@ def setGlobal(init_file):
                         "2486007740": "rutherford.png" }
 
     app.RANDOM = config.get("Domande","random")
-
-    # localtime = datetime.datetime.now()
-    # filenameTime = app.FOLDER+'/backup/stat-'+localtime.strftime('%Y%m%d-%H:%M:%S')+'.dat'
-    # fs = open(filenameTime,'w')
-    # fs.close()
