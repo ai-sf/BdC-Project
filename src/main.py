@@ -294,5 +294,13 @@ class BDCApp(App):
         manager = manager or self.root
         return manager.current_screen
 
+    def do_backup(self):
+        # #saving backup
+        savefile = open(self.filepath+'/backup.dat','w')
+        savestringa = json.dumps([self.QST_DSP_CNT, self.QST_NOR_CNT, self.QST_TOT_CNT, self.QST_PAR_CNT, self.SEC_CNT, self.HISTORY, self.ABSTENTIONS,self.GENERAL_SCORE, self.QUESTION_SCORE,self.SECTION_SCORE,self.ANSWERS_GIVEN, self.WINNER_OF_SECTIONS, self.SCT_FIRST_NAMES, self.score_new])
+        savefile.write(savestringa)
+        savefile.close()
+        print("Backup written!!")
+
 if __name__ == '__main__':
     BDCApp().run()

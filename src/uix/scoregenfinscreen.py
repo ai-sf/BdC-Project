@@ -125,19 +125,11 @@ class ScoreGenFinScreen(Screen):
         else:
             app.SEC_CNT += 1
 
-            if app.SECTIONS[app.SEC_CNT]['type'] == 'normal':
-                app.QST_NOR_CNT += 1
-                app.QST_DSP_CNT = str(app.QST_NOR_CNT)
-            if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
-                app.QST_NOR_CNT += 1
-                app.QST_DSP_CNT = str(app.QST_NOR_CNT)
-            if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
-                app.QST_DSP_CNT = "P"
-            if app.SECTIONS[app.SEC_CNT]['type'] == 'normal':
+            app.do_backup()
+
+            if app.SECTIONS[app.SEC_CNT]['type'] == 'normal' or app.SECTIONS[app.SEC_CNT]['type'] == 'test':
                 app.load_screen("BeforeQstSlides")
-            if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
-                app.load_screen("BeforeQstSlides")
-            if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
+            elif app.SECTIONS[app.SEC_CNT]['type'] == 'special':
                 app.load_screen("IntroSctScreen")
 
     def buildClassifica(self, sorted_x):

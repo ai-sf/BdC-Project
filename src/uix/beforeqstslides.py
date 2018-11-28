@@ -59,6 +59,13 @@ class BeforeQstSlides(Screen):
     """)
 
     def on_enter(self):
+
+        if app.SECTIONS[app.SEC_CNT]['type'] == 'normal' or app.SECTIONS[app.SEC_CNT]['type'] == 'special':
+            app.QST_NOR_CNT += 1
+            app.QST_DSP_CNT = str(app.QST_NOR_CNT)
+        elif app.SECTIONS[app.SEC_CNT]['type'] == 'test':
+            app.QST_DSP_CNT = "P"
+
         self.counter = 0
 
         self.next_button.markup = True
