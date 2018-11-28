@@ -59,8 +59,6 @@ def setGlobal(init_file):
 
     app.NUMERO_GIOCATORI = len(app.dictIDName.keys())
 
-    app.FOLDER = config_path + "/" + config.get("Domande","folder")
-
     app.FIRST_SLIDES = []
     if 'FIRST_SLIDES' in config.sections():
         for id in config['FIRST_SLIDES']:
@@ -72,6 +70,7 @@ def setGlobal(init_file):
                 exit()
 
     app.clock_steps = 100
+
     if config.get("Grafica","fullscreen") == True:
         Window.fullscreen = 'auto'
     else:
@@ -87,8 +86,6 @@ def setGlobal(init_file):
 
     app.starting_counter = 0
     app.starting_classifica = dict(zip(app.dictIDName.keys(), [0]*len(app.dictIDName.keys())))
-
-    app.provadomande = config.get("Domande","provadomande")
 
     app.dictIDicona = { "2142880870": "einstein.png",
                         "3893145282": "newton.png",
@@ -108,5 +105,3 @@ def setGlobal(init_file):
                         "2486008734": "pauli.png",
                         "2486014355": "faraday.png",
                         "2486007740": "rutherford.png" }
-
-    app.RANDOM = config.get("Domande","random")

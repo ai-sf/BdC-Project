@@ -9,7 +9,7 @@ nome_porta: /dev/ttyUSB0
 backup: False
 NOCONTROLLER: True
 countdown_domanda: True
-tempo_risposta: 15
+tempo_risposta: 2
 
 #--------------------------------------------#
 
@@ -70,14 +70,6 @@ icon=icon.png
 path=prova_schermate/domande_finale.txt
 intro=prova_schermate/bdc.png
 bkg=none
-
-[Domande]
-folder: prova_schermate
-#Se True, permette di cliccare sulle domande
-#e printare la risposta come ('A',3)
-provadomande: True
-#se random, le domande sono disposte casualmente
-random: False
 
 #--------------------------------------------#
 

@@ -82,8 +82,7 @@ class ScoreGenScreen(Screen):
 
         rows_dict = dict(zip(range(len(list1)), [row_height]*len(list1)))
         rows_dict[len(list1)] = bar_height
-        g = GridLayout(cols=11,#row_default_height=row_height,row_force_default=True,
-                       rows_minimum=rows_dict)
+        g = GridLayout(cols=11,rows_minimum=rows_dict)
 
         if (str(app.QST_DSP_CNT) == "P" and app.QST_PAR_CNT+1 == 1) or not app.score_seen:
             arrow_opacity=0
@@ -128,10 +127,10 @@ class ScoreGenScreen(Screen):
                 if self.Position[sx[0]] < self.PositionBefore[sx[0]]:
                     arrow = 'fa-arrow-up'
                     arrow_color = '#00cc00'
-                if self.Position[sx[0]] == self.PositionBefore[sx[0]]:
+                elif self.Position[sx[0]] == self.PositionBefore[sx[0]]:
                     arrow = 'fa-minus'
                     arrow_color = '#ffcc00'
-                if self.Position[sx[0]] > self.PositionBefore[sx[0]]:
+                elif self.Position[sx[0]] > self.PositionBefore[sx[0]]:
                     arrow = 'fa-arrow-down'
                     arrow_color = '#ff0000'
 
@@ -186,10 +185,10 @@ class ScoreGenScreen(Screen):
                 if self.Position[dx[0]] < self.PositionBefore[dx[0]]:
                     arrow = 'fa-arrow-up'
                     arrow_color = '#00cc00'
-                if self.Position[dx[0]] == self.PositionBefore[dx[0]]:
+                elif self.Position[dx[0]] == self.PositionBefore[dx[0]]:
                     arrow = 'fa-minus'
                     arrow_color = '#ffcc00'
-                if self.Position[dx[0]] > self.PositionBefore[dx[0]]:
+                elif self.Position[dx[0]] > self.PositionBefore[dx[0]]:
                     arrow = 'fa-arrow-down'
                     arrow_color = '#ff0000'
 

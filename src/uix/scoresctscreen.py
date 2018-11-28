@@ -74,8 +74,7 @@ class ScoreSctScreen(Screen):
 
         rows_dict = dict(zip(range(len(list1)), [row_height]*len(list1)))
         rows_dict[len(list1)] = bar_height
-        g = GridLayout(cols=9,#row_default_height=row_height,row_force_default=True,
-                       rows_minimum=rows_dict)
+        g = GridLayout(cols=9,rows_minimum=rows_dict)
 
         pos_show=0
         list_of_pos = []

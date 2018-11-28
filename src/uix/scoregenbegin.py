@@ -130,8 +130,7 @@ class ScoreGenBegin(Screen):
 
         rows_dict = dict(zip(range(len(list1)), [row_height]*len(list1)))
         rows_dict[len(list1)] = bar_height
-        g = GridLayout(cols=11,#row_default_height=row_height,row_force_default=True,
-                       rows_minimum=rows_dict)
+        g = GridLayout(cols=11,rows_minimum=rows_dict)
 
         pos_show=0
         list_of_pos = []
@@ -167,24 +166,14 @@ class ScoreGenBegin(Screen):
                                 size_hint_x=width_icon, border=[0,0,0,0])
 
                 if sx[1] > 0:
-                    #arrow = 'img/arrow_green.png'
                     arrow = 'fa-arrow-up'
                     arrow_color = '#00cc00'
                 elif sx[1] == 0:
-                    #arrow = 'img/arrow_yellow.png'
                     arrow = 'fa-minus'
                     arrow_color = '#ffcc00'
                 elif sx[1] < 0:
-                    #arrow = 'img/arrow_red.png'
                     arrow = 'fa-arrow-down'
                     arrow_color = '#ff0000'
-
-                # ARROWsx = Button(disabled=True,
-                #                 background_normal=arrow,
-                #                 background_down=arrow,
-                #                 background_disabled_normal=arrow,
-                #                 background_disabled_down=arrow,
-                #                 size_hint_x=width_arrow)
 
                 ARROWsx = Button(disabled=True,
                                 size_hint_x=width_arrow,
@@ -232,24 +221,14 @@ class ScoreGenBegin(Screen):
                                 background_disabled_down=app.icons_path+app.dictIDicona[dx[0]] )
 
                 if dx[1] > 0:
-                    #arrow = 'img/arrow_green.png'
                     arrow = 'fa-arrow-up'
                     arrow_color = '#00cc00'
                 elif dx[1] == 0:
-                    #arrow = 'img/arrow_yellow.png'
                     arrow = 'fa-minus'
                     arrow_color = '#ffcc00'
                 elif dx[1] < 0:
-                    #arrow = 'img/arrow_red.png'
                     arrow = 'fa-arrow-down'
                     arrow_color = '#ff0000'
-
-                # ARROWdx = Button(disabled=True,
-                #                 background_normal=arrow,
-                #                 background_down=arrow,
-                #                 background_disabled_normal=arrow,
-                #                 background_disabled_down=arrow,
-                #                 size_hint_x=width_arrow)
 
                 ARROWdx = Button(disabled=True,
                                 size_hint_x=width_arrow,

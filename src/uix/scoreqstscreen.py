@@ -249,7 +249,6 @@ class ScoreQstScreen(Screen):
         lBACK.bind(on_press=lambda x : app.load_screen("Question"))
         lSHOW = Button(id='show_tmp', text="%s"%(iconfonts.icon('fa-eye')),font_size=50*app.scalatore,bold=True, halign='center', size_hint_x=width_name, markup=True)
         lSHOW.bind(on_press=lambda x : self.toggleAnswers())
-        #bmsx = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_name)
         iconBDCsx= Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0], size_hint_x=width_score)
 
         separation = Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0],size_hint_x=width_sep)
@@ -265,17 +264,14 @@ class ScoreQstScreen(Screen):
         g.add_widget(separation2)
         g.add_widget(lBACK)
         g.add_widget(lSHOW)
-        #g.add_widget(bmsx)
         g.add_widget(iconBDCsx)
         g.add_widget(separation)
         g.add_widget(separation3)
         g.add_widget(bmdx)
         g.add_widget(bottomdx)
         g.add_widget(iconBDCdx)
-#        g.add_widget(ObjectProperty('back_tmp'),)
 
         self.add_widget(g)
-#        self.add_widget(back_button=ObjectProperty('back_button_tmp'))
         app.score_qst_ready = True
 
     def answer_popup(self, instance):

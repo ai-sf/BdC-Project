@@ -97,17 +97,13 @@ class AfterQstSlides(Screen):
                 self.jolly_button.disabled = False
             else:
                 self.jolly_button.disabled = True
-        if app.SECTIONS[app.SEC_CNT]['type'] == 'normal':
-            self.label_score = "%s"%(iconfonts.icon('fa-list-ol'))
-        if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
+        if app.SECTIONS[app.SEC_CNT]['type'] == 'normal' or app.SECTIONS[app.SEC_CNT]['type'] == 'test':
             self.label_score = "%s"%(iconfonts.icon('fa-list-ol'))
 
     def show_score(self):
         if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
             app.load_screen('ScoreSctScreen')
-        if app.SECTIONS[app.SEC_CNT]['type'] == 'normal':
-            app.load_screen('ScoreGenScreen')
-        if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
+        if app.SECTIONS[app.SEC_CNT]['type'] == 'normal' or app.SECTIONS[app.SEC_CNT]['type'] == 'test':
             app.load_screen('ScoreGenScreen')
 
     def next(self):

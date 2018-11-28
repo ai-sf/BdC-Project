@@ -142,7 +142,6 @@ class CircleTime(Widget):
             self.parent.time_finished = True
             self.label.text = '0'
             self.label.color = [1,0,0,1]
-            #self.parent.show_right_answer_button.disabled = False
             return False
 
     def reset(self):
@@ -186,8 +185,6 @@ class Domanda(GridLayout):
     sideC_button = ObjectProperty(None)
     sideD_button = ObjectProperty(None)
     sideE_button = ObjectProperty(None)
-
-    #start_time_button = ObjectProperty(None)
 
     showterna_button = ObjectProperty(None)
 
@@ -521,23 +518,6 @@ class Domanda(GridLayout):
         #creating button's text
         self.terna_risultato = '[color=00cc00]%s'%(iconfonts.icon('fa-check-circle'))+' '+str(RAW['R'])+'      '+'[/color][color=ff0000]%s'%(iconfonts.icon('fa-times-circle'))+' '+str(RAW['W'])+'      '+'[/color][color=ffcc00]%s'%(iconfonts.icon('fa-minus-circle'))+' '+str(RAW['A'])+'[/color]'
 
-        # #saving statistics
-        # with open(filenameTime,'r') as f:
-        #     statcontent = f.read()
-        # if statcontent == '':
-        #     statlist = []
-        # else:
-        #     statlist = json.loads(statcontent)
-        # statlist.append(risposte_date)
-        # statfile = open(filenameTime,'w')
-        # statstringa = json.dumps(statlist)
-        # print statstringa
-        # statfile.truncate(0)
-        # statfile.write(statstringa)
-        # statfile.close()
-
-        ##################################################
-
         time.sleep(0.5)
 
         self.show_terna()
@@ -589,15 +569,6 @@ class Domanda(GridLayout):
         exec("self."+risp_button+".background_color=[0,0.4,0,1]")
         letter_button = 'label'+str(rightans)+'_button'
         exec("self."+letter_button+".background_color=[0,0.4,0,1]")
-
-    # def printprova(self, name):
-    #     if self.debuganswergiven == False:
-    #         timediff = time.time() - self.debugstarttime
-    #         giustastr = 'ESATTA' if name==RispostaOKList[self.question_counter-1] else 'SBAGLIATA'
-    #         print 'Domanda #'+str(self.question_counter)+': label '+name+', time '+ str(timediff)+' - '+giustastr
-    #         exec("self.risposta"+name+"_button.text+=' (DATA!)'")
-    #         self.debuganswergiven = True
-
 
 class AnswerButton(Button):
 

@@ -34,13 +34,11 @@ def process(filename):
         if filedomande[7+i].startswith("none"):
             dict['img_bf'] = [def_img]
         else:
-            #dict['img_bf'] = [filepath + "/" + img for img in filedomande[7+i].split()]
             dict['img_bf'] = checkImgEx(filedomande[7+i].split(), def_img)
 
         if filedomande[8+i].startswith("none"):
             dict['img_af'] = [def_img]
         else:
-            #dict['img_af'] = [filepath + "/" + img for img in filedomande[8+i].split()]
             dict['img_af'] = checkImgEx(filedomande[8+i].split(), def_img)
 
         domande[i/10] = dict
