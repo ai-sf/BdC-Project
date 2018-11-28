@@ -142,8 +142,8 @@ class ScoreGenFinScreen(Screen):
         row_height = (float(Window.height)-bar_height)/(float(len(sorted_x))/2)
 
         width_icon = row_height/Window.width
-        width_arrow = ((1-width_icon*2)/2)*0.05
-        width_sep = ((1-width_icon*2)/2)*0.05
+        width_arrow = ((1-width_icon*2)/2)*0.08
+        width_sep = ((1-width_icon*2)/2)*0.02
         width_pos = ((1-width_icon*2)/2)*0.10
         width_name = ((1-width_icon*2)/2)*0.5
         width_score = ((1-width_icon*2)/2)*0.3
@@ -238,7 +238,11 @@ class ScoreGenFinScreen(Screen):
                 SCOREsx = Button(text=str(int(sx[1])), disabled=True,  background_disabled_normal='', background_color=[0,0,0,0],
                                 bold=True, font_size = 35*app.scalatore,size_hint_x=width_score)
 
-            sep = Button(disabled=True, background_disabled_normal='', background_color=[1,1,1,1],size_hint_x=width_sep)
+            sep = Button(disabled=True,
+                        background_disabled_normal='',
+                        background_normal='',
+                        background_color=[0.3,0.3,0.3,1],
+                        size_hint_x=width_sep)
 
             if dx[0] == '5355053550':
                 ICONdx = Button(disabled=True, size_hint_x=width_icon, background_disabled_normal='', background_color=[0,0,0,0])
