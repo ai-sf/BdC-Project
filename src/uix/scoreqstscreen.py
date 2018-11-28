@@ -150,7 +150,7 @@ class ScoreQstScreen(Screen):
                 if int(sx[1]) > 0:
                     colore = [0,0.8,0,1]
                     colorehtml = '#00cc00'
-                    timesx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(sx[0])][1],2)))+"\'\'"
+                    timesx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(sx[0])][1],2)))+" s"
                 if int(sx[1]) == 0:
                     colore = [1,0.75,0.095,1]
                     colorehtml = '#ffcc00'
@@ -161,7 +161,7 @@ class ScoreQstScreen(Screen):
                     if app.QUESTION_SCORE[-1][str(sx[0])][1] is None:
                         timesx = '-'
                     else:
-                        timesx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(sx[0])][1],2)))+"\'\'"
+                        timesx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(sx[0])][1],2)))+" s"
 
                 if self.letterVisibility:
                     if sx[3] != '-':
@@ -211,7 +211,7 @@ class ScoreQstScreen(Screen):
                 if int(dx[1]) > 0:
                     colore = [0,0.8,0,1]
                     colorehtml = '#00cc00'
-                    timedx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(dx[0])][1],2)))+"\'\'"
+                    timedx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(dx[0])][1],2)))+" s"
                 if int(dx[1]) == 0:
                     colore = [1,0.75,0.095,1]
                     colorehtml = '#ffcc00'
@@ -222,7 +222,7 @@ class ScoreQstScreen(Screen):
                     if app.QUESTION_SCORE[-1][str(dx[0])][1] is None:
                         timedx = '-'
                     else:
-                        timedx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(dx[0])][1],2)))+"\'\'"
+                        timedx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(dx[0])][1],2)))+" s"
 
 
                 if self.letterVisibility:
