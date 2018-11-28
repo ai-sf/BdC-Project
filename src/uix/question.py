@@ -469,7 +469,7 @@ class Domanda(GridLayout):
         app.startTimeGiven = False
 
         #we want to be sure the message is received
-        if app.NOCONTROLLER is False:
+        if app.no_serial is False:
             app.master.write('timeNow\n')
         app.checkForTimeNow()
 
@@ -482,12 +482,12 @@ class Domanda(GridLayout):
         Clock.schedule_once(self.sendRAW, app.TOTAL_TIME+6)
 
     def writetimenow(self,dt):
-        if app.NOCONTROLLER is False:
+        if app.no_serial is False:
             app.master.write('timeNow\n')
 
     def sendRAW(self, dt):
         for key, value in self.RAWdic.iteritems():
-            if app.NOCONTROLLER is False:
+            if app.no_serial is False:
                 app.master.write('send '+key+' '+value+'\n')
             time.sleep(0.05)
 
@@ -503,7 +503,7 @@ class Domanda(GridLayout):
 
         from utils.calculate_score import update_score, DictOfAnswers, DictOfAnswers_fake, result
 
-        if app.NOCONTROLLER is True:
+        if app.no_serial is True:
             risposte_date = DictOfAnswers_fake()
         else:
             risposte_date = DictOfAnswers()

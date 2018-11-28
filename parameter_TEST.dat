@@ -7,9 +7,9 @@
 #(il file di backup e' 'backup.dat')
 nome_porta: /dev/ttyUSB0
 backup: False
-NOCONTROLLER: True
+no_serial: True
 countdown_domanda: True
-tempo_risposta: 2
+tempo_risposta: 15
 
 #--------------------------------------------#
 

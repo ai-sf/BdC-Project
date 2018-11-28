@@ -68,10 +68,10 @@ class internalShell(cmd.Cmd):
             num_lum = 0
 
         print "<\033[1;92mDONE   \033[0m> brightness set to " + str(num_lum) + "%"
-        if app.NOCONTROLLER is False:
+        if app.no_serial is False:
             app.master.write("lum"+str(num_lum).zfill(3)+"\n")
         else:
-            print "<\033[1;91mERROR  \033[0m> serial port not available [NOCONTROLLER = True]"
+            print "<\033[1;91mERROR  \033[0m> serial port not available [no_serial = True]"
 
     def do_EOF(self, line):
         'EOF (or ^D) - exits from the shell'

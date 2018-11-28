@@ -82,7 +82,7 @@ def setGlobal(init_file):
 
     app.BACKUP = config.getboolean("Partenza","backup")
 
-    app.NOCONTROLLER = config.getboolean("Partenza", "NOCONTROLLER")
+    app.no_serial = config.getboolean("Partenza", "no_serial")
 
     app.starting_counter = 0
     app.starting_classifica = dict(zip(app.dictIDName.keys(), [0]*len(app.dictIDName.keys())))

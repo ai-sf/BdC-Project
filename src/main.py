@@ -184,7 +184,7 @@ class BDCApp(App):
         from utils.internalshell import internalShell
         self.shell = internalShell()
 
-        if not self.NOCONTROLLER:
+        if not self.no_serial:
             self.master = Master(self.port_name)
             import threading
             t = threading.Thread(target=self.readserial)
@@ -201,7 +201,7 @@ class BDCApp(App):
     def checkForTimeNow(self):
         time.sleep(0.05)
         if self.start_time is None:
-            if self.NOCONTROLLER is False:
+            if self.no_serial is False:
                 self.master.write('timeNow\n')
 
     def readserial(self):
@@ -212,7 +212,7 @@ class BDCApp(App):
         timenow_msg = r"--- TIME NOW -----------------:timeNow=(\d+)"
 
         while True:
-            if self.NOCONTROLLER is False:
+            if self.no_serial is False:
                 tmp = self.master.ser.readline()
             else:
                 tmp = "Bella zio!"
@@ -267,7 +267,7 @@ class BDCApp(App):
 
     def on_stop(self):
         t.stop()
-        if self.NOCONTROLLER is False:
+        if self.no_serial is False:
             self.master.cleanup()
 
     #adapted from pydelhi_mobile
