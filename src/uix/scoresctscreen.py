@@ -67,10 +67,10 @@ class ScoreSctScreen(Screen):
         row_height = (float(Window.height)-bar_height)/(float(len(sorted_x))/2)
 
         width_icon = row_height/Window.width
-        width_sep = ((1-width_icon*2)/2)*0.02
+        width_sep = ((1-width_icon*2)/2)*0.07
         width_pos = ((1-width_icon*2)/2)*0.10
         width_name = ((1-width_icon*2)/2)*0.5
-        width_score = ((1-width_icon*2)/2)*0.38
+        width_score = ((1-width_icon*2)/2)*0.33
 
         rows_dict = dict(zip(range(len(list1)), [row_height]*len(list1)))
         rows_dict[len(list1)] = bar_height
@@ -96,9 +96,9 @@ class ScoreSctScreen(Screen):
             index_line = index_line + 1
 
             if index_line%2==1:
-                line_color=[0.5,0,0.5,1]
+                line_color=[0.6,0,0.6,1]
             else:
-                line_color=[0,0,0,0]
+                line_color=[0.4,0,0.4,1]
 
             if sx[0] == '5355053550':
                 ICONsx = Button(disabled=True, size_hint_x=width_icon, background_disabled_normal='', background_color=[0,0,0,0])
@@ -140,7 +140,7 @@ class ScoreSctScreen(Screen):
             sep = Button(disabled=True,
                         background_disabled_normal='',
                         background_normal='',
-                        background_color=[0.3,0.3,0.3,1],
+                        background_color=[0,0,0,1],
                         size_hint_x=width_sep)
 
             if dx[0] == '5355053550':

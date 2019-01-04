@@ -80,10 +80,10 @@ class ScoreQstScreen(Screen):
         row_height = (float(Window.height)-bar_height)/(float(len(sorted_x))/2)
 
         width_icon = row_height/Window.width
-        width_sep = ((1-width_icon*2)/2)*0.02
+        width_sep = ((1-width_icon*2)/2)*0.07
         width_pos = ((1-width_icon*2)/2)*0.10
         width_name = ((1-width_icon*2)/2)*0.5
-        width_score = ((1-width_icon*2)/2)*0.38
+        width_score = ((1-width_icon*2)/2)*0.33
 
         rows_dict = dict(zip(range(len(listrighe)), [row_height]*len(listrighe)))
         rows_dict[len(listrighe)] = bar_height
@@ -111,9 +111,9 @@ class ScoreQstScreen(Screen):
             index_line = index_line + 1
 
             if index_line%2==1:
-                line_color=[0.5,0.25,0,1]
+                line_color=[0.6,0.3,0,1]
             else:
-                line_color=[0,0,0,0]
+                line_color=[0.4,0.2,0,1]
 
             if sx[0] == '5355053550':
                 ICONsx = Button(disabled=True, size_hint_x=width_icon, background_disabled_normal='', background_color=[0,0,0,0])
@@ -170,11 +170,11 @@ class ScoreQstScreen(Screen):
 
                 if self.letterVisibility:
                     if sx[3] != '-':
-                        scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+unichr(ord(sx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']\n'+timesx+'[/color][/size]'
+                        scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+unichr(ord(sx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timesx+'[/color][/size]'
                     else:
-                        scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]-[/font][/b][/size][size='+str(int(30*app.scalatore))+']\n'+timesx+'[/color][/size]'
+                        scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]-[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timesx+'[/color][/size]'
                 else:
-                    scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(sx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']\n'+timesx+'[/color][/size]'
+                    scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(sx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timesx+'[/color][/size]'
                 SCOREsx = Button(text=scoresx_string, disabled=True, background_disabled_normal='',
                                 background_color=line_color,markup=True,
                                 font_size = 35*app.scalatore,size_hint_x=width_score,halign='center')
@@ -182,7 +182,7 @@ class ScoreQstScreen(Screen):
             sep = Button(disabled=True,
                         background_disabled_normal='',
                         background_normal='',
-                        background_color=[0.3,0.3,0.3,1],
+                        background_color=[0,0,0,1],
                         size_hint_x=width_sep)
 
             if dx[0] == '5355053550':
@@ -236,11 +236,11 @@ class ScoreQstScreen(Screen):
 
                 if self.letterVisibility:
                     if dx[3] != '-':
-                        scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+unichr(ord(dx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']\n'+timedx+'[/color][/size]'
+                        scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+unichr(ord(dx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timedx+'[/color][/size]'
                     else:
-                        scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]-[/font][/b][/size][size='+str(int(30*app.scalatore))+']\n'+timedx+'[/color][/size]'
+                        scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]-[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timedx+'[/color][/size]'
                 else:
-                    scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(dx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']\n'+timedx+'[/color][/size]'
+                    scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(dx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timedx+'[/color][/size]'
                 SCOREdx = Button(text=scoredx_string, disabled=True, background_disabled_normal='', background_color=line_color, markup=True,
                                  font_size = 35*app.scalatore,size_hint_x=width_score,halign='center')
 

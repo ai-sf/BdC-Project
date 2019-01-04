@@ -64,6 +64,12 @@ def setGlobal(init_file):
     else:
         app.sep_name=' '
 
+    if app.NUMERO_GIOCATORI<20:
+        app.sep_score='\n'
+    else:
+        app.sep_score='   '
+
+
     app.FIRST_SLIDES = []
     if 'FIRST_SLIDES' in config.sections():
         for id in config['FIRST_SLIDES']:
