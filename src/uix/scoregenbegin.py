@@ -151,6 +151,11 @@ class ScoreGenBegin(Screen):
         for [sx,dx] in listrighe:
             index_line = index_line + 1
 
+            if index_line%2==1:
+                line_color=[0,0.5,0.5,1]
+            else:
+                line_color=[0,0,0,0]
+
             if sx[0] == '5355053550':
                 ICONsx = Button(disabled=True, size_hint_x=width_icon, background_disabled_normal='', background_color=[0,0,0,0])
                 ARROWsx = Button(disabled=True, size_hint_x=width_arrow, background_disabled_normal='', background_color=[0,0,0,0])
@@ -177,7 +182,7 @@ class ScoreGenBegin(Screen):
 
                 ARROWsx = Button(disabled=True,
                                 size_hint_x=width_arrow,
-                                background_color=[0,0,0,0],
+                                background_color=line_color,
                                 font_size=50*app.scalatore,
                                 markup=True,
                                 text="[color="+arrow_color+"]%s[/color] "%(iconfonts.icon(arrow))
@@ -186,23 +191,23 @@ class ScoreGenBegin(Screen):
                 POSsx = Button(disabled=True,
                                 halign='center',
                                 size_hint_x=width_pos,
-                                background_color=[1,1,0,0],
+                                background_color=line_color,
                                 font_size=50*app.scalatore,
                                 markup=True,
                                 text="[color=#00ffff][b]"+str(list_of_pos[index_line-1])+"[/b][/color]"
                                 )
 
                 name = app.dictIDName[sx[0]].decode('utf-8').split()
-                textstr_sx = name[0]+'\n'+name[1]
+                textstr_sx = name[0]+app.sep_name+name[1]
                 if sx[0] in app.WINNER_OF_SECTIONS.keys():
                     textstr_sx += '\n'
                     for ic in app.WINNER_OF_SECTIONS[sx[0]]:
                         textstr_sx += " [color=#6666cc]%s[/color] "%(iconfonts.icon(ic))
 
                 NAMEsx = Button(text=textstr_sx, markup=True, halign='center',disabled=True, background_disabled_normal='',
-                                background_color=[0,0,0,0], color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
+                                background_color=line_color, color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
                                 font_name='UbuntuMono-B.ttf')
-                SCOREsx = Button(text=str(int(sx[1])), disabled=True,  background_disabled_normal='', background_color=[0,0,0,0],
+                SCOREsx = Button(text=str(int(sx[1])), disabled=True,  background_disabled_normal='', background_color=line_color,
                                 bold=True, font_size = 35*app.scalatore,size_hint_x=width_score)
 
             sep = Button(disabled=True,
@@ -236,7 +241,7 @@ class ScoreGenBegin(Screen):
 
                 ARROWdx = Button(disabled=True,
                                 size_hint_x=width_arrow,
-                                background_color=[0,0,0,0],
+                                background_color=line_color,
                                 font_size=50*app.scalatore,
                                 markup=True,
                                 text="[color="+arrow_color+"]%s[/color] "%(iconfonts.icon(arrow))
@@ -245,23 +250,23 @@ class ScoreGenBegin(Screen):
                 POSdx = Button(disabled=True,
                                 halign='center',
                                 size_hint_x=width_pos,
-                                background_color=[0,1,1,0],
+                                background_color=line_color,
                                 font_size=50*app.scalatore,
                                 markup=True,
                                 text="[color=#00ffff][b]"+str(list_of_pos[index_line+len(list1)-1])+"[/b][/color]"
                                 )
 
                 name = app.dictIDName[dx[0]].decode('utf-8').split()
-                textstr_dx = name[0]+'\n'+name[1]
+                textstr_dx = name[0]+app.sep_name+name[1]
                 if dx[0] in app.WINNER_OF_SECTIONS.keys():
                     textstr_dx += '\n'
                     for ic in app.WINNER_OF_SECTIONS[dx[0]]:
                         textstr_dx += " [color=#6666cc]%s[/color] "%(iconfonts.icon(ic))
 
                 NAMEdx = Button(text=textstr_dx, markup=True, halign='center',disabled=True, background_disabled_normal='',
-                                background_color=[0,0,0,0], color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
+                                background_color=line_color, color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
                                 font_name='UbuntuMono-B.ttf')
-                SCOREdx = Button(text=str(int(dx[1])), disabled=True,background_disabled_normal='', background_color=[0,0,0,0], bold=True,
+                SCOREdx = Button(text=str(int(dx[1])), disabled=True,background_disabled_normal='', background_color=line_color, bold=True,
                                  font_size = 35*app.scalatore,size_hint_x=width_score)
 
             g.add_widget(POSsx)

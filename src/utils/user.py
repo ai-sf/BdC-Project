@@ -59,6 +59,11 @@ def setGlobal(init_file):
 
     app.NUMERO_GIOCATORI = len(app.dictIDName.keys())
 
+    if app.NUMERO_GIOCATORI<16:
+        app.sep_name='\n'
+    else:
+        app.sep_name=' '
+
     app.FIRST_SLIDES = []
     if 'FIRST_SLIDES' in config.sections():
         for id in config['FIRST_SLIDES']:
@@ -104,4 +109,16 @@ def setGlobal(init_file):
                         "2142880856": "joule.png",
                         "2486008734": "pauli.png",
                         "2486014355": "faraday.png",
-                        "2486007740": "rutherford.png" }
+                        "2486007740": "rutherford.png",
+                        "0000000001": "hawking.png",
+                        "0000000002": "noether.png",
+                        "0000000003": "boltzmann.png",
+                        "0000000004": "keplero.png",
+                        "0000000005": "copernico.png",
+                        "0000000006": "ampere.png",
+                        "0000000007": "born.png",
+                        "0000000008": "majorana.png",
+                        "0000000009": "von neumann.png",
+                        "0000000010": "becquerel.png",
+                        "0000000011": "bernoulli.png",
+                        "0000000012": "pascal.png" }

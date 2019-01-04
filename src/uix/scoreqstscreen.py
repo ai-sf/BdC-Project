@@ -110,6 +110,11 @@ class ScoreQstScreen(Screen):
         for [sx,dx] in listrighe:
             index_line = index_line + 1
 
+            if index_line%2==1:
+                line_color=[0.5,0.25,0,1]
+            else:
+                line_color=[0,0,0,0]
+
             if sx[0] == '5355053550':
                 ICONsx = Button(disabled=True, size_hint_x=width_icon, background_disabled_normal='', background_color=[0,0,0,0])
                 POSsx = Button(disabled=True, size_hint_x=width_pos, background_disabled_normal='', background_color=[0,0,0,0])
@@ -130,20 +135,20 @@ class ScoreQstScreen(Screen):
                 POSsx = Button(disabled=True,
                                 halign='center',
                                 size_hint_x=width_pos,
-                                background_color=[1,1,0,0],
+                                background_color=line_color,
                                 font_size=50*app.scalatore,
                                 markup=True,
                                 text="[color=#ff8000][b]"+str(list_of_pos[index_line-1])+"[/b][/color]"
                                 )
 
                 name = app.dictIDName[sx[0]].decode('utf-8').split()
-                NAMEsx = Button(text=name[0]+'\n'+name[1],
+                NAMEsx = Button(text=name[0]+app.sep_name+name[1],
                                 halign='center',
                                 disabled=True,
                                 background_disabled_normal='',
-                                background_color=[0,0,0,0],
+                                background_color=line_color,
                                 color=[1,1,1,1],
-                                font_size=40*app.scalatore,
+                                font_size=35*app.scalatore,
                                 size_hint_x = width_name,
                                 font_name='font/UbuntuMono-B.ttf')
 
@@ -171,7 +176,7 @@ class ScoreQstScreen(Screen):
                 else:
                     scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(sx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']\n'+timesx+'[/color][/size]'
                 SCOREsx = Button(text=scoresx_string, disabled=True, background_disabled_normal='',
-                                background_color=[0,0,0,0],markup=True,
+                                background_color=line_color,markup=True,
                                 font_size = 35*app.scalatore,size_hint_x=width_score,halign='center')
 
             sep = Button(disabled=True,
@@ -201,15 +206,15 @@ class ScoreQstScreen(Screen):
                 POSdx = Button(disabled=True,
                                 halign='center',
                                 size_hint_x=width_pos,
-                                background_color=[0,1,1,0],
+                                background_color=line_color,
                                 font_size=50*app.scalatore,
                                 markup=True,
                                 text="[color=#ff8000][b]"+str(list_of_pos[index_line+len(list1)-1])+"[/b][/color]"
                                 )
 
                 name = app.dictIDName[dx[0]].decode('utf-8').split()
-                NAMEdx = Button(text=name[0]+'\n'+name[1], halign='center', disabled=True, background_disabled_normal='',
-                                background_color=[0,0,0,0], disabled_color=[1,1,1,1], font_size=40*app.scalatore,size_hint_x=width_name,
+                NAMEdx = Button(text=name[0]+app.sep_name+name[1], halign='center', disabled=True, background_disabled_normal='',
+                                background_color=line_color, disabled_color=[1,1,1,1], font_size=35*app.scalatore,size_hint_x=width_name,
                                 font_name='font/UbuntuMono-B.ttf')
 
                 if int(dx[1]) > 0:
@@ -236,7 +241,7 @@ class ScoreQstScreen(Screen):
                         scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]-[/font][/b][/size][size='+str(int(30*app.scalatore))+']\n'+timedx+'[/color][/size]'
                 else:
                     scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(dx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']\n'+timedx+'[/color][/size]'
-                SCOREdx = Button(text=scoredx_string, disabled=True, background_disabled_normal='', background_color=[0,0,0,0], markup=True,
+                SCOREdx = Button(text=scoredx_string, disabled=True, background_disabled_normal='', background_color=line_color, markup=True,
                                  font_size = 35*app.scalatore,size_hint_x=width_score,halign='center')
 
             g.add_widget(POSsx)

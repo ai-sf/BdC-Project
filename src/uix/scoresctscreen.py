@@ -95,6 +95,11 @@ class ScoreSctScreen(Screen):
         for [sx,dx] in listrighe:
             index_line = index_line + 1
 
+            if index_line%2==1:
+                line_color=[0.5,0,0.5,1]
+            else:
+                line_color=[0,0,0,0]
+
             if sx[0] == '5355053550':
                 ICONsx = Button(disabled=True, size_hint_x=width_icon, background_disabled_normal='', background_color=[0,0,0,0])
                 POSsx = Button(disabled=True, size_hint_x=width_pos, background_disabled_normal='', background_color=[0,0,0,0])
@@ -111,7 +116,7 @@ class ScoreSctScreen(Screen):
                 POSsx = Button(disabled=True,
                                 halign='center',
                                 size_hint_x=width_pos,
-                                background_color=[1,1,0,0],
+                                background_color=line_color,
                                 font_size=50*app.scalatore,
                                 markup=True,
                                 text="[color=#ff00ff][b]"+str(list_of_pos[index_line-1])+"[/b][/color]"
@@ -121,15 +126,15 @@ class ScoreSctScreen(Screen):
                 num_win = len(app.SCT_FIRST_NAMES)
                 if sx[0] in app.SCT_FIRST_NAMES:
                     points = str(app.PRIZE/num_win)
-                    NAMEsx = Button(text="[color=#6666cc]"+name[0]+'\n'+name[1]+'\n'+"[b]+"+points+"[/b][/color]", markup=True, halign='center',disabled=True, background_disabled_normal='',
-                                    background_color=[0,0,0,0], color=[0.5,0.5,0.5,1], font_size=35*app.scalatore, size_hint_x = width_name,
+                    NAMEsx = Button(text="[color=#6666cc]"+name[0]+app.sep_name+name[1]+'\n'+"[b]+"+points+"[/b][/color]", markup=True, halign='center',disabled=True, background_disabled_normal='',
+                                    background_color=line_color, color=[0.5,0.5,0.5,1], font_size=35*app.scalatore, size_hint_x = width_name,
                                     font_name='UbuntuMono-B.ttf')
                 else:
-                    NAMEsx = Button(text=name[0]+'\n'+name[1], halign='center',disabled=True, background_disabled_normal='',
-                                    background_color=[0,0,0,0], color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
+                    NAMEsx = Button(text=name[0]+app.sep_name+name[1], halign='center',disabled=True, background_disabled_normal='',
+                                    background_color=line_color, color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
                                     font_name='UbuntuMono-B.ttf')
 
-                SCOREsx = Button(text=str(int(sx[1])), disabled=True,  background_disabled_normal='', background_color=[0,0,0,0],
+                SCOREsx = Button(text=str(int(sx[1])), disabled=True,  background_disabled_normal='', background_color=line_color,
                                 bold=True, font_size = 35*app.scalatore,size_hint_x=width_score)
 
             sep = Button(disabled=True,
@@ -153,7 +158,7 @@ class ScoreSctScreen(Screen):
                 POSdx = Button(disabled=True,
                                 halign='center',
                                 size_hint_x=width_pos,
-                                background_color=[0,1,1,0],
+                                background_color=line_color,
                                 font_size=50*app.scalatore,
                                 markup=True,
                                 text="[color=#ff00ff][b]"+str(list_of_pos[index_line+len(list1)-1])+"[/b][/color]"
@@ -162,14 +167,14 @@ class ScoreSctScreen(Screen):
                 name = app.dictIDName[dx[0]].decode('utf-8').split()
                 if dx[0] in app.SCT_FIRST_NAMES:
                     points = str(app.PRIZE/num_win)
-                    NAMEdx = Button(text="[color=#6666cc]"+name[0]+'\n'+name[1]+'\n'+"[b]+"+points+"[/b][/color]", markup=True, halign='center',disabled=True, background_disabled_normal='',
-                                    background_color=[0,0,0,0], color=[0.5,0.5,0.5,1], font_size=35*app.scalatore, size_hint_x = width_name,
+                    NAMEdx = Button(text="[color=#6666cc]"+name[0]+app.sep_name+name[1]+'\n'+"[b]+"+points+"[/b][/color]", markup=True, halign='center',disabled=True, background_disabled_normal='',
+                                    background_color=line_color, color=[0.5,0.5,0.5,1], font_size=35*app.scalatore, size_hint_x = width_name,
                                     font_name='UbuntuMono-B.ttf')
                 else:
-                    NAMEdx = Button(text=name[0]+'\n'+name[1], halign='center',disabled=True, background_disabled_normal='',
-                                    background_color=[0,0,0,0], color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
+                    NAMEdx = Button(text=name[0]+app.sep_name+name[1], halign='center',disabled=True, background_disabled_normal='',
+                                    background_color=line_color, color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
                                     font_name='UbuntuMono-B.ttf')
-                SCOREdx = Button(text=str(int(dx[1])), disabled=True,background_disabled_normal='', background_color=[0,0,0,0], bold=True,
+                SCOREdx = Button(text=str(int(dx[1])), disabled=True,background_disabled_normal='', background_color=line_color, bold=True,
                                  font_size = 35*app.scalatore,size_hint_x=width_score)
 
             g.add_widget(POSsx)
