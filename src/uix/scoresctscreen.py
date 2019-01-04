@@ -123,14 +123,18 @@ class ScoreSctScreen(Screen):
                                 )
 
                 name = app.dictIDName[sx[0]].decode('utf-8').split()
+                try:
+                    textstr_sx = name[0]+app.sep_name+name[1]+" "+name[2]
+                except:
+                    textstr_sx = name[0]+app.sep_name+name[1]
                 num_win = len(app.SCT_FIRST_NAMES)
                 if sx[0] in app.SCT_FIRST_NAMES:
                     points = str(app.PRIZE/num_win)
-                    NAMEsx = Button(text="[color=#6666cc]"+name[0]+app.sep_name+name[1]+'\n'+"[b]+"+points+"[/b][/color]", markup=True, halign='center',disabled=True, background_disabled_normal='',
+                    NAMEsx = Button(text="[color=#6666cc]"+textstr_sx+'\n'+"[b]+"+points+"[/b][/color]", markup=True, halign='center',disabled=True, background_disabled_normal='',
                                     background_color=line_color, color=[0.5,0.5,0.5,1], font_size=35*app.scalatore, size_hint_x = width_name,
                                     font_name='UbuntuMono-B.ttf')
                 else:
-                    NAMEsx = Button(text=name[0]+app.sep_name+name[1], halign='center',disabled=True, background_disabled_normal='',
+                    NAMEsx = Button(text=textstr_sx, halign='center',disabled=True, background_disabled_normal='',
                                     background_color=line_color, color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
                                     font_name='UbuntuMono-B.ttf')
 
@@ -165,13 +169,17 @@ class ScoreSctScreen(Screen):
                                 )
 
                 name = app.dictIDName[dx[0]].decode('utf-8').split()
+                try:
+                    textstr_dx = name[0]+app.sep_name+name[1]+" "+name[2]
+                except:
+                    textstr_dx = name[0]+app.sep_name+name[1]
                 if dx[0] in app.SCT_FIRST_NAMES:
                     points = str(app.PRIZE/num_win)
-                    NAMEdx = Button(text="[color=#6666cc]"+name[0]+app.sep_name+name[1]+'\n'+"[b]+"+points+"[/b][/color]", markup=True, halign='center',disabled=True, background_disabled_normal='',
+                    NAMEdx = Button(text="[color=#6666cc]"+textstr_dx+'\n'+"[b]+"+points+"[/b][/color]", markup=True, halign='center',disabled=True, background_disabled_normal='',
                                     background_color=line_color, color=[0.5,0.5,0.5,1], font_size=35*app.scalatore, size_hint_x = width_name,
                                     font_name='UbuntuMono-B.ttf')
                 else:
-                    NAMEdx = Button(text=name[0]+app.sep_name+name[1], halign='center',disabled=True, background_disabled_normal='',
+                    NAMEdx = Button(text=textstr_dx, halign='center',disabled=True, background_disabled_normal='',
                                     background_color=line_color, color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
                                     font_name='UbuntuMono-B.ttf')
                 SCOREdx = Button(text=str(int(dx[1])), disabled=True,background_disabled_normal='', background_color=line_color, bold=True,

@@ -142,7 +142,11 @@ class ScoreQstScreen(Screen):
                                 )
 
                 name = app.dictIDName[sx[0]].decode('utf-8').split()
-                NAMEsx = Button(text=name[0]+app.sep_name+name[1],
+                try:
+                    textstr_sx = name[0]+app.sep_name+name[1]+" "+name[2]
+                except:
+                    textstr_sx = name[0]+app.sep_name+name[1]
+                NAMEsx = Button(text=textstr_sx,
                                 halign='center',
                                 disabled=True,
                                 background_disabled_normal='',
@@ -213,7 +217,11 @@ class ScoreQstScreen(Screen):
                                 )
 
                 name = app.dictIDName[dx[0]].decode('utf-8').split()
-                NAMEdx = Button(text=name[0]+app.sep_name+name[1], halign='center', disabled=True, background_disabled_normal='',
+                try:
+                    textstr_dx = name[0]+app.sep_name+name[1]+" "+name[2]
+                except:
+                    textstr_dx = name[0]+app.sep_name+name[1]
+                NAMEdx = Button(text=textstr_dx, halign='center', disabled=True, background_disabled_normal='',
                                 background_color=line_color, disabled_color=[1,1,1,1], font_size=35*app.scalatore,size_hint_x=width_name,
                                 font_name='font/UbuntuMono-B.ttf')
 

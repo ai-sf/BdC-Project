@@ -51,7 +51,10 @@ def setGlobal(init_file):
         app.dictIDBonus[id] = int(config.get('Squadre',id).split(',')[0])
         app.dictIDReset[id] = int(config.get('Squadre',id).split(',')[0])
         app.dictIDName[id] = config.get('Squadre',id).split(',')[1].encode('utf-8')
-        app.dictIDLastName[id] = config.get('Squadre',id).split(',')[1].split(' ')[1].lower().encode('utf-8')
+        try:
+            app.dictIDLastName[id] = (config.get('Squadre',id).split(',')[1].split(' ')[1]+'_'+config.get('Squadre',id).split(',')[1].split(' ')[2]).lower().encode('utf-8')
+        except:
+            app.dictIDLastName[id] = config.get('Squadre',id).split(',')[1].split(' ')[1].lower().encode('utf-8')
 
     app.PositionBefore = dict(zip(app.dictIDName.keys(), [0]*len(app.dictIDName.keys())))
     app.Position = dict(zip(app.dictIDName.keys(), [0]*len(app.dictIDName.keys())))

@@ -198,7 +198,10 @@ class ScoreGenBegin(Screen):
                                 )
 
                 name = app.dictIDName[sx[0]].decode('utf-8').split()
-                textstr_sx = name[0]+app.sep_name+name[1]
+                try:
+                    textstr_sx = name[0]+app.sep_name+name[1]+" "+name[2]
+                except:
+                    textstr_sx = name[0]+app.sep_name+name[1]
                 if sx[0] in app.WINNER_OF_SECTIONS.keys():
                     textstr_sx += '\n'
                     for ic in app.WINNER_OF_SECTIONS[sx[0]]:
@@ -257,7 +260,10 @@ class ScoreGenBegin(Screen):
                                 )
 
                 name = app.dictIDName[dx[0]].decode('utf-8').split()
-                textstr_dx = name[0]+app.sep_name+name[1]
+                try:
+                    textstr_dx = name[0]+app.sep_name+name[1]+" "+name[2]
+                except:
+                    textstr_dx = name[0]+app.sep_name+name[1]
                 if dx[0] in app.WINNER_OF_SECTIONS.keys():
                     textstr_dx += '\n'
                     for ic in app.WINNER_OF_SECTIONS[dx[0]]:
