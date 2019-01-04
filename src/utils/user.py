@@ -127,7 +127,7 @@ def setGlobal(init_file):
                         "0000000006": "ampere.png",
                         "0000000007": "born.png",
                         "0000000008": "majorana.png",
-                        "0000000009": "von neumann.png",
+                        "0000000009": "von_neumann.png",
                         "0000000010": "becquerel.png",
                         "0000000011": "bernoulli.png",
                         "0000000012": "pascal.png" }
