@@ -99,7 +99,11 @@ class ScoreGenBegin(Screen):
                 if is_charging:
                     batStr += u"\u26a1"
 
-                print spacer + str(sorted_x[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x[i][0]]) + "\t\t" + batStr + "\033[25m"
+                separator = ''
+                for k in range(26-len(app.dictIDName[sorted_x[i][0]].decode('utf-8'))):
+                    separator += ' '
+
+                print spacer + str(sorted_x[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x[i][0]]) + separator + batStr + "\033[25m"
             print "\033[0m\n"
 
             while len(sorted_x) < 5:

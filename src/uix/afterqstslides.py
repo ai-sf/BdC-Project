@@ -192,7 +192,11 @@ class AfterQstSlides(Screen):
                         if is_charging:
                             batStr += u"\u26a1"
 
-                        print spacer + str(sorted_x_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_term[i][0]]) + "\t\t" + spacer_ast + str(app.ABSTENTIONS[sorted_x_term[i][0]]) + "\t" + batStr + "\033[25m"
+                        separator = ''
+                        for k in range(26-len(app.dictIDName[sorted_x_term[i][0]].decode('utf-8'))):
+                            separator += ' '
+
+                        print spacer + str(sorted_x_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_term[i][0]]) + separator + spacer_ast + str(app.ABSTENTIONS[sorted_x_term[i][0]]) + "\t" + batStr + "\033[25m"
                     print "\033[0m\n"
                 #-----------------------------------------------------------
                 if app.SEC_CNT+1 == len(app.SECTIONS):
