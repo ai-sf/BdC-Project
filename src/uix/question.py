@@ -159,6 +159,8 @@ class Domanda(GridLayout):
     MODE = StringProperty('OFF_BF')
     ans_opacity = { 'OFF_BF' : 0, 'ON' : 1, 'OFF_AF' : 1}
     side_opacity = { 'OFF_BF' : 0, 'ON' : 0, 'OFF_AF' : 1}
+    label_opacity = { 'OFF_BF' : 1, 'ON' : 1, 'OFF_AF' : 1}
+    label_text_opacity = { 'OFF_BF' : 1, 'ON' : 1, 'OFF_AF' : 1}
     bkg_color_label = { 'OFF_BF' : [162,162,162,0.1], 'ON' : [162,162,162,0.1], 'OFF_AF' : [1,1,1,1] }
     bkg_color_answer = { 'OFF_BF' : [0,0,0,1], 'ON' : [0,0,0,1], 'OFF_AF' : [1,1,1,1] }
     bkg_color_side = { 'OFF_BF' : [162,162,162,0], 'ON' : [162,162,162,0], 'OFF_AF' : [1,1,1,1] }
@@ -201,6 +203,12 @@ class Domanda(GridLayout):
     firstthread = True
 
     finedomandeprova = BooleanProperty(False)
+
+    app.A_color = [0.0,0.8,0.0,1]
+    app.B_color = [1.0,1.0,1.0,1]
+    app.C_color = [0.8,0.0,0.0,1]
+    app.D_color = [1.0,0.8,0.1,1]
+    app.E_color = [0.0,0.4,1.0,1]
 
     Builder.load_string("""
 <Domanda>:
@@ -282,7 +290,8 @@ class Domanda(GridLayout):
         font_size: 120 * app.scalatore
         text: u'\u24b6'
         disabled: True
-        disabled_color: 0,0.8,0,1
+        disabled_color: app.A_color[0],app.A_color[1],app.A_color[2],root.label_text_opacity[root.MODE]
+        opacity: root.label_opacity[root.MODE]
         background_color: root.bkg_color_label[root.MODE]
 	AnswerButton:
         id: ansA_temp
@@ -304,7 +313,8 @@ class Domanda(GridLayout):
         font_size: 120 * app.scalatore
         text: u'\u24b7'
         disabled: True
-        disabled_color: 1,1,1,1
+        disabled_color: app.B_color[0],app.B_color[1],app.B_color[2],root.label_text_opacity[root.MODE]
+        opacity: root.label_opacity[root.MODE]
         background_color: root.bkg_color_label[root.MODE]
 	AnswerButton:
         id: ansB_temp
@@ -326,7 +336,8 @@ class Domanda(GridLayout):
         font_size: 120 * app.scalatore
         text: u'\u24b8'
         disabled: True
-        disabled_color: 0.8,0,0,1
+        disabled_color: app.C_color[0],app.C_color[1],app.C_color[2],root.label_text_opacity[root.MODE]
+        opacity: root.label_opacity[root.MODE]
         background_color: root.bkg_color_label[root.MODE]
 	AnswerButton:
         id: ansC_temp
@@ -348,7 +359,8 @@ class Domanda(GridLayout):
         font_size: 120 * app.scalatore
         text: u'\u24b9'
         disabled: True
-        disabled_color: 1,0.75,0.095,1
+        disabled_color: app.D_color[0],app.D_color[1],app.D_color[2],root.label_text_opacity[root.MODE]
+        opacity: root.label_opacity[root.MODE]
         background_color: root.bkg_color_label[root.MODE]
 	AnswerButton:
         id: ansD_temp
@@ -370,7 +382,8 @@ class Domanda(GridLayout):
         font_size: 120 * app.scalatore
         text: u'\u24ba'
         disabled: True
-        disabled_color: 0,0.4,1,1
+        disabled_color: app.E_color[0],app.E_color[1],app.E_color[2],root.label_text_opacity[root.MODE]
+        opacity: root.label_opacity[root.MODE]
         background_color: root.bkg_color_label[root.MODE]
 	AnswerButton:
         id: ansE_temp
@@ -400,7 +413,7 @@ class Domanda(GridLayout):
 		bold: True
 		markup: True
 		disabled: True
-		on_press: root.show_terna(); root.show_answer()
+		on_press: root.show_answer()
 		background_normal: ''
 		background_color: 162,162,162,0
 		font_size: 50*app.scalatore
@@ -520,7 +533,6 @@ class Domanda(GridLayout):
 
         time.sleep(0.5)
 
-        self.show_terna()
         app.qst_done = True
         self.show_answer()
 
@@ -554,21 +566,24 @@ class Domanda(GridLayout):
         self.sideC_button.opacity = 1
         self.sideD_button.opacity = 1
         self.sideE_button.opacity = 1
+
         self.sideA_button.text = str(count_ans['A'])
         self.sideB_button.text = str(count_ans['B'])
         self.sideC_button.text = str(count_ans['C'])
         self.sideD_button.text = str(count_ans['D'])
         self.sideE_button.text = str(count_ans['E'])
-        stringRIGHT_button = 'side'+str(rightans)+'_button'
-        exec("self."+stringRIGHT_button+".background_color=[0,0.4,0,1]")
 
-    def show_terna(self):
         self.showterna_button.text = self.terna_risultato
-        rightans = app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['OK']
-        risp_button = 'ans'+str(rightans)+'_button'
-        exec("self."+risp_button+".background_color=[0,0.4,0,1]")
-        letter_button = 'label'+str(rightans)+'_button'
-        exec("self."+letter_button+".background_color=[0,0.4,0,1]")
+
+        for l in ['A','B','C','D','E']:
+            if l == str(rightans):
+                exec("self.side"+l+"_button.background_color=[0,1,1,0.7]")
+                exec("self.ans"+l+"_button.background_color=[0,1,1,0.7]")
+                exec("self.label"+l+"_button.background_color=[0,1,1,0.7]")
+            else:
+                exec("self.side"+l+"_button.opacity=0.5")
+                exec("self.ans"+l+"_button.opacity=0.5")
+                exec("self.label"+l+"_button.opacity = 0.5")
 
 class AnswerButton(Button):
 
