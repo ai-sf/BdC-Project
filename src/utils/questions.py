@@ -29,7 +29,7 @@ def process(filename):
         dict['ans'] = Risposte
         dict['OK'] = filedomande[6+i][0]
 
-        def_img = app.main_path + "/../" +"logoBdC_bianco.png"
+        def_img = app.main_path + "/img/logoBdC_bianco.png"
 
         if filedomande[7+i].startswith("none"):
             dict['img_bf'] = [def_img]
