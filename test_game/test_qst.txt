@@ -6,4 +6,4 @@ LHC
 LISA
 A
 asdrubale.png
-spieg8.png
+example_spieg.png

@@ -5,8 +5,8 @@ LENA
 MINNIE
 LISA
 B
-intro8.png
-spieg8.png
+example_intro.png
+example_spieg.png
 
 Antani con scappellamento a destra?
 Vicesindaco
@@ -15,5 +15,5 @@ Lei ha clacsonato
 Come se fosse
 Machiavelli
 D
-intro8.png
-spieg8.png
+example_intro.png
+example_spieg.png

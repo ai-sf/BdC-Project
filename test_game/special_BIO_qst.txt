@@ -5,8 +5,8 @@ LENA
 LHC
 LISA
 A
-intro8.png
-spieg8.png
+example_intro.png
+example_spieg.png
 
 Quanti anni ha Michele Pirola?
 1
@@ -15,5 +15,5 @@ Quanti anni ha Michele Pirola?
 3.14
 42
 E
-intro8.png
-spieg8.png
+example_intro.png
+example_spieg.png

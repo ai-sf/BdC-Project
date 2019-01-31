@@ -5,5 +5,5 @@ LENA
 MINNIE
 LISA
 B
-intro8.png
-spieg8.png
+example_intro.png
+example_spieg.png
