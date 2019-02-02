@@ -270,7 +270,8 @@ class BDCApp(App):
         if self.no_serial is False:
             self.master.cleanup()
 
-    #adapted from pydelhi_mobile
+    #adapted from pydelhi_mobile:
+    # https://github.com/pydelhi/pydelhi_mobile
     def load_screen(self, screen, manager=None):
         manager = manager or self.root
         # load screen modules dynamically
