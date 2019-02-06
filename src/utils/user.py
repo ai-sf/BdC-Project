@@ -110,7 +110,7 @@ def setGlobal(init_file):
                         "977186140": "schrodinger.png",
                         "977149543": "galileo.png",
                         "981430530": "volta.png",
-                        "977148388": "curie.png",
+                        "977151320": "curie.png",
                         "977149772": "heisenberg.png",
                         "977185902": "dirac.png",
                         "981465612": "tesla.png",
