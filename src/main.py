@@ -15,6 +15,8 @@ import os, sys, time
 
 script_path = os.path.dirname(os.path.realpath(__file__))
 os.environ['KIVY_WINDOW'] = 'sdl2'
+# prevent Kivy from showing log messages
+os.environ["KIVY_NO_CONSOLELOG"] = "1"
 
 music_path = script_path + '/music/'
 img_path = script_path + '/img/'

@@ -5,16 +5,24 @@ Botta di Coulomb is a quiz game developed by the Local Committee of Pavia of Ita
 Since the game has been developed by physicists, each team is associated to a famous physicist.
 
 ## Installation
-The game is written in Python and it requires [kivy](https://kivy.org). Some graphical libraries are also required:
+The game is written in Python 2.7 and it requires [kivy](https://kivy.org), and some other additional packages. See Kivy installation instructions here: https://kivy.org/doc/stable/installation/installation-linux.html
+
+An installation using [virtualenv](https://virtualenv.pypa.io/en/latest/) is recommended:
 ```
-libsdl2-ttf-dev libsdl2-net-dev libsdl2-mixer-dev libsdl2-image-dev libsdl2-gfx-dev libsdl2-dev
+virtualenv --python=python2.7 env
+source env/bin/activate
+```
+Then the required packages can be installed using `pip`:
+```
+pip install serial configparser Cython==0.28.2 kivy
 ```
 
 ## Usage
 Assuming your working in the repository root directory and the configuration file is `parameter.dat`, you can start the game with:
 ```
-sudo python src/main.py parameter.dat
+python src/main.py parameter.dat
 ```
+(It may require a `sudo` when using the serial input)
 You can find an example of parameter file, `parameter_TEST.dat`, based on the files in the `test_game` directory. 
 
 ## Useful keyboard shortcuts in Ubuntu 18:
