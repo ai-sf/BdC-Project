@@ -210,7 +210,7 @@ class BDCApp(App):
 
         import re
         showman_msg = r"--- MESSAGE RECEIVED ---------:from=2131961277,msgText=(\w+),msgTime=\d+"
-        score_msg = r"--- MESSAGE RECEIVED ---------:from=(\d{10}),msgText=([ABCDE]),msgTime=(\d+)(,battery=(-?\d+))?"
+        score_msg = r"--- MESSAGE RECEIVED ---------:from=(\d{9}),msgText=([ABCDE]),msgTime=(\d+)(,battery=(-?\d+))?"
         timenow_msg = r"--- TIME NOW -----------------:timeNow=(\d+)"
 
         while True:
