@@ -44,39 +44,7 @@ bkg=none
 type=normal
 name=NORMAL1
 icon=none
-path=test_game/norm_qst.txt
-intro=test_game/bdc.png
-bkg=test_game/test_bkg.png
-
-[qst2]
-type=special
-name=MEDECINE
-icon=fa-heartbeat
-path=test_game/special_MED_qst.txt
-intro=none
-bkg=none
-
-[qst3]
-type=normal
-name=NORMAL2
-icon=none
-path=test_game/norm_qst.txt
-intro=test_game/bdc.png
-bkg=test_game/test_bkg.png
-
-[qst4]
-type=special
-name=BIOLOGY
-icon=fa-leaf
-path=test_game/special_BIO_qst.txt
-intro=none
-bkg=none
-
-[qst5]
-type=normal
-name=NORMAL3
-icon=none
-path=test_game/end_qst.txt
+path=test_game/domande_a_caso.txt
 intro=test_game/bdc.png
 bkg=test_game/test_bkg.png
 
@@ -84,6 +52,7 @@ bkg=test_game/test_bkg.png
 
 [Squadre]
 #Scrivere "ID_telecomando: bonus(anche negativo),nome_squadra"
+#immagine associata deve essere [cognome_in_minuscolo].png
   977148330: 0,Albert EINSTEIN
   977144982: 0,Isaac NEWTON
   977143789: 0,Max PLANCK
@@ -97,10 +66,10 @@ bkg=test_game/test_bkg.png
   977149772: 0,Werner HEISENBERG
   977185902: 0,Paul DIRAC
   981465612: 0,Nikola TESLA
-  981466912: 0,Niels BOHR
-  977184646: 0,James JOULE
-  977186205: 0,Wolfgang PAULI
-  977143950: 0,Michael FARADAY
+  977186205: 0,Niels BOHR
+  977143950: 0,James JOULE
+  977184646: 0,Wolfgang PAULI
+  981466912: 0,Michael FARADAY
   977185877: 0,Ernest RUTHERFORD
   977148317: 0,Stephen HAWKING
   977186733: 0,Emmy NOETHER
