@@ -577,9 +577,9 @@ class Domanda(GridLayout):
 
         for l in ['A','B','C','D','E']:
             if l == str(rightans):
-                exec("self.side"+l+"_button.background_color=[0,1,1,0.7]")
-                exec("self.ans"+l+"_button.background_color=[0,1,1,0.7]")
-                exec("self.label"+l+"_button.background_color=[0,1,1,0.7]")
+                exec("self.side"+l+"_button.background_color=[0,1,0.7,0.4]")
+                exec("self.ans"+l+"_button.background_color=[0,1,0.7,0.4]")
+                exec("self.label"+l+"_button.background_color=[0,1,0.7,0.4]")
             else:
                 exec("self.side"+l+"_button.opacity=0.5")
                 exec("self.ans"+l+"_button.opacity=0.5")
