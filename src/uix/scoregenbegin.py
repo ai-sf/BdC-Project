@@ -35,6 +35,25 @@ class ScoreGenBegin(Screen):
 
     def on_enter(self):
 
+        if app.new_backup:
+            app.QST_TOT_CNT += 1
+            if app.QST_PAR_CNT+1 == len(app.QUESTIONS[app.SEC_CNT].keys()):
+                app.QST_PAR_CNT = 0
+                app.SEC_CNT += 1
+                if app.SEC_CNT+1 == len(app.SECTIONS):
+                    app.load_screen('LastScreen')
+
+            else:
+                app.QST_PAR_CNT += 1
+
+        if app.SECTIONS[app.SEC_CNT]['type'] == 'normal' or app.SECTIONS[app.SEC_CNT]['type'] == 'special':
+            app.QST_NOR_CNT += 1
+            app.QST_DSP_CNT = str(app.QST_NOR_CNT)
+        elif app.SECTIONS[app.SEC_CNT]['type'] == 'test':
+            app.QST_DSP_CNT = "P"
+
+        app.new_backup = False
+
         if app.score_gen_ready == True:
             pass
         else:

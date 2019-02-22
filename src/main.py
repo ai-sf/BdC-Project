@@ -79,6 +79,8 @@ class BDCApp(App):
 
     score_new = False
 
+    new_backup = False
+
     score_qst_ready = False
     score_gen_ready = False
     qst_done = False
@@ -166,6 +168,7 @@ class BDCApp(App):
                 self.WINNER_OF_SECTIONS = bcklist[11]
                 self.SCT_FIRST_NAMES = bcklist[12]
                 self.score_new = bcklist[13]
+                self.new_backup = True
 
         #music
         from kivy.core.audio import SoundLoader
