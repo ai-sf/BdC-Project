@@ -16,7 +16,7 @@ import os, sys, time
 script_path = os.path.dirname(os.path.realpath(__file__))
 os.environ['KIVY_WINDOW'] = 'sdl2'
 # prevent Kivy from showing log messages
-os.environ["KIVY_NO_CONSOLELOG"] = "1"
+# os.environ["KIVY_NO_CONSOLELOG"] = "1"
 
 music_path = script_path + '/music/'
 img_path = script_path + '/img/'
@@ -74,6 +74,8 @@ class BDCApp(App):
     dictANS={'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5}
 
     end_score = False
+
+    score_seen = False
 
     score_new = False
 
