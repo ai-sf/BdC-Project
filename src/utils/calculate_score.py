@@ -45,6 +45,8 @@ def result(qst_ans):
 
     app.QUESTION_SCORE.append(tmp)
 
+    app.do_backup()
+
     #print classifica domanda a terminale
     Score_R_quest_term = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] > 0]
     Score_A_quest_term = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] == 0]

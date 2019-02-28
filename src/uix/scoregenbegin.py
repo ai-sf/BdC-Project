@@ -34,7 +34,7 @@ class ScoreGenBegin(Screen):
     next_button.bind(on_press=lambda x : app.load_screen("BeforeQstSlides"))
 
     def on_enter(self):
-
+        """
         if app.new_backup:
             app.QST_TOT_CNT += 1
             if app.QST_PAR_CNT+1 == len(app.QUESTIONS[app.SEC_CNT].keys()):
@@ -53,7 +53,7 @@ class ScoreGenBegin(Screen):
             app.QST_DSP_CNT = "P"
 
         app.new_backup = False
-
+        """
         if app.score_gen_ready == True:
             pass
         else:

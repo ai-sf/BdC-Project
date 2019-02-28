@@ -67,7 +67,10 @@ class FirstSlides(Screen):
             app.load_screen('ScoreGenBegin')
 
     def next(self):
-        if self.counter+1 == len(app.FIRST_SLIDES):
+        if app.new_backup and app.last_question_backup:
+            app.load_screen('LastScreen')
+            
+        elif self.counter+1 == len(app.FIRST_SLIDES):
             app.load_screen('ScoreGenBegin')
         else:
             self.counter +=1

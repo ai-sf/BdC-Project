@@ -145,6 +145,7 @@ class BDCApp(App):
 
         self.ABSTENTIONS = dict(zip(self.dictIDName.keys(),[0]*len(self.dictIDName.keys())))
         self.GENERAL_SCORE = self.dictIDBonus
+        self.last_question_backup = False
 
         self.RisposteDateList = [[0,0,0,0,0]]*self.starting_counter
         self.RisposteOK = [0] * self.NUMERO_GIOCATORI
@@ -169,6 +170,12 @@ class BDCApp(App):
                 self.SCT_FIRST_NAMES = bcklist[12]
                 self.score_new = bcklist[13]
                 self.new_backup = True
+
+            if self.SEC_CNT == len(self.SECTIONS):
+                self.last_question_backup = True
+                self.sorted_x = bcklist[14]
+                self.SEC_CNT -= 1
+
 
         #music
         from kivy.core.audio import SoundLoader
@@ -305,9 +312,20 @@ class BDCApp(App):
     def do_backup(self):
         # #saving backup
         savefile = open(self.filepath+'/backup.dat','w')
-        savestringa = json.dumps([self.QST_DSP_CNT, self.QST_NOR_CNT, self.QST_TOT_CNT, self.QST_PAR_CNT, self.SEC_CNT, self.HISTORY, self.ABSTENTIONS,self.GENERAL_SCORE, self.QUESTION_SCORE,self.SECTION_SCORE,self.ANSWERS_GIVEN, self.WINNER_OF_SECTIONS, self.SCT_FIRST_NAMES, self.score_new])
+        tot_cnt_bak=self.QST_TOT_CNT+1
+        par_cnt_bak=self.QST_PAR_CNT+1
+        sec_cnt_bak=self.SEC_CNT
+        nor_cnt_bak=self.QST_NOR_CNT+1
+        dsp_cnt_bak=str(nor_cnt_bak)
+
+        if (par_cnt_bak == len(self.QUESTIONS[self.SEC_CNT].keys())):
+            par_cnt_bak = 0
+            sec_cnt_bak += 1
+            
+        savestringa = json.dumps([dsp_cnt_bak, nor_cnt_bak, tot_cnt_bak, par_cnt_bak, sec_cnt_bak, self.HISTORY, self.ABSTENTIONS,self.GENERAL_SCORE, self.QUESTION_SCORE,self.SECTION_SCORE,self.ANSWERS_GIVEN, self.WINNER_OF_SECTIONS, self.SCT_FIRST_NAMES, self.score_new, self.sorted_x])
         savefile.write(savestringa)
         savefile.close()
+        #print(self.sorted_x)
         print("Backup written!!")
 
 if __name__ == '__main__':
