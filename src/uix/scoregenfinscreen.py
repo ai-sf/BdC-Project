@@ -158,7 +158,6 @@ class ScoreGenFinScreen(Screen):
 
         app.score_seen = True
 
-        pos_show=0
         list_of_pos = []
         score_prev=-123456789;
 
@@ -166,11 +165,10 @@ class ScoreGenFinScreen(Screen):
             if sorted_x[pos_list][0] == '5355053550':
                 pass
             elif sorted_x[pos_list][1] != score_prev:
-                pos_show = pos_show + 1
                 score_prev = sorted_x[pos_list][1]
                 list_of_pos.append(pos_list+1)
             else:
-                list_of_pos.append(pos_show)
+                list_of_pos.append(list_of_pos[-1])
 
         index_line = 0
 

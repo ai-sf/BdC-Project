@@ -77,7 +77,6 @@ class LastScreen(Screen):
 
     def on_enter(self):
 
-        self.pos_show=0
         self.list_of_pos = []
         self.score_prev = -123456789
 
@@ -85,11 +84,10 @@ class LastScreen(Screen):
             if app.sorted_x[pos_list][0] == '5355053550':
                 pass
             elif app.sorted_x[pos_list][1] != self.score_prev:
-                self.pos_show = self.pos_show + 1
                 self.score_prev = app.sorted_x[pos_list][1]
                 self.list_of_pos.append(pos_list+1)
             else:
-                self.list_of_pos.append(self.pos_show)
+                self.list_of_pos.append(self.list_of_pos[-1])
 
         # reloading testo
         self.labeltesto.text = str(self.list_of_pos[self.counter])+' - '+app.dictIDName[app.sorted_x[self.counter][0]].decode('utf-8')
