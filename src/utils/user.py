@@ -76,13 +76,13 @@ def setGlobal(init_file):
 
 
     app.FIRST_SLIDES = []
-    if 'FIRST_SLIDES' in config.sections():
-        for id in config['FIRST_SLIDES']:
-            slidepath = config_path + "/" + config.get("FIRST_SLIDES", id)
+    if 'Introduzione' in config.sections():
+        for id in config['Introduzione']:
+            slidepath = config_path + "/" + config.get("Introduzione", id)
             if os.path.isfile(slidepath):
                 app.FIRST_SLIDES.append(slidepath)
             else:
-                print("intro slide does not exists at "+slidepath)
+                print("intro slide does not exist at "+slidepath)
                 exit()
 
     app.clock_steps = 100
