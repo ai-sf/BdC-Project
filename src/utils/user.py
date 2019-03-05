@@ -87,14 +87,11 @@ def setGlobal(init_file):
 
     app.clock_steps = 100
 
-    if config.get("Grafica","fullscreen") == True:
-        Window.fullscreen = 'auto'
-    else:
-        Window.borderless = True
-        Window.fullscreen = 1
-        screen_width = config.getint("Grafica","width")
-        screen_height = config.getint("Grafica","height")
-        Window.size = (screen_width, screen_height)
+    Window.borderless = True
+    Window.fullscreen = 1
+    screen_width = config.getint("Grafica","width")
+    screen_height = config.getint("Grafica","height")
+    Window.size = (screen_width, screen_height)
 
     app.BACKUP = config.getboolean("Partenza","backup")
 
