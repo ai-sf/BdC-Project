@@ -296,13 +296,13 @@ class ScoreQstScreen(Screen):
         popup_score = int(instance.text.split(",")[2])
 
         if popup_answer == app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['OK']:
-            popup_text = app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['ans'][ord(popup_answer)-65]
+            popup_text = app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['ans'][ord(popup_answer)-65].decode('utf-8')
             popup_text_2 = '[color=00cc00]%s'%(iconfonts.icon('fa-check-circle'))+'[/color]'
         elif popup_answer == "-":
             popup_text = ""
             popup_text_2 = '[color=ffcc00]%s'%(iconfonts.icon('fa-minus-circle'))+'[/color]'
         else:
-            popup_text = app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['ans'][ord(popup_answer)-65]
+            popup_text = app.QUESTIONS[app.SEC_CNT][app.QST_PAR_CNT]['ans'][ord(popup_answer)-65].decode('utf-8')
             popup_text_2 = '[color=ff0000]%s'%(iconfonts.icon('fa-times-circle'))+'[/color]'
 
         if popup_score > 0:
