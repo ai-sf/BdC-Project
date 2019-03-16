@@ -125,6 +125,8 @@ class BDCApp(App):
     stop_time = None
     startTimeGiven = False
 
+    topologyRead = False
+
     stringa = u"\U0001F389"
 
     main_path = os.path.dirname(os.path.realpath(__file__))
@@ -224,6 +226,7 @@ class BDCApp(App):
         showman_msg = r"--- MESSAGE RECEIVED ---------:from=2131961277,msgText=(\w+),msgTime=\d+"
         score_msg = r"--- MESSAGE RECEIVED ---------:from=(\d{9}),msgText=([ABCDE]),msgTime=(\d+)(,battery=(-?\d+))?"
         timenow_msg = r"--- TIME NOW -----------------:timeNow=(\d+)"
+        topology_msg = r"topology=(.+)"
 
         while True:
             if self.no_serial is False:
@@ -276,6 +279,32 @@ class BDCApp(App):
                     self.start_time = int(time)
                     self.startTimeGiven = True
 
+            topo = re.match(topology_msg, tmp)
+            if topo:
+                topo = topo.group(1)
+                print ""
+                print "MASTER"
+                level = 0
+                tmpStr = ""
+                for i in range(len(topo)):
+                    if topo[i] == '[':
+                        level+=1
+                    elif topo[i] == ']':
+                        level-=1
+                    elif topo[i].isdigit():
+                        tmpStr += topo[i]
+                    elif topo[i] == ',' and topo[i-1] != '}':
+                        for i in range(level-1):
+                            sys.stdout.write("   ")
+                        try:
+                            tmpStr = self.dictIDLastName[tmpStr]
+                        except:
+                            None
+                        print "\\__" + tmpStr
+                        tmpStr = ""
+                print ""
+                self.topologyRead = True
+
     def on_start(self):
         self.load_screen('FirstScreen')
 
@@ -321,7 +350,7 @@ class BDCApp(App):
         if (par_cnt_bak == len(self.QUESTIONS[self.SEC_CNT].keys())):
             par_cnt_bak = 0
             sec_cnt_bak += 1
-            
+
         savestringa = json.dumps([dsp_cnt_bak, nor_cnt_bak, tot_cnt_bak, par_cnt_bak, sec_cnt_bak, self.HISTORY, self.ABSTENTIONS,self.GENERAL_SCORE, self.QUESTION_SCORE,self.SECTION_SCORE,self.ANSWERS_GIVEN, self.WINNER_OF_SECTIONS, self.SCT_FIRST_NAMES, self.score_new, self.sorted_x])
         savefile.write(savestringa)
         savefile.close()

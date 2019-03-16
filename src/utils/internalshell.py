@@ -2,6 +2,7 @@ from kivy.app import App
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 import cmd
+import time
 
 app = App.get_running_app()
 
@@ -70,6 +71,16 @@ class internalShell(cmd.Cmd):
         print "<\033[1;92mDONE   \033[0m> brightness set to " + str(num_lum) + "%"
         if app.no_serial is False:
             app.master.write("lum"+str(num_lum).zfill(3)+"\n")
+        else:
+            print "<\033[1;91mERROR  \033[0m> serial port not available [no_serial = True]"
+
+    def do_topo(self, line):
+        'topo - shows mesh topology'
+        if app.no_serial is False:
+            app.master.write("topo\n")
+            while not app.topologyRead:
+                time.sleep(0.05)
+            app.topologyRead = False
         else:
             print "<\033[1;91mERROR  \033[0m> serial port not available [no_serial = True]"
 
