@@ -299,7 +299,8 @@ class BDCApp(App):
                         try:
                             tmpStr = self.dictIDLastName[tmpStr]
                         except:
-                            None
+                            if tmpStr == "2131961277":
+                                tmpStr = "CONTROLLER"
                         print "\\__" + tmpStr
                         tmpStr = ""
                 print ""
