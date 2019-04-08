@@ -242,7 +242,7 @@ def DictOfAnswers():
         ID = app.saved_ans[key][0]
         if dizionario.has_key(ID) and dizionario[ID][1] < dt:
             pass
-        elif key <= stop_time or (key - start_time < app.TOTAL_TIME*pow(10,6) and key - start_time > 0):
+        elif key <= stop_time or (key - start_time < app.QUESTION_TOTAL_TIME*pow(10,6) and key - start_time > 0):
             dizionario[ID] = [app.saved_ans[key][1], dt]
 
     return dizionario
@@ -260,11 +260,11 @@ def DictOfAnswers_fake():
 
 #score_law: bool right, float time, int ast
 def score_law(right, time, ast):
-    if (ast > 5 and (time > app.TOTAL_TIME or time is None)):
+    if (ast > 5 and (time > app.QUESTION_TOTAL_TIME or time is None)):
         return -200
     else:
-        if (time > app.TOTAL_TIME or time is None):
+        if (time > app.QUESTION_TOTAL_TIME or time is None):
             return 0
         else:
-            a = 300-math.sqrt((12500.0/3)*time)
+            a = 300-math.sqrt((12500.0/3)*time/app.QUESTION_TOTAL_TIME*15)
             return int(a) if right else int(-(2.0/3)*a)

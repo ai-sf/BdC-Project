@@ -157,26 +157,40 @@ class ScoreQstScreen(Screen):
                 if int(sx[1]) > 0:
                     colore = [0,0.8,0,1]
                     colorehtml = '#00cc00'
-                    timesx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(sx[0])][1],2)))+" s"
-                if int(sx[1]) == 0:
+                    if app.QUESTION_TOTAL_TIME < 60:
+                        timesx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(sx[0])][1],2)))+" s"
+                    else:
+                        if int(app.QUESTION_SCORE[-1][str(sx[0])][1])%60 < 10:
+                            scoreZeroIfNeeded = '0'
+                        else:
+                            scoreZeroIfNeeded = ''
+                        timesx = str(int(app.QUESTION_SCORE[-1][str(sx[0])][1])/60)+":"+scoreZeroIfNeeded+str(int(app.QUESTION_SCORE[-1][str(sx[0])][1])%60)
+                elif int(sx[1]) == 0:
                     colore = [1,0.75,0.095,1]
                     colorehtml = '#ffcc00'
                     timesx = '-'
-                if int(sx[1]) < 0:
+                elif int(sx[1]) < 0:
                     colore = [0.8,0,0,1]
                     colorehtml = '#ff0000'
                     if app.QUESTION_SCORE[-1][str(sx[0])][1] is None:
                         timesx = '-'
                     else:
-                        timesx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(sx[0])][1],2)))+" s"
+                        if app.QUESTION_TOTAL_TIME < 60:
+                            timesx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(sx[0])][1],2)))+" s"
+                        else:
+                            if int(app.QUESTION_SCORE[-1][str(sx[0])][1])%60 < 10:
+                                scoreZeroIfNeeded = '0'
+                            else:
+                                scoreZeroIfNeeded = ''
+                            timesx = str(int(app.QUESTION_SCORE[-1][str(sx[0])][1])/60)+":"+scoreZeroIfNeeded+str(int(app.QUESTION_SCORE[-1][str(sx[0])][1])%60)
 
                 if self.letterVisibility:
                     if sx[3] != '-':
-                        scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+unichr(ord(sx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timesx+'[/color][/size]'
+                        scoresx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+unichr(ord(sx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timesx+'[/color][/size]'
                     else:
-                        scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]-[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timesx+'[/color][/size]'
+                        scoresx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]-[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timesx+'[/color][/size]'
                 else:
-                    scoresx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(sx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timesx+'[/color][/size]'
+                    scoresx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(sx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timesx+'[/color][/size]'
                 SCOREsx = Button(text=scoresx_string, disabled=True, background_disabled_normal='',
                                 background_color=line_color,markup=True,
                                 font_size = 35*app.scalatore,size_hint_x=width_score,halign='center')
@@ -226,27 +240,40 @@ class ScoreQstScreen(Screen):
                 if int(dx[1]) > 0:
                     colore = [0,0.8,0,1]
                     colorehtml = '#00cc00'
-                    timedx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(dx[0])][1],2)))+" s"
-                if int(dx[1]) == 0:
+                    if app.QUESTION_TOTAL_TIME < 60:
+                        timedx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(dx[0])][1],2)))+" s"
+                    else:
+                        if int(app.QUESTION_SCORE[-1][str(dx[0])][1])%60 < 10:
+                            scoreZeroIfNeeded = '0'
+                        else:
+                            scoreZeroIfNeeded = ''
+                        timedx = str(int(app.QUESTION_SCORE[-1][str(dx[0])][1])/60)+":"+scoreZeroIfNeeded+str(int(app.QUESTION_SCORE[-1][str(dx[0])][1])%60)
+                elif int(dx[1]) == 0:
                     colore = [1,0.75,0.095,1]
                     colorehtml = '#ffcc00'
                     timedx = '-'
-                if int(dx[1]) < 0:
+                elif int(dx[1]) < 0:
                     colore = [0.8,0,0,1]
                     colorehtml = '#ff0000'
                     if app.QUESTION_SCORE[-1][str(dx[0])][1] is None:
                         timedx = '-'
                     else:
-                        timedx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(dx[0])][1],2)))+" s"
-
+                        if app.QUESTION_TOTAL_TIME < 60:
+                            timedx = str("{0:.2f}".format(round(app.QUESTION_SCORE[-1][str(dx[0])][1],2)))+" s"
+                        else:
+                            if int(app.QUESTION_SCORE[-1][str(dx[0])][1])%60 < 10:
+                                scoreZeroIfNeeded = '0'
+                            else:
+                                scoreZeroIfNeeded = ''
+                            timedx = str(int(app.QUESTION_SCORE[-1][str(dx[0])][1])/60)+":"+scoreZeroIfNeeded+str(int(app.QUESTION_SCORE[-1][str(dx[0])][1])%60)
 
                 if self.letterVisibility:
                     if dx[3] != '-':
-                        scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+unichr(ord(dx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timedx+'[/color][/size]'
+                        scoredx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+unichr(ord(dx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timedx+'[/color][/size]'
                     else:
-                        scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]-[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timedx+'[/color][/size]'
+                        scoredx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]-[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timedx+'[/color][/size]'
                 else:
-                    scoredx_string = '[size='+str(int(45*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(dx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timedx+'[/color][/size]'
+                    scoredx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b]'+str(int(dx[1]))+'[/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timedx+'[/color][/size]'
                 SCOREdx = Button(text=scoredx_string, disabled=True, background_disabled_normal='', background_color=line_color, markup=True,
                                  font_size = 35*app.scalatore,size_hint_x=width_score,halign='center')
 

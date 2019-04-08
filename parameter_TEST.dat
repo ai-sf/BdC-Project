@@ -8,10 +8,11 @@
 # i.e. tra la schermata iniziale
 # e la prima sezione (utili per introduzione
 # al gioco, ringraziamenti ecc.)
-1: cisf19_game/CISF19_intro_A.png
-2: cisf19_game/CISF19_intro_B.png
-3: cisf19_game/CISF19_intro_C.png
-4: cisf19_game/CISF19_intro_D.png
+1: cisf19_game/social.png
+2: cisf19_game/CISF19_intro_A.png
+3: cisf19_game/CISF19_intro_B.png
+4: cisf19_game/CISF19_intro_C.png
+5: cisf19_game/CISF19_intro_D.png
 
 #--------------------------------------------#
 
@@ -27,7 +28,7 @@ nome_porta: /dev/ttyUSB0
 backup: False
 
 # se si vogliono fare dei test senza master
-no_serial: True
+no_serial: False
 
 # visualizzazione tempo di risposta
 countdown_domanda: True
@@ -40,7 +41,7 @@ tempo_risposta: 15
 [Grafica]
 
 # parametro di scala per risoluzione schermo
-scalatore: 1.0
+scalatore: 1.2
 
 # larghezza della finestra
 width: 1600
@@ -60,17 +61,19 @@ height: 1200
 type=test
 name=TEST
 icon=none
-path=cisf19_game/CISF19_prova1.txt
-#path=cisf19_game/CISF19_prova2.txt
+time=none
+#path=cisf19_game/CISF19_prova1.txt
+path=cisf19_game/CISF19_prova2.txt
 intro=cisf19_game/bdc.png
 bkg=cisf19_game/CISF19_sfondo.png
 
 [qst1]
 type=normal
-name=NORMAL1
+name=NORMAL
 icon=none
-path=cisf19_game/CISF19_turno1.txt
-#path=cisf19_game/CISF19_turno2.txt
+time=300
+#path=cisf19_game/CISF19_turno1.txt
+path=cisf19_game/CISF19_turno2.txt
 intro=cisf19_game/bdc.png
 bkg=cisf19_game/CISF19_sfondo.png
 
@@ -78,37 +81,37 @@ bkg=cisf19_game/CISF19_sfondo.png
 
 [Squadre]
 
-#Scrivere "ID_telecomando: bonus(anche negativo),nome_squadra"
-#immagine associata deve essere [cognome_in_minuscolo].png
-  977148330: 0,Albert EINSTEIN
-  977144982: 0,Isaac NEWTON
-  977143789: 0,Max PLANCK
-  977143982: 0,Richard FEYNMAN
-  977141870: 0,Enrico FERMI
-  977148973: 0,James MAXWELL
-  977186140: 0,Erwin SCHRÖDINGER
-  977149543: 0,Galileo GALILEI
-  981430530: 0,Alessandro VOLTA
-  977151320: 0,Marie CURIE
-  977149772: 0,Werner HEISENBERG
-  977185902: 0,Paul DIRAC
-  981465612: 0,Nikola TESLA
-  977186205: 0,Niels BOHR
-  977143950: 0,James JOULE
-  977184646: 0,Wolfgang PAULI
-  981466912: 0,Michael FARADAY
-  977185877: 0,Ernest RUTHERFORD
-  977148317: 0,Stephen HAWKING
-  977186733: 0,Emmy NOETHER
-  981413202: 0,Ludwig BOLTZMANN
-  981464356: 0,Giovanni KEPLERO
-  977186685: 0,Niccolò COPERNICO
-  977143946: 0,André-Marie AMPERE
-  977183543: 0,Max BORN
-  977149774: 0,Ettore MAJORANA
-  981466864: 0,John VON NEUMANN
-  977186485: 0,Henri BECQUEREL
-  977183883: 0,Daniel BERNOULLI
-  977149683: 0,Blaise PASCAL
+# Scrivere "ID_telecomando: bonus(anche negativo),nome_squadra"
+# immagine associata deve essere [cognome_in_minuscolo].png
+977148330: 0,Albert EINSTEIN
+977144982: 0,Isaac NEWTON
+977143789: 0,Max PLANCK
+977143982: 0,Richard FEYNMAN
+977141870: 0,Enrico FERMI
+977148973: 0,James MAXWELL
+977186140: 0,Erwin SCHRÖDINGER
+977149543: 0,Galileo GALILEI
+981430530: 0,Alessandro VOLTA
+977151320: 0,Marie CURIE
+977149772: 0,Werner HEISENBERG
+977185902: 0,Paul DIRAC
+981465612: 0,Nikola TESLA
+977186205: 0,Niels BOHR
+977143950: 0,James JOULE
+977184646: 0,Wolfgang PAULI
+981466912: 0,Michael FARADAY
+977185877: 0,Ernest RUTHERFORD
+977148317: 0,Stephen HAWKING
+977186733: 0,Emmy NOETHER
+981413202: 0,Ludwig BOLTZMANN
+981464356: 0,Giovanni KEPLERO
+977186685: 0,Niccolò COPERNICO
+977143946: 0,André-Marie AMPERE
+977183543: 0,Max BORN
+977149774: 0,Ettore MAJORANA
+981466864: 0,John VON NEUMANN
+977186485: 0,Henri BECQUEREL
+977183883: 0,Daniel BERNOULLI
+977149683: 0,Blaise PASCAL
 
 #--------------------------------------------#

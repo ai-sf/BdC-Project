@@ -18,6 +18,7 @@ def setGlobal(init_file):
     app.port_name = config.get("Partenza", "nome_porta")
     app.scalatore = config.getfloat("Grafica","scalatore")
     app.TOTAL_TIME = config.getint("Partenza", "tempo_risposta")
+    app.QUESTION_TOTAL_TIME = app.TOTAL_TIME
 
     app.show_timer = config.getboolean("Partenza", "countdown_domanda")
 
@@ -31,6 +32,7 @@ def setGlobal(init_file):
         tmp_dict['type'] = config.get(section_name, "type")
         tmp_dict['name'] = config.get(section_name, "name")
         tmp_dict['icon'] = config.get(section_name, "icon")
+        tmp_dict['time'] = config.get(section_name, "time")
         tmp_dict['intro'] = config_path + "/" + config.get(section_name, "intro")
         tmp_dict['path'] = config_path + "/" + config.get(section_name, "path")
         tmp_dict['bkg'] = config_path + "/" + config.get(section_name, "bkg")
@@ -85,7 +87,7 @@ def setGlobal(init_file):
                 print("intro slide does not exist at "+slidepath)
                 exit()
 
-    app.clock_steps = 100
+    app.clock_steps = 300
 
     Window.borderless = True
     Window.fullscreen = 1

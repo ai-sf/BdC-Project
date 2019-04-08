@@ -7,6 +7,7 @@ from kivy.properties import ObjectProperty, NumericProperty, BooleanProperty, St
 from kivy.uix.widget import Widget
 from kivy.uix.gridlayout import GridLayout
 from kivy.clock import Clock
+from math import *
 
 import operator
 import time
@@ -103,7 +104,17 @@ class CircleTime(Widget):
     def update(self, dt):
         if self.count <= app.clock_steps:
             if app.show_timer:
-                self.label.text = str(int((100-self.count)*app.TOTAL_TIME/100.)+1)
+                if app.QUESTION_TOTAL_TIME < 60:
+                    self.label.text = str(int((300-self.count)*app.QUESTION_TOTAL_TIME/300.)+1)
+                    self.end_time_text = '0'
+                else:
+                    if int(((300-self.count)*app.QUESTION_TOTAL_TIME/300.)+1)%60 < 10:
+                        zeroIfNeeded = '0'
+                    else:
+                        zeroIfNeeded = ''
+                    self.label.text = str(int(((300-self.count)*app.QUESTION_TOTAL_TIME/300.)+1)/60)+":"+zeroIfNeeded+str(int(((300-self.count)*app.QUESTION_TOTAL_TIME/300.)+1)%60)
+                    self.label.font_size = 50*app.scalatore
+                    self.end_time_text = '0:00'
             else:
                 self.label.text = ''
             self.circle.angle_end = 360 - self.count*(360.0/app.clock_steps)
@@ -140,7 +151,7 @@ class CircleTime(Widget):
             app.timer_fast.loop = False
             app.timer_gong.play()
             self.parent.time_finished = True
-            self.label.text = '0'
+            self.label.text = self.end_time_text
             self.label.color = [1,0,0,1]
             return False
 
@@ -153,6 +164,7 @@ class CircleTime(Widget):
         self.label.disabled = False
         self.count = 1
         self.sound_status = 0
+        self.label.font_size = 80*app.scalatore
 
 class Domanda(GridLayout):
 
@@ -433,6 +445,11 @@ class Domanda(GridLayout):
 
     def update_question(self):
 
+        try:
+            app.QUESTION_TOTAL_TIME = int(app.SECTIONS[app.SEC_CNT]['time'])
+        except:
+            app.QUESTION_TOTAL_TIME = app.TOTAL_TIME
+
         self.MODE = 'OFF_BF'
 
         self.clock.reset()
@@ -486,13 +503,12 @@ class Domanda(GridLayout):
             app.master.write('timeNow\n')
         app.checkForTimeNow()
 
-        Clock.schedule_once(self.writetimenow, app.TOTAL_TIME)
+        Clock.schedule_once(self.writetimenow, app.QUESTION_TOTAL_TIME)
+        Clock.schedule_once(self.end_time, app.QUESTION_TOTAL_TIME+5)
+        Clock.schedule_interval(self.clock.update, float(app.QUESTION_TOTAL_TIME)/app.clock_steps)
+        Clock.schedule_once(self.sendRAW, app.QUESTION_TOTAL_TIME+6)
 
         app.scifi.stop()
-
-        Clock.schedule_once(self.end_time, app.TOTAL_TIME+5)
-        Clock.schedule_interval(self.clock.update, float(app.TOTAL_TIME)/app.clock_steps)
-        Clock.schedule_once(self.sendRAW, app.TOTAL_TIME+6)
 
     def writetimenow(self,dt):
         if app.no_serial is False:
