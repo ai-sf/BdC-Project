@@ -8,11 +8,11 @@
 # i.e. tra la schermata iniziale
 # e la prima sezione (utili per introduzione
 # al gioco, ringraziamenti ecc.)
-1: cisf19_game/social.png
-2: cisf19_game/CISF19_intro_A.png
-3: cisf19_game/CISF19_intro_B.png
-4: cisf19_game/CISF19_intro_C.png
-5: cisf19_game/CISF19_intro_D.png
+1: indiscienza_game/social.png
+#2: indiscienza_game/intro_A.png
+#3: indiscienza_game/intro_B.png
+#4: indiscienza_game/intro_C.png
+#5: indiscienza_game/intro_D.png
 
 #--------------------------------------------#
 
@@ -28,20 +28,26 @@ nome_porta: /dev/ttyUSB0
 backup: False
 
 # se si vogliono fare dei test senza master
-no_serial: False
+no_serial: True
 
 # visualizzazione tempo di risposta
 countdown_domanda: True
 
 # tempo di risposta
-tempo_risposta: 15
+tempo_risposta: 2
+
+# no visualizzazione classifica sezione fino a fine sezione
+no_classifica_in_sezione: False
+
+# numero domande dalla fine senza visualizzazione classifica (0 per disabilitare)
+num_domande_finali_senza_classifica: 5
 
 #--------------------------------------------#
 
 [Grafica]
 
 # parametro di scala per risoluzione schermo
-scalatore: 1.2
+scalatore: 1.1
 
 # larghezza della finestra
 width: 1600
@@ -57,25 +63,48 @@ height: 1200
 # DEVE esserci al massimo una sezione test
 # e DEVE essere la prima
 
+#time: tempo per la risposta in secondi, max 300
+#icon: fa-flask (chimica), fa-heartbeat (medicina), fa-leaf (biologia), fa-superscript (matematica), fa-globe (scienze della Terra)
+
 [qst0]
 type=test
 name=TEST
 icon=none
 time=none
-#path=cisf19_game/CISF19_prova1.txt
-path=cisf19_game/CISF19_prova2.txt
-intro=cisf19_game/bdc.png
-bkg=cisf19_game/CISF19_sfondo.png
+path=indiscienza_game/prova1.txt
+#path=indiscienza_game/prova2.txt
+intro=indiscienza_game/bdc.png
+bkg=indiscienza_game/indiscienza_sfondo.png
 
 [qst1]
-type=normal
-name=NORMAL
-icon=none
-time=300
-#path=cisf19_game/CISF19_turno1.txt
-path=cisf19_game/CISF19_turno2.txt
-intro=cisf19_game/bdc.png
-bkg=cisf19_game/CISF19_sfondo.png
+type=special
+name=SPECIAL1
+icon=fa-magnet
+time=none
+path=indiscienza_game/indiscienza1A.txt
+#path=indiscienza_game/indiscienza2A.txt
+intro=indiscienza_game/bdc.png
+bkg=indiscienza_game/indiscienza_sfondo.png
+
+[qst2]
+type=special
+name=SPECIAL2
+icon=fa-heartbeat
+time=none
+path=indiscienza_game/indiscienza1B.txt
+#path=indiscienza_game/indiscienza2B.txt
+intro=indiscienza_game/bdc.png
+bkg=indiscienza_game/indiscienza_sfondo.png
+
+[qst3]
+type=special
+name=SPECIAL3
+icon=fa-heartbeat
+time=none
+path=indiscienza_game/indiscienza1C.txt
+#path=indiscienza_game/indiscienza2C.txt
+intro=indiscienza_game/bdc.png
+bkg=indiscienza_game/indiscienza_sfondo.png
 
 #--------------------------------------------#
 

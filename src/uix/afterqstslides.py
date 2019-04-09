@@ -88,15 +88,16 @@ class AfterQstSlides(Screen):
         self.jolly_button.markup = True
         self.jolly_button.font_size = 50*app.scalatore
 
-        if (app.NUM_OF_QST - app.QST_TOT_CNT) <= 5 and app.SECTIONS[app.SEC_CNT]['type'] != 'test':
+        if (app.NUM_OF_QST - app.QST_TOT_CNT) <= app.disabledScoreNumLastQuestions and app.SECTIONS[app.SEC_CNT]['type'] != 'test':
             self.jolly_button.disabled = True
         if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
             ic = app.SECTIONS[app.SEC_CNT]['icon']
             self.label_score = "%s"%(iconfonts.icon('fa-list-ol')) + " " + "%s"%(iconfonts.icon(ic))
-            if app.QST_PAR_CNT+1 == len(app.QUESTIONS[app.SEC_CNT].keys()):
-                self.jolly_button.disabled = False
-            else:
-                self.jolly_button.disabled = True
+            if app.disabledScoreDuringSection:
+                if app.QST_PAR_CNT+1 == len(app.QUESTIONS[app.SEC_CNT].keys()):
+                    self.jolly_button.disabled = False
+                else:
+                    self.jolly_button.disabled = True
         if app.SECTIONS[app.SEC_CNT]['type'] == 'normal' or app.SECTIONS[app.SEC_CNT]['type'] == 'test':
             self.label_score = "%s"%(iconfonts.icon('fa-list-ol'))
 

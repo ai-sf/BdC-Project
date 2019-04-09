@@ -20,6 +20,9 @@ def setGlobal(init_file):
     app.TOTAL_TIME = config.getint("Partenza", "tempo_risposta")
     app.QUESTION_TOTAL_TIME = app.TOTAL_TIME
 
+    app.disabledScoreDuringSection = config.getboolean("Partenza", "no_classifica_in_sezione")
+    app.disabledScoreNumLastQuestions = config.getint("Partenza", "num_domande_finali_senza_classifica")
+
     app.show_timer = config.getboolean("Partenza", "countdown_domanda")
 
     config_path = os.path.dirname(os.path.realpath(init_file))
