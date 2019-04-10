@@ -1,6 +1,7 @@
-#------------- BOTTA DI COULOMB -------------#
-#---------- file di configurazione ----------#
-#--------------------------------------------#
+#-------------------------------------------------------------------------------------------------#
+#----------------------------------------- BOTTA DI COULOMB --------------------------------------#
+#-------------------------------------- file di configurazione -----------------------------------#
+#-------------------------------------------------------------------------------------------------#
 
 [Introduzione]
 
@@ -8,13 +9,14 @@
 # i.e. tra la schermata iniziale
 # e la prima sezione (utili per introduzione
 # al gioco, ringraziamenti ecc.)
+
 1: indiscienza_game/social.png
 #2: indiscienza_game/intro_A.png
 #3: indiscienza_game/intro_B.png
 #4: indiscienza_game/intro_C.png
 #5: indiscienza_game/intro_D.png
 
-#--------------------------------------------#
+#-------------------------------------------------------------------------------------------------#
 
 [Partenza]
 
@@ -34,15 +36,15 @@ no_serial: True
 countdown_domanda: True
 
 # tempo di risposta
-tempo_risposta: 2
+tempo_risposta: 1
 
 # no visualizzazione classifica sezione fino a fine sezione
-no_classifica_in_sezione: False
+no_classifica_in_sezione: True
 
 # numero domande dalla fine senza visualizzazione classifica (0 per disabilitare)
 num_domande_finali_senza_classifica: 5
 
-#--------------------------------------------#
+#-------------------------------------------------------------------------------------------------#
 
 [Grafica]
 
@@ -55,7 +57,7 @@ width: 1600
 # altezza della finestra
 height: 1200
 
-#--------------------------------------------#
+#-------------------------------------------------------------------------------------------------#
 
 # SEZIONI
 
@@ -64,54 +66,89 @@ height: 1200
 # e DEVE essere la prima
 
 #time: tempo per la risposta in secondi, max 300
-#icon: fa-flask (chimica), fa-heartbeat (medicina), fa-leaf (biologia), fa-superscript (matematica), fa-globe (scienze della Terra)
+#icon: fa-flask (chimica), fa-heartbeat (medicina), fa-leaf (biologia),
+#      fa-superscript (matematica), fa-globe (scienze della Terra)
 
 [qst0]
-type=test
-name=TEST
-icon=none
-time=none
-path=indiscienza_game/prova1.txt
-#path=indiscienza_game/prova2.txt
-intro=indiscienza_game/bdc.png
-bkg=indiscienza_game/indiscienza_sfondo.png
+type:  test
+name:  TEST
+icon:  none
+time:  none
+path:  indiscienza_game/prova_2.txt
+intro: indiscienza_game/bdc.png
+bkg:   indiscienza_game/indiscienza_sfondo.png
 
 [qst1]
-type=special
-name=SPECIAL1
-icon=fa-magnet
-time=none
-path=indiscienza_game/indiscienza1A.txt
-#path=indiscienza_game/indiscienza2A.txt
-intro=indiscienza_game/bdc.png
-bkg=indiscienza_game/indiscienza_sfondo.png
+type:  normal
+name:  NORMAL1
+icon:  none
+time:  none
+path:  indiscienza_game/indiscienza2_A.txt
+intro: indiscienza_game/bdc.png
+bkg:   indiscienza_game/indiscienza_sfondo.png
 
 [qst2]
-type=special
-name=SPECIAL2
-icon=fa-heartbeat
-time=none
-path=indiscienza_game/indiscienza1B.txt
-#path=indiscienza_game/indiscienza2B.txt
-intro=indiscienza_game/bdc.png
-bkg=indiscienza_game/indiscienza_sfondo.png
+type:  special
+name:  CHIMICA
+icon:  fa-flask
+time:  none
+path:  indiscienza_game/indiscienza2_chimica.txt
+intro: indiscienza_game/bdc.png
+bkg:   indiscienza_game/indiscienza_sfondo.png
 
 [qst3]
-type=special
-name=SPECIAL3
-icon=fa-heartbeat
-time=none
-path=indiscienza_game/indiscienza1C.txt
-#path=indiscienza_game/indiscienza2C.txt
-intro=indiscienza_game/bdc.png
-bkg=indiscienza_game/indiscienza_sfondo.png
+type:  normal
+name:  NORMAL2
+icon:  none
+time:  none
+path:  indiscienza_game/indiscienza2_B.txt
+intro: indiscienza_game/bdc.png
+bkg:   indiscienza_game/indiscienza_sfondo.png
 
-#--------------------------------------------#
+[qst4]
+type:  special
+name:  SCIENZE DELLA TERRA
+icon:  fa-globe
+time:  none
+path:  indiscienza_game/indiscienza2_scienzeDellaTerra.txt
+intro: indiscienza_game/bdc.png
+bkg:   indiscienza_game/indiscienza_sfondo.png
+
+[qst5]
+type:  normal
+name:  NORMAL3
+icon:  none
+time:  none
+path:  indiscienza_game/indiscienza2_C.txt
+intro: indiscienza_game/bdc.png
+bkg:   indiscienza_game/indiscienza_sfondo.png
+
+[qst6]
+type:  special
+name:  MEDICINA
+icon:  fa-heartbeat
+time:  none
+path:  indiscienza_game/indiscienza2_medicina.txt
+intro: indiscienza_game/bdc.png
+bkg:   indiscienza_game/indiscienza_sfondo.png
+
+
+[qst7]
+type:  normal
+name:  NORMAL4
+icon:  none
+time:  none
+path:  indiscienza_game/indiscienza2_D.txt
+intro: indiscienza_game/bdc.png
+bkg:   indiscienza_game/indiscienza_sfondo.png
+
+#-------------------------------------------------------------------------------------------------#
 
 [Squadre]
 
 # Scrivere "ID_telecomando: bonus(anche negativo),nome_squadra"
 # immagine associata deve essere [cognome_in_minuscolo].png
+
 977148330: 0,Albert EINSTEIN
 977144982: 0,Isaac NEWTON
 977143789: 0,Max PLANCK
@@ -143,4 +180,4 @@ bkg=indiscienza_game/indiscienza_sfondo.png
 977183883: 0,Daniel BERNOULLI
 977149683: 0,Blaise PASCAL
 
-#--------------------------------------------#
+#-------------------------------------------------------------------------------------------------#
