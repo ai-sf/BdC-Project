@@ -119,29 +119,81 @@ class CircleTime(Widget):
                 self.label.text = ''
             self.circle.angle_end = 360 - self.count*(360.0/app.clock_steps)
 
-            if self.count <= float(app.clock_steps)/3:
-                if self.sound_status == 0:
-                    app.timer_slow.play()
-                    app.timer_slow.loop = True
-                    self.sound_status = 1
-                app.timer_slow.volume = self.count*3/float(app.clock_steps)
-                self.circle.circleColor = (0,0.2,0)
-                self.circle.circleColorBig = (0,1,0)
-                self.label.color = [0,1,0,1]
-            elif self.count < float(app.clock_steps)*2/3:
-                self.circle.circleColor = (0.15,0.15,0)
-                self.circle.circleColorBig = (1,1,0)
-                self.label.color = [1,1,0,1]
+            #suono e colore timer
+            if app.QUESTION_TOTAL_TIME <= 60:
+
+                if self.count <= float(app.clock_steps)/3:
+
+                    if self.sound_status == 0:
+                        app.timer_slow.play()
+                        app.timer_slow.loop = True
+                        self.sound_status = 1
+                    app.timer_slow.volume = self.count*3/float(app.clock_steps)
+
+                    self.circle.circleColor = (0,0.2,0)
+                    self.circle.circleColorBig = (0,1,0)
+                    self.label.color = [0,1,0,1]
+
+                elif self.count <= float(app.clock_steps)*2/3:
+
+                    self.circle.circleColor = (0.15,0.15,0)
+                    self.circle.circleColorBig = (1,1,0)
+                    self.label.color = [1,1,0,1]
+
+                else:
+
+                    if self.sound_status == 1:
+                        app.timer_slow.stop()
+                        app.timer_slow.loop = False
+                        app.timer_fast.play()
+                        app.timer_fast.loop = True
+                        self.sound_status = 2
+
+                    self.circle.circleColor = (0.2,0,0)
+                    self.circle.circleColorBig = (1,0,0)
+                    self.label.color = [1,0,0,1]
+
             else:
-                if self.sound_status == 1:
-                    app.timer_slow.stop()
-                    app.timer_slow.loop = False
-                    app.timer_fast.play()
-                    app.timer_fast.loop = True
-                    self.sound_status = 2
-                self.circle.circleColor = (0.2,0,0)
-                self.circle.circleColorBig = (1,0,0)
-                self.label.color = [1,0,0,1]
+
+                if self.count <= (1-(60/float(app.QUESTION_TOTAL_TIME)))*app.clock_steps:
+
+                    self.circle.circleColor = (0,0.2,0)
+                    self.circle.circleColorBig = (0,1,0)
+                    self.label.color = [0,1,0,1]
+
+                else:
+
+                    if self.count <= (1-(40/float(app.QUESTION_TOTAL_TIME)))*app.clock_steps:
+
+                        if self.sound_status == 0:
+                            app.timer_slow.play()
+                            app.timer_slow.loop = True
+                            self.sound_status = 1
+                        app.timer_slow.volume = (self.count-((1-(60/float(app.QUESTION_TOTAL_TIME)))*app.clock_steps))/((20/float(app.QUESTION_TOTAL_TIME))*app.clock_steps)
+
+                        self.circle.circleColor = (0,0.2,0)
+                        self.circle.circleColorBig = (0,1,0)
+                        self.label.color = [0,1,0,1]
+
+                    elif self.count <= (1-(20/float(app.QUESTION_TOTAL_TIME)))*app.clock_steps:
+
+                        self.circle.circleColor = (0.15,0.15,0)
+                        self.circle.circleColorBig = (1,1,0)
+                        self.label.color = [1,1,0,1]
+
+                    else:
+
+                        if self.sound_status == 1:
+                            app.timer_slow.stop()
+                            app.timer_slow.loop = False
+                            app.timer_fast.play()
+                            app.timer_fast.loop = True
+                            self.sound_status = 2
+
+                        self.circle.circleColor = (0.2,0,0)
+                        self.circle.circleColorBig = (1,0,0)
+                        self.label.color = [1,0,0,1]
+
             self.count += 1
 
         else:
