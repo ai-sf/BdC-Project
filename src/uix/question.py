@@ -503,10 +503,14 @@ class Domanda(GridLayout):
             app.master.write('timeNow\n')
         app.checkForTimeNow()
 
-        Clock.schedule_once(self.writetimenow, app.QUESTION_TOTAL_TIME)
-        Clock.schedule_once(self.end_time, app.QUESTION_TOTAL_TIME+5)
-        Clock.schedule_interval(self.clock.update, float(app.QUESTION_TOTAL_TIME)/app.clock_steps)
-        Clock.schedule_once(self.sendRAW, app.QUESTION_TOTAL_TIME+6)
+        if app.QUESTION_TOTAL_TIME > 0:
+            Clock.schedule_once(self.writetimenow, app.QUESTION_TOTAL_TIME)
+            Clock.schedule_once(self.end_time, app.QUESTION_TOTAL_TIME+5)
+            Clock.schedule_interval(self.clock.update, float(app.QUESTION_TOTAL_TIME)/app.clock_steps)
+            Clock.schedule_once(self.sendRAW, app.QUESTION_TOTAL_TIME+6)
+        else:
+            self.end_time(self)
+            self.clock.update(self)
 
         app.scifi.stop()
 
@@ -546,8 +550,6 @@ class Domanda(GridLayout):
 
         #creating button's text
         self.terna_risultato = '[color=00cc00]%s'%(iconfonts.icon('fa-check-circle'))+' '+str(RAW['R'])+'      '+'[/color][color=ff0000]%s'%(iconfonts.icon('fa-times-circle'))+' '+str(RAW['W'])+'      '+'[/color][color=ffcc00]%s'%(iconfonts.icon('fa-minus-circle'))+' '+str(RAW['A'])+'[/color]'
-
-        time.sleep(0.5)
 
         app.qst_done = True
         self.show_answer()

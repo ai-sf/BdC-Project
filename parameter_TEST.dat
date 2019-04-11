@@ -11,10 +11,10 @@
 # al gioco, ringraziamenti ecc.)
 
 1: indiscienza_game/social.png
-#2: indiscienza_game/intro_A.png
-#3: indiscienza_game/intro_B.png
-#4: indiscienza_game/intro_C.png
-#5: indiscienza_game/intro_D.png
+2: indiscienza_game/indiscienza_intro_A.png
+3: indiscienza_game/indiscienza_intro_B.png
+4: indiscienza_game/indiscienza_intro_C.png
+5: indiscienza_game/indiscienza_intro_D.png
 
 #-------------------------------------------------------------------------------------------------#
 
@@ -35,8 +35,8 @@ no_serial: True
 # visualizzazione tempo di risposta
 countdown_domanda: True
 
-# tempo di risposta
-tempo_risposta: 1
+# tempo di risposta (0 per visualizzazione istantanea)
+tempo_risposta: 15
 
 # no visualizzazione classifica sezione fino a fine sezione
 no_classifica_in_sezione: True
@@ -74,7 +74,7 @@ type:  test
 name:  TEST
 icon:  none
 time:  none
-path:  indiscienza_game/prova_2.txt
+path:  indiscienza_game/prova_1.txt
 intro: indiscienza_game/bdc.png
 bkg:   indiscienza_game/indiscienza_sfondo.png
 
@@ -83,54 +83,54 @@ type:  normal
 name:  NORMAL1
 icon:  none
 time:  none
-path:  indiscienza_game/indiscienza2_A.txt
+path:  indiscienza_game/indiscienza1_A.txt
 intro: indiscienza_game/bdc.png
 bkg:   indiscienza_game/indiscienza_sfondo.png
 
 [qst2]
 type:  special
-name:  CHIMICA
-icon:  fa-flask
+name:  MEDICINA
+icon:  fa-heartbeat
 time:  none
-path:  indiscienza_game/indiscienza2_chimica.txt
+path:  indiscienza_game/indiscienza1_medicina.txt
 intro: indiscienza_game/bdc.png
-bkg:   indiscienza_game/indiscienza_sfondo.png
+bkg:   indiscienza_game/sezioni/sezione_medicina.png
 
 [qst3]
 type:  normal
 name:  NORMAL2
 icon:  none
 time:  none
-path:  indiscienza_game/indiscienza2_B.txt
+path:  indiscienza_game/indiscienza1_B.txt
 intro: indiscienza_game/bdc.png
 bkg:   indiscienza_game/indiscienza_sfondo.png
 
 [qst4]
 type:  special
-name:  SCIENZE DELLA TERRA
-icon:  fa-globe
+name:  MATEMATICA
+icon:  fa-superscript
 time:  none
-path:  indiscienza_game/indiscienza2_scienzeDellaTerra.txt
+path:  indiscienza_game/indiscienza1_matematica.txt
 intro: indiscienza_game/bdc.png
-bkg:   indiscienza_game/indiscienza_sfondo.png
+bkg:   indiscienza_game/sezioni/sezione_matematica.png
 
 [qst5]
 type:  normal
 name:  NORMAL3
 icon:  none
 time:  none
-path:  indiscienza_game/indiscienza2_C.txt
+path:  indiscienza_game/indiscienza1_C.txt
 intro: indiscienza_game/bdc.png
 bkg:   indiscienza_game/indiscienza_sfondo.png
 
 [qst6]
 type:  special
-name:  MEDICINA
-icon:  fa-heartbeat
+name:  BIOLOGIA
+icon:  fa-leaf
 time:  none
-path:  indiscienza_game/indiscienza2_medicina.txt
+path:  indiscienza_game/indiscienza1_biologia.txt
 intro: indiscienza_game/bdc.png
-bkg:   indiscienza_game/indiscienza_sfondo.png
+bkg:   indiscienza_game/sezioni/sezione_biologia.png
 
 
 [qst7]
@@ -138,7 +138,7 @@ type:  normal
 name:  NORMAL4
 icon:  none
 time:  none
-path:  indiscienza_game/indiscienza2_D.txt
+path:  indiscienza_game/indiscienza1_D.txt
 intro: indiscienza_game/bdc.png
 bkg:   indiscienza_game/indiscienza_sfondo.png
 
