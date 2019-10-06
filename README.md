@@ -1,38 +1,60 @@
-# Botta di Coulomb 
+# Botta di Coulomb (BdC)
 
-Botta di Coulomb is a quiz game developed by the Local Committee of Pavia of Italian Association of Physics Students [AISF](http://ai-sf.it/), and it has been used in different popularization contexts e.g. the European Researchers' Night 2017 and 2018 in Pavia, during workshops and conferences e.g. [ATLAS Italia 2017](https://agenda.infn.it/event/13733/) in Pavia or the Biomedical Physics Lombard Event [BiPLE 2018](http://ai-sf.it/biple/), as well as in pubs or for private events.
+- Multi-player quiz game, written in Python with the [Kivy](https://kivy.org) library.
+- Main goal of the project are popularization activities: first developed for the European Researchers' Night 2017 by [AISF](http://ai-sf.it/) Pavia, and proposed in several other public or private events.
+- Apologies for the Italian language, which appears almost everywhere.
 
-Since the game has been developed by physicists, each team is associated to a famous physicist.
 
 ## Installation
-The game is written in Python 2.7 and it requires [kivy](https://kivy.org), and some other additional packages. See Kivy installation instructions here: https://kivy.org/doc/stable/installation/installation-linux.html
+See Kivy installation instructions [here](https://kivy.org/doc/stable/gettingstarted/installation.html). A local installation via [conda](https://docs.conda.io/projects/conda/en/latest/) or [virtualenv](https://virtualenv.pypa.io/en/latest/) is recommended.
 
-An installation using [virtualenv](https://virtualenv.pypa.io/en/latest/) is recommended:
+### Installing with conda
+First, create an environment by installing the following packages:
+```
+conda create -n bdc -c conda-forge pyserial configparser kivy
+```
+Then remember to load the environment before starting the game:
+```
+conda activate bdc
+```
+### Installing with virtualenv
+First, create a directory `env` with a local Python installation.
+Then activate the environment:
 ```
 virtualenv --python=python2.7 env
 source env/bin/activate
 ```
-Then the required packages can be installed using `pip`:
+The required packages can be installed using `pip`:
 ```
 pip install serial configparser Cython==0.28.2 kivy
 ```
 
 ## Usage
-Assuming your working in the repository root directory and the configuration file is `parameter.dat`, you can start the game with:
+Download the repository manually or with `git`:
 ```
-python src/main.py parameter.dat
+git clone [--deep 1] -b master https://gitlab.com/gstagnit/bdc
 ```
-(It may require a `sudo` when using the serial input)
-You can find an example of parameter file, `parameter_TEST.dat`, based on the files in the `test_game` directory. 
+The option `--deep 1` allows you to save locally only the latest commit.
 
-## Useful keyboard shortcuts in Ubuntu 18:
-- Move the game windows from a display to another: Shift + Windows + dx/sx
-- Fullscreen: Windows+up/down
+Then you can start the game with:
+```
+python path/to/src/main.py path/to/inputcard.dat
+```
+A full example is in the `test_game` folder (again, sorry for the Italian), with `test_game.dat` as input card.
 
-## Additional remarks
+### Real game session
+The software is designed to be used with a set of remote controllers, all connected in a Wi-fi mesh grid, specifically designed for BdC by [@micp](https://gitlab.com/micp). The communications with the laptop are handled by a "master" controller connected via USB, receiving messages from the other controllers and writing them in the serial format.
 
-In order to avoid libpng error messages, convert all the images used in the game with:
+If the controllers are not used, the game can still be played for debug purposes, however remember to set the variable `no_serial` to `True` in the input card.
+
+## Useful keyboard shortcuts (GNOME 3):
+- Move the window from a display to another: Shift + Windows + dx/sx
+- Full screen: Windows+up/down
+
+
+## Possible issues
+- In order to avoid `libpng` error messages, convert `*.png` files with:
 ```
 convert *.png -set filename:base "%[base]" "%[filename:base].png"
 ```
-(it requires `imagemagick`, which can be installed with `sudo apt-get install imagemagick`). This is required only if you change something, since all the images present in the game have already been fixed in this way.
+(required `imagemagick`, which can be installed with `sudo apt-get install imagemagick`).
