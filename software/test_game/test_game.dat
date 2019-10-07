@@ -1,0 +1,126 @@
+#-------------------------------------------------------------------------------------------------#
+#----------------------------------------- BOTTA DI COULOMB --------------------------------------#
+#-------------------------------------- file di configurazione -----------------------------------#
+#-------------------------------------------------------------------------------------------------#
+
+[Introduzione]
+
+# queste slide sono caricate all'inizio
+# i.e. tra la schermata iniziale
+# e la prima sezione (utili per introduzione
+# al gioco, ringraziamenti ecc.)
+
+1: img/bdc.png
+2: img/bdc.png
+
+#-------------------------------------------------------------------------------------------------#
+
+[Partenza]
+
+# indicare la porta del master
+# per la comunicazione con i telecomandi
+nome_porta: /dev/ttyUSB0
+
+# stabilire se partire dal backup o da capo
+# (il file di backup e' 'backup.dat'
+# e viene salvato in ogni partita)
+backup: False
+
+# se si vogliono fare dei test senza master
+no_serial: True
+
+# visualizzazione tempo di risposta
+countdown_domanda: True
+
+# tempo di risposta (0 per visualizzazione istantanea)
+tempo_risposta: 0
+
+# no visualizzazione classifica sezione fino a fine sezione
+no_classifica_in_sezione: True
+
+# numero domande dalla fine senza visualizzazione classifica (0 per disabilitare)
+num_domande_finali_senza_classifica: 0
+
+#-------------------------------------------------------------------------------------------------#
+
+[Grafica]
+
+# parametro di scala per risoluzione schermo
+scalatore: 1.1
+
+# larghezza della finestra
+width: 1600
+
+# altezza della finestra
+height: 1200
+
+#-------------------------------------------------------------------------------------------------#
+
+# SEZIONI
+
+# opzioni: "test", "special", "normal"
+# DEVE esserci al massimo una sezione test
+# e DEVE essere la prima
+
+#time: tempo per la risposta in secondi, max 300
+#icon: fa-flask (chimica), fa-heartbeat (medicina), fa-leaf (biologia),
+#      fa-superscript (matematica), fa-globe (scienze della Terra),
+#      fa-cogs (tecnologia)
+
+[qst0]
+type:  test
+name:  TEST
+icon:  none
+time:  none
+path:  sec_prova.txt
+intro: img/bdc.png
+bkg:   img/sfondo_domanda.png
+
+[qst1]
+type:  normal
+name:  NORMAL
+icon:  none
+time:  none
+path:  sec_normal.txt
+intro: img/bdc.png
+bkg:   img/sfondo_domanda.png
+
+#-------------------------------------------------------------------------------------------------#
+
+[Squadre]
+
+# Scrivere "ID_telecomando: bonus(anche negativo),nome_squadra"
+# immagine associata deve essere [cognome_in_minuscolo].png
+
+977148330: 0,Albert EINSTEIN
+977144982: 0,Isaac NEWTON
+977143789: 0,Max PLANCK
+977143982: 0,Richard FEYNMAN
+977141870: 0,Enrico FERMI
+977148973: 0,James MAXWELL
+977186140: 0,Erwin SCHRÖDINGER
+977149543: 0,Galileo GALILEI
+981430530: 0,Alessandro VOLTA
+977151320: 0,Marie CURIE
+# 977149772: 0,Werner HEISENBERG
+# 977185902: 0,Paul DIRAC
+# 981465612: 0,Nikola TESLA
+# 977186205: 0,Niels BOHR
+# 977143950: 0,James JOULE
+# 977184646: 0,Wolfgang PAULI
+# 981466912: 0,Michael FARADAY
+# 977185877: 0,Ernest RUTHERFORD
+# 977148317: 0,Stephen HAWKING
+# 977186733: 0,Emmy NOETHER
+# 981413202: 0,Ludwig BOLTZMANN
+# 981464356: 0,Giovanni KEPLERO
+# 977186685: 0,Niccolò COPERNICO
+# 977143946: 0,André-Marie AMPERE
+# 977183543: 0,Max BORN
+# 977149774: 0,Ettore MAJORANA
+# 981466864: 0,John VON NEUMANN
+# 977186485: 0,Henri BECQUEREL
+# 977183883: 0,Daniel BERNOULLI
+# 977149683: 0,Blaise PASCAL
+
+#-------------------------------------------------------------------------------------------------#

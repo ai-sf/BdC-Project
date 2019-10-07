@@ -1,0 +1,6 @@
+(sym_lib_table
+  (lib (name telecomando-rescue)(type Legacy)(uri ${KIPRJMOD}/telecomando-rescue.lib)(options "")(descr ""))
+  (lib (name power1)(type Legacy)(uri ${KICAD_SYMBOL_DIR}/power.lib)(options "")(descr ""))
+  (lib (name 74xx1)(type Legacy)(uri ${KICAD_SYMBOL_DIR}/74xx.lib)(options "")(descr ""))
+  (lib (name pspice1)(type Legacy)(uri ${KICAD_SYMBOL_DIR}/pspice.lib)(options "")(descr ""))
+)

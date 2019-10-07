@@ -1,0 +1,622 @@
+EESchema Schematic File Version 4
+LIBS:telecomando-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "Botta di Coulomb"
+Date "13 December 2018"
+Rev "2"
+Comp "AISF Pavia"
+Comment1 "Designed and engineered by Michele Pirola"
+Comment2 "Open source project"
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L telecomando-rescue:NodeMCU_Amica_R2 U1
+U 1 1 5975E3C5
+P 6400 2900
+F 0 "U1" H 6400 3825 50  0000 C CNN
+F 1 "NodeMCU" H 6400 3734 50  0000 C CNN
+F 2 "ESP8266:NodeMCU-LoLinV3" H 6650 2900 50  0001 C CNN
+F 3 "" H 6650 2900 50  0000 C CNN
+	1    6400 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power1:GND #PWR01
+U 1 1 5975E75C
+P 6650 4100
+F 0 "#PWR01" H 6650 3850 50  0001 C CNN
+F 1 "GND" H 6655 3927 50  0000 C CNN
+F 2 "" H 6650 4100 50  0001 C CNN
+F 3 "" H 6650 4100 50  0001 C CNN
+	1    6650 4100
+	1    0    0    -1  
+$EndComp
+$Comp
+L telecomando-rescue:R R1
+U 1 1 5975EE6C
+P 7700 3450
+F 0 "R1" H 7770 3496 50  0000 L CNN
+F 1 "10k" H 7770 3405 50  0000 L CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 7630 3450 50  0001 C CNN
+F 3 "" H 7700 3450 50  0001 C CNN
+	1    7700 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L telecomando-rescue:R R2
+U 1 1 5975EF02
+P 7700 3950
+F 0 "R2" H 7770 3996 50  0000 L CNN
+F 1 "10k" H 7770 3905 50  0000 L CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 7630 3950 50  0001 C CNN
+F 3 "" H 7700 3950 50  0001 C CNN
+	1    7700 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L telecomando-rescue:R R3
+U 1 1 5975EF38
+P 7700 4450
+F 0 "R3" H 7770 4496 50  0000 L CNN
+F 1 "10k" H 7770 4405 50  0000 L CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 7630 4450 50  0001 C CNN
+F 3 "" H 7700 4450 50  0001 C CNN
+	1    7700 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L telecomando-rescue:R R4
+U 1 1 5975EF70
+P 7700 4950
+F 0 "R4" H 7770 4996 50  0000 L CNN
+F 1 "10k" H 7770 4905 50  0000 L CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 7630 4950 50  0001 C CNN
+F 3 "" H 7700 4950 50  0001 C CNN
+	1    7700 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L telecomando-rescue:R R5
+U 1 1 5975EFA8
+P 7700 5450
+F 0 "R5" H 7770 5496 50  0000 L CNN
+F 1 "10k" H 7770 5405 50  0000 L CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 7630 5450 50  0001 C CNN
+F 3 "" H 7700 5450 50  0001 C CNN
+	1    7700 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power1:GND #PWR02
+U 1 1 5975F046
+P 7500 5750
+F 0 "#PWR02" H 7500 5500 50  0001 C CNN
+F 1 "GND" H 7505 5577 50  0000 C CNN
+F 2 "" H 7500 5750 50  0001 C CNN
+F 3 "" H 7500 5750 50  0001 C CNN
+	1    7500 5750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power1:+3V3 #PWR03
+U 1 1 5975F606
+P 7150 1900
+F 0 "#PWR03" H 7150 1750 50  0001 C CNN
+F 1 "+3V3" H 7165 2073 50  0000 C CNN
+F 2 "" H 7150 1900 50  0001 C CNN
+F 3 "" H 7150 1900 50  0001 C CNN
+	1    7150 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power1:+3V3 #PWR04
+U 1 1 5975F834
+P 8700 3050
+F 0 "#PWR04" H 8700 2900 50  0001 C CNN
+F 1 "+3V3" H 8715 3223 50  0000 C CNN
+F 2 "" H 8700 3050 50  0001 C CNN
+F 3 "" H 8700 3050 50  0001 C CNN
+	1    8700 3050
+	1    0    0    -1  
+$EndComp
+NoConn ~ 6850 3300
+NoConn ~ 6850 3400
+NoConn ~ 6850 2700
+NoConn ~ 5950 2500
+NoConn ~ 5950 2600
+NoConn ~ 5950 2700
+NoConn ~ 5950 2800
+NoConn ~ 5950 2900
+NoConn ~ 5950 3000
+NoConn ~ 5950 3200
+NoConn ~ 5950 3300
+NoConn ~ 5950 3400
+$Comp
+L telecomando-rescue:CONN_01X02 J1
+U 1 1 5976059A
+P 8250 2950
+F 0 "J1" V 8215 2812 50  0000 R CNN
+F 1 "PULS_A" V 8124 2812 50  0000 R CNN
+F 2 "Button_Switch_THT:SW_PUSH-12mm" H 8250 2950 50  0001 C CNN
+F 3 "" H 8250 2950 50  0001 C CNN
+	1    8250 2950
+	0    -1   -1   0   
+$EndComp
+$Comp
+L telecomando-rescue:CONN_01X02 J2
+U 1 1 59760631
+P 8250 3450
+F 0 "J2" V 8215 3312 50  0000 R CNN
+F 1 "PULS_B" V 8124 3312 50  0000 R CNN
+F 2 "Button_Switch_THT:SW_PUSH-12mm" H 8250 3450 50  0001 C CNN
+F 3 "" H 8250 3450 50  0001 C CNN
+	1    8250 3450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L telecomando-rescue:CONN_01X02 J3
+U 1 1 59760667
+P 8250 3950
+F 0 "J3" V 8215 3812 50  0000 R CNN
+F 1 "PULS_C" V 8124 3812 50  0000 R CNN
+F 2 "Button_Switch_THT:SW_PUSH-12mm" H 8250 3950 50  0001 C CNN
+F 3 "" H 8250 3950 50  0001 C CNN
+	1    8250 3950
+	0    -1   -1   0   
+$EndComp
+$Comp
+L telecomando-rescue:CONN_01X02 J4
+U 1 1 5976069F
+P 8250 4450
+F 0 "J4" V 8215 4312 50  0000 R CNN
+F 1 "PULS_D" V 8124 4312 50  0000 R CNN
+F 2 "Button_Switch_THT:SW_PUSH-12mm" H 8250 4450 50  0001 C CNN
+F 3 "" H 8250 4450 50  0001 C CNN
+	1    8250 4450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L telecomando-rescue:CONN_01X02 J5
+U 1 1 597606D5
+P 8250 4950
+F 0 "J5" V 8215 4812 50  0000 R CNN
+F 1 "PULS_E" V 8124 4812 50  0000 R CNN
+F 2 "Button_Switch_THT:SW_PUSH-12mm" H 8250 4950 50  0001 C CNN
+F 3 "" H 8250 4950 50  0001 C CNN
+	1    8250 4950
+	0    -1   -1   0   
+$EndComp
+NoConn ~ 6850 2600
+$Comp
+L power1:GND #PWR06
+U 1 1 5977575B
+P 8400 2550
+F 0 "#PWR06" H 8400 2300 50  0001 C CNN
+F 1 "GND" H 8405 2377 50  0000 C CNN
+F 2 "" H 8400 2550 50  0001 C CNN
+F 3 "" H 8400 2550 50  0001 C CNN
+	1    8400 2550
+	1    0    0    -1  
+$EndComp
+NoConn ~ 9150 2200
+$Comp
+L telecomando-rescue:Buzzer BZ1
+U 1 1 5989C6FD
+P 6400 1500
+F 0 "BZ1" V 6550 1600 50  0000 L CNN
+F 1 "Buzzer" V 6650 1500 50  0000 L CNN
+F 2 "digikey-footprints:Piezo_Transducer_THT_PS1240P02BT" V 6375 1600 50  0001 C CNN
+F 3 "" V 6375 1600 50  0001 C CNN
+	1    6400 1500
+	0    1    -1   0   
+$EndComp
+$Comp
+L telecomando-rescue:CP1 C1
+U 1 1 599802B3
+P 7900 2300
+F 0 "C1" H 8015 2346 50  0000 L CNN
+F 1 "100u" H 8015 2255 50  0000 L CNN
+F 2 "Capacitor_THT:C_Radial_D5.0mm_H7.0mm_P2.00mm" H 7900 2300 50  0001 C CNN
+F 3 "" H 7900 2300 50  0001 C CNN
+	1    7900 2300
+	1    0    0    -1  
+$EndComp
+NoConn ~ 6850 2500
+Wire Wire Line
+	7150 3600 6850 3600
+Wire Wire Line
+	7150 1900 7150 3600
+Wire Wire Line
+	7700 3200 7700 3300
+Wire Wire Line
+	7300 3200 7700 3200
+Wire Wire Line
+	7700 3800 7700 3700
+Wire Wire Line
+	7250 3700 7700 3700
+Wire Wire Line
+	7700 4300 7700 4200
+Wire Wire Line
+	7100 4200 7700 4200
+Wire Wire Line
+	7700 4800 7700 4700
+Wire Wire Line
+	7000 4700 7700 4700
+Wire Wire Line
+	7700 5300 7700 5200
+Wire Wire Line
+	6900 5200 7700 5200
+Wire Wire Line
+	7500 3600 7500 4100
+Wire Wire Line
+	7500 5600 7700 5600
+Wire Wire Line
+	7500 5100 7700 5100
+Connection ~ 7500 5600
+Wire Wire Line
+	7500 4600 7700 4600
+Connection ~ 7500 5100
+Wire Wire Line
+	7500 4100 7700 4100
+Connection ~ 7500 4600
+Wire Wire Line
+	7500 3600 7700 3600
+Connection ~ 7500 4100
+Wire Wire Line
+	7300 2300 7300 3200
+Connection ~ 7700 3200
+Connection ~ 7700 3700
+Connection ~ 7700 4200
+Connection ~ 7700 4700
+Wire Wire Line
+	6900 3100 6900 5200
+Connection ~ 7700 5200
+Wire Wire Line
+	8300 3200 8700 3200
+Wire Wire Line
+	8700 5200 8700 4700
+Wire Wire Line
+	8300 3700 8700 3700
+Connection ~ 8700 3200
+Wire Wire Line
+	8300 4200 8700 4200
+Connection ~ 8700 3700
+Wire Wire Line
+	8300 4700 8700 4700
+Connection ~ 8700 4200
+Wire Wire Line
+	8300 5200 8700 5200
+Connection ~ 8700 4700
+Wire Wire Line
+	8200 3200 8200 3150
+Wire Wire Line
+	8300 3150 8300 3200
+Wire Wire Line
+	8200 3700 8200 3650
+Wire Wire Line
+	8200 4200 8200 4150
+Wire Wire Line
+	8200 4700 8200 4650
+Wire Wire Line
+	8200 5200 8200 5150
+Wire Wire Line
+	8300 5150 8300 5200
+Wire Wire Line
+	8300 4650 8300 4700
+Wire Wire Line
+	8300 4150 8300 4200
+Wire Wire Line
+	8300 3650 8300 3700
+Wire Wire Line
+	6950 3900 6950 2800
+Wire Wire Line
+	6650 3900 6650 4100
+Wire Wire Line
+	7000 3000 7000 4700
+Wire Wire Line
+	7250 2200 7250 3700
+Wire Wire Line
+	7100 2900 7100 4200
+Wire Wire Line
+	6950 2800 6850 2800
+Wire Wire Line
+	6950 3900 6650 3900
+Wire Wire Line
+	5000 3500 5650 3500
+Wire Wire Line
+	6850 2300 7300 2300
+Wire Wire Line
+	6850 2900 7100 2900
+Wire Wire Line
+	6850 3000 7000 3000
+Wire Wire Line
+	6850 3100 6900 3100
+Wire Wire Line
+	6850 3200 7050 3200
+Wire Wire Line
+	7050 3200 7050 1900
+Wire Wire Line
+	6850 2400 7000 2400
+Wire Wire Line
+	7000 2400 7000 2000
+Wire Wire Line
+	6850 2200 7250 2200
+$Comp
+L power1:+3V3 #PWR0101
+U 1 1 59DB94C0
+P 8300 1650
+F 0 "#PWR0101" H 8300 1500 50  0001 C CNN
+F 1 "+3V3" H 8315 1823 50  0000 C CNN
+F 2 "" H 8300 1650 50  0001 C CNN
+F 3 "" H 8300 1650 50  0001 C CNN
+	1    8300 1650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7500 5600 7500 5750
+Wire Wire Line
+	7500 5100 7500 5600
+Wire Wire Line
+	7500 4600 7500 5100
+Wire Wire Line
+	7500 4100 7500 4600
+Wire Wire Line
+	7700 3200 8200 3200
+Wire Wire Line
+	7700 3700 8200 3700
+Wire Wire Line
+	7700 4200 8200 4200
+Wire Wire Line
+	7700 4700 8200 4700
+Wire Wire Line
+	7700 5200 8200 5200
+Wire Wire Line
+	8700 3200 8700 3050
+Wire Wire Line
+	8700 3700 8700 3200
+Wire Wire Line
+	8700 4200 8700 3700
+Wire Wire Line
+	8700 4700 8700 4200
+$Comp
+L telecomando-rescue:CP1 C2
+U 1 1 5C100C29
+P 5350 3750
+F 0 "C2" H 5465 3796 50  0000 L CNN
+F 1 "100u" H 5465 3705 50  0000 L CNN
+F 2 "Capacitor_THT:C_Radial_D5.0mm_H7.0mm_P2.00mm" H 5350 3750 50  0001 C CNN
+F 3 "" H 5350 3750 50  0001 C CNN
+	1    5350 3750
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5700 3750 5700 3600
+Wire Wire Line
+	5700 3600 5950 3600
+Wire Wire Line
+	5000 3750 5000 3500
+Wire Wire Line
+	5000 3750 5200 3750
+Connection ~ 5000 3500
+Wire Wire Line
+	5850 3500 5850 3900
+Wire Wire Line
+	5850 3900 6650 3900
+Connection ~ 5850 3500
+Wire Wire Line
+	5850 3500 5950 3500
+Connection ~ 6650 3900
+Wire Wire Line
+	5950 2300 5650 2300
+Wire Wire Line
+	5650 2300 5650 3100
+Connection ~ 5650 3500
+Wire Wire Line
+	5650 3500 5850 3500
+Wire Wire Line
+	5950 3100 5650 3100
+Connection ~ 5650 3100
+Wire Wire Line
+	5650 3100 5650 3500
+Wire Wire Line
+	6850 3500 7050 3500
+Wire Wire Line
+	7050 3500 7050 3900
+Wire Wire Line
+	7050 3900 6950 3900
+Connection ~ 6950 3900
+$Comp
+L w_connectors:HEADER_2 J6
+U 1 1 5C10D7FD
+P 2500 2250
+F 0 "J6" H 2494 1963 60  0000 C CNN
+F 1 "HEADER_BAT" H 2494 2069 60  0000 C CNN
+F 2 "Connector_Wire:SolderWirePad_1x02_P3.81mm_Drill0.8mm" H 2500 2250 60  0001 C CNN
+F 3 "" H 2500 2250 60  0000 C CNN
+	1    2500 2250
+	-1   0    0    1   
+$EndComp
+$Comp
+L w_connectors:HEADER_3 J7
+U 1 1 5C10DB74
+P 2550 4200
+F 0 "J7" H 2544 3863 60  0000 C CNN
+F 1 "HEADER_SUP" H 2544 3969 60  0000 C CNN
+F 2 "Connector_Wire:SolderWirePad_1x03_P3.175mm_Drill0.8mm" H 2550 4200 60  0001 C CNN
+F 3 "" H 2550 4200 60  0000 C CNN
+	1    2550 4200
+	-1   0    0    1   
+$EndComp
+$Comp
+L w_connectors:HEADER_2 J8
+U 1 1 5C10DCD2
+P 3550 2700
+F 0 "J8" H 3678 2753 60  0000 L CNN
+F 1 "HEADER_CHG" H 3678 2647 60  0000 L CNN
+F 2 "Connector_Wire:SolderWirePad_1x02_P3.81mm_Drill0.8mm" H 3550 2700 60  0001 C CNN
+F 3 "" H 3550 2700 60  0000 C CNN
+	1    3550 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3250 2300 3250 2650
+Wire Wire Line
+	3200 2200 3200 2750
+$Comp
+L power1:GND #PWR0102
+U 1 1 5C11D25C
+P 3000 4700
+F 0 "#PWR0102" H 3000 4450 50  0001 C CNN
+F 1 "GND" H 3005 4527 50  0000 C CNN
+F 2 "" H 3000 4700 50  0001 C CNN
+F 3 "" H 3000 4700 50  0001 C CNN
+	1    3000 4700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2650 4200 3000 4200
+Wire Wire Line
+	3000 4200 3000 4700
+Wire Wire Line
+	4900 2400 5950 2400
+Text Label 3250 4300 0    60   ~ 0
+VUSB
+Wire Wire Line
+	2600 2200 3200 2200
+Wire Wire Line
+	2600 2300 3250 2300
+Wire Wire Line
+	3250 2650 3450 2650
+Wire Wire Line
+	3200 2750 3450 2750
+Text Label 3350 2200 0    60   ~ 0
+BAT+
+Text Label 3250 2450 0    60   ~ 0
+BAT-
+Text Label 3150 4100 0    60   ~ 0
+VSUP
+$Comp
+L pspice1:R R7
+U 1 1 5C133C42
+P 4000 2200
+F 0 "R7" V 3795 2200 50  0000 C CNN
+F 1 "100k_1%" V 3886 2200 50  0000 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 4000 2200 50  0001 C CNN
+F 3 "~" H 4000 2200 50  0001 C CNN
+	1    4000 2200
+	0    1    1    0   
+$EndComp
+Connection ~ 3200 2200
+$Comp
+L pspice1:R R6
+U 1 1 5C15443C
+P 7900 2000
+F 0 "R6" V 7695 2000 50  0000 C CNN
+F 1 "220" V 7786 2000 50  0000 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 7900 2000 50  0001 C CNN
+F 3 "~" H 7900 2000 50  0001 C CNN
+	1    7900 2000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3200 2200 3750 2200
+Wire Wire Line
+	7050 1900 6500 1900
+Wire Wire Line
+	6500 1900 6500 1600
+Wire Wire Line
+	5000 1750 6300 1750
+Wire Wire Line
+	6300 1750 6300 1600
+Wire Wire Line
+	5000 1750 5000 3500
+Wire Wire Line
+	5500 3750 5700 3750
+Wire Wire Line
+	5700 3750 5700 4150
+Connection ~ 5700 3750
+Wire Wire Line
+	4900 2400 4900 4300
+Wire Wire Line
+	7000 2000 7650 2000
+Wire Wire Line
+	4250 2200 5950 2200
+$Comp
+L apa-106:APA-106-F5 D1
+U 1 1 5C10AE7C
+P 8850 2200
+F 0 "D1" H 8850 2665 50  0000 C CNN
+F 1 "APA-106-F5" H 8850 2574 50  0000 C CNN
+F 2 "apa-106:APA-106-F8" H 8800 2050 50  0001 C CNN
+F 3 "" H 8800 2050 50  0000 C CNN
+	1    8850 2200
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	8150 2000 8550 2000
+Wire Wire Line
+	8300 1650 8300 2150
+Wire Wire Line
+	8300 2200 8550 2200
+Wire Wire Line
+	7900 2150 8300 2150
+Connection ~ 8300 2150
+Wire Wire Line
+	8300 2150 8300 2200
+Wire Wire Line
+	7900 2450 8250 2450
+Wire Wire Line
+	8250 2450 8250 2400
+Wire Wire Line
+	8250 2400 8400 2400
+Wire Wire Line
+	8400 2550 8400 2400
+Connection ~ 8400 2400
+Wire Wire Line
+	8400 2400 8550 2400
+$Comp
+L dk_Slide-Switches:JS202011SCQN S1
+U 1 1 5C106F9B
+P 4550 3900
+F 0 "S1" H 4550 4383 50  0000 C CNN
+F 1 "JS202011SCQN" H 4550 4292 50  0000 C CNN
+F 2 "digikey-footprints:Switch_Slide_JS202011SCQN" H 4750 4100 50  0001 L CNN
+F 3 "https://www.ckswitches.com/media/1422/js.pdf" H 4750 4200 60  0001 L CNN
+F 4 "401-2002-1-ND" H 4750 4300 60  0001 L CNN "Digi-Key_PN"
+F 5 "JS202011SCQN" H 4750 4400 60  0001 L CNN "MPN"
+F 6 "Switches" H 4750 4500 60  0001 L CNN "Category"
+F 7 "Slide Switches" H 4750 4600 60  0001 L CNN "Family"
+F 8 "https://www.ckswitches.com/media/1422/js.pdf" H 4750 4700 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/c-k/JS202011SCQN/401-2002-1-ND/1640098" H 4750 4800 60  0001 L CNN "DK_Detail_Page"
+F 10 "SWITCH SLIDE DPDT 300MA 6V" H 4750 4900 60  0001 L CNN "Description"
+F 11 "C&K" H 4750 5000 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 4750 5100 60  0001 L CNN "Status"
+	1    4550 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4350 3700 4350 4100
+Connection ~ 4350 4100
+Wire Wire Line
+	4850 3600 4850 4000
+Wire Wire Line
+	4850 4000 4750 4000
+Wire Wire Line
+	4750 3600 4850 3600
+Wire Wire Line
+	5700 4150 4850 4150
+Wire Wire Line
+	4850 4150 4850 4000
+Connection ~ 4850 4000
+NoConn ~ 4750 3800
+NoConn ~ 4750 4200
+Wire Wire Line
+	2650 4300 4900 4300
+Wire Wire Line
+	2650 4100 4350 4100
+$EndSCHEMATC
