@@ -39,4 +39,4 @@ class IntroSctScreen(Screen):
     """)
 
     def on_enter(self):
-        print app.SECTIONS[app.SEC_CNT]['bkg']
+        print(app.SECTIONS[app.SEC_CNT]['bkg'])

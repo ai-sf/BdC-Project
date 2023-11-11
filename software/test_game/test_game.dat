@@ -49,10 +49,10 @@ num_domande_finali_senza_classifica: 0
 scalatore: 1.1
 
 # larghezza della finestra
-width: 1600
+width: 1920
 
 # altezza della finestra
-height: 1200
+height: 1080
 
 #-------------------------------------------------------------------------------------------------#
 

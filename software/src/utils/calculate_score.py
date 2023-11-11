@@ -57,9 +57,9 @@ def result(qst_ans):
     sorted_W_quest_term = sorted(sorted_W_quest_term, key=operator.itemgetter(1), reverse= True)
     sorted_x_quest_term = sorted_R_quest_term+Score_A_quest_term+sorted_W_quest_term
 
-    print "\033[1;97m\033[1;100m"
-    print "CLASSIFICA DOMANDA -----------------------------"
-    print "                                RIS    TEM"
+    print("\033[1;97m\033[1;100m")
+    print("CLASSIFICA DOMANDA -----------------------------")
+    print("                                RIS    TEM")
     for i in range(len(sorted_x_quest_term)):
         spacer = " "
         if sorted_x_quest_term[i][1] > 0:
@@ -101,15 +101,15 @@ def result(qst_ans):
         for k in range(26-len(app.dictIDName[sorted_x_quest_term[i][0]].decode('utf-8'))):
             separator += ' '
 
-        print spacer + spacer_2 + str(sorted_x_quest_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_quest_term[i][0]])+ separator + spacer + str(answer_quest) + "   " + str(time_quest)
-    print "\033[0m\n"
+        print(spacer + spacer_2 + str(sorted_x_quest_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_quest_term[i][0]])+ separator + spacer + str(answer_quest) + "   " + str(time_quest))
+    print("\033[0m\n")
 
     #print classifica sezione a terminale
     if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
         Score_sect_term = [(key, app.SECTION_SCORE[app.SEC_CNT][key]) for key in app.SECTION_SCORE[app.SEC_CNT].keys()]
         sorted_x_sect_term = sorted(Score_sect_term, key=operator.itemgetter(1), reverse= True)
-        print "\033[1;97m\033[1;100m"
-        print "CLASSIFICA SEZIONE -----------------------------\n"
+        print("\033[1;97m\033[1;100m")
+        print("CLASSIFICA SEZIONE -----------------------------\n")
         for i in range(len(sorted_x_sect_term)):
             spacer = "\033[1;95m"
             if sorted_x_sect_term[i][1] >= 0:
@@ -128,16 +128,16 @@ def result(qst_ans):
                     spacer += " "
                 if sorted_x_sect_term[i][1] > -10:
                     spacer += " "
-            print spacer + str(sorted_x_sect_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_sect_term[i][0]])
-        print "\033[0m\n"
+            print(spacer + str(sorted_x_sect_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_sect_term[i][0]]))
+        print("\033[0m\n")
 
 
     #print classifica generale a terminale
     Score_term = [(key, app.GENERAL_SCORE[key]) for key in app.GENERAL_SCORE.keys()]
     sorted_x_term = sorted(Score_term, key=operator.itemgetter(1), reverse= True)
-    print "\033[1;97m\033[1;100m"
-    print "CLASSIFICA GENERALE ----------------------------"
-    print "                                AST     BAT"
+    print("\033[1;97m\033[1;100m")
+    print("CLASSIFICA GENERALE ----------------------------")
+    print("                                AST     BAT")
     for i in range(len(sorted_x_term)):
         spacer = "\033[1;96m"
         if sorted_x_term[i][1] >= 0:
@@ -194,8 +194,8 @@ def result(qst_ans):
         for k in range(26-len(app.dictIDName[sorted_x_term[i][0]].decode('utf-8'))):
             separator += ' '
 
-        print spacer + str(sorted_x_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_term[i][0]]) + separator + spacer_ast + str(app.ABSTENTIONS[sorted_x_term[i][0]]) + "\t" + batStr + "\033[25m"
-    print "\033[0m\n"
+        print(spacer + str(sorted_x_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_term[i][0]]) + separator + spacer_ast + str(app.ABSTENTIONS[sorted_x_term[i][0]]) + "\t" + batStr + "\033[25m")
+    print("\033[0m\n")
 
     return tmp
 

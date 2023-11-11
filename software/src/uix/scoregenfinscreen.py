@@ -60,9 +60,9 @@ class ScoreGenFinScreen(Screen):
 
         #print classifica iniziale a terminale dopo sezione di test
         if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
-            print "\033[1;97m\033[1;100m"
-            print "CLASSIFICA INIZIALE ----------------------------"
-            print "                                BAT"
+            print("\033[1;97m\033[1;100m")
+            print("CLASSIFICA INIZIALE ----------------------------")
+            print("                                BAT")
             for i in range(len(sorted_x)):
                 spacer = "\033[1;96m"
                 if sorted_x[i][1] >= 0:
@@ -111,8 +111,8 @@ class ScoreGenFinScreen(Screen):
                 for k in range(26-len(app.dictIDName[sorted_x[i][0]].decode('utf-8'))):
                     separator += ' '
 
-                print spacer + str(sorted_x[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x[i][0]]) + separator + batStr + "\033[25m"
-            print "\033[0m\n"
+                print(spacer + str(sorted_x[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x[i][0]]) + separator + batStr + "\033[25m")
+            print("\033[0m\n")
 
         while len(sorted_x) < 5:
             sorted_x.append(('5355053550', -9999999))
