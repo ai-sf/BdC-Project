@@ -237,7 +237,7 @@ class BDCApp(App):
             letter = re.match(showman_msg, tmp)
             if letter:
                 letter = letter.group(1)
-                print "Showman:", letter
+                print("Showman:", letter)
                 if letter == "GREEN":
                     if hasattr(self.current_screen(), "next_button"):
                         if not self.current_screen().next_button.disabled:
@@ -264,14 +264,14 @@ class BDCApp(App):
                 LETTER = answer.group(2)
                 TIME = answer.group(3)
                 self.saved_ans[int(TIME)] = [ID, LETTER]
-                print "Answer message:", LETTER, " from ", self.dictIDName[ID], " at time ", TIME
+                print("Answer message:", LETTER, " from ", self.dictIDName[ID], " at time ", TIME)
                 if answer.group(5):
                     self.BATTERY_STATUS[ID] = int(answer.group(5))
 
             time = re.match(timenow_msg, tmp)
             if time:
                 time = time.group(1)
-                print "--- Time ---------------------:", time
+                print("--- Time ---------------------:", time)
                 self.times.append(int(time))
                 if self.startTimeGiven is True:
                     self.stop_time = int(time)
@@ -282,8 +282,8 @@ class BDCApp(App):
             topo = re.match(topology_msg, tmp)
             if topo:
                 topo = topo.group(1)
-                print ""
-                print "MASTER"
+                print("")
+                print("MASTER")
                 level = 0
                 tmpStr = ""
                 for i in range(len(topo)):
@@ -301,9 +301,9 @@ class BDCApp(App):
                         except:
                             if tmpStr == "2131961277":
                                 tmpStr = "CONTROLLER"
-                        print "\\__" + tmpStr
+                        print("\\__" + tmpStr)
                         tmpStr = ""
-                print ""
+                print("")
                 self.topologyRead = True
 
     def on_start(self):
