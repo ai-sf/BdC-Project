@@ -571,7 +571,7 @@ class Domanda(GridLayout):
             app.master.write('timeNow\n')
 
     def sendRAW(self, dt):
-        for key, value in self.RAWdic.iteritems():
+        for key, value in self.RAWdic.items():
             if app.no_serial is False:
                 app.master.write('send '+key+' '+value+'\n')
             time.sleep(0.05)
