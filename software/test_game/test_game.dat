@@ -33,13 +33,13 @@ no_serial: True
 countdown_domanda: True
 
 # tempo di risposta (0 per visualizzazione istantanea)
-tempo_risposta: 10
+tempo_risposta: 4
 
 # no visualizzazione classifica sezione fino a fine sezione
 no_classifica_in_sezione: True
 
 # numero domande dalla fine senza visualizzazione classifica (0 per disabilitare)
-num_domande_finali_senza_classifica: 3
+num_domande_finali_senza_classifica: 0
 
 #-------------------------------------------------------------------------------------------------#
 
@@ -72,7 +72,7 @@ type:  test
 name:  TEST
 icon:  none
 time:  none
-path:  sec_normal.txt
+path:  sec_prova.txt
 intro: img/bdc.png
 bkg:   img/sfondo_domanda.png
 
