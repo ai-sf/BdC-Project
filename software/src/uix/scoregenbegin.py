@@ -14,7 +14,6 @@ from kivy.uix.image import Image
 
 import time
 import operator
-import math
 
 app = App.get_running_app()
 

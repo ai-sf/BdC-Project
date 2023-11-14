@@ -15,7 +15,6 @@ from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 
 import operator
-import math
 
 app = App.get_running_app()
 
@@ -73,18 +72,18 @@ class ScoreQstScreen(Screen):
 
     def buildClassifica(self, sorted_x):
 
-        list1 = sorted_x[:math.floor(len(sorted_x)/2)]
-        list2 = sorted_x[math.floor(len(sorted_x)/2):]
-        listrighe = [[list1[i],list2[i]] for i in range(math.floor(len(sorted_x)/2))]
+        list1 = sorted_x[:int(len(sorted_x)/2)]
+        list2 = sorted_x[int(len(sorted_x)/2):]
+        listrighe = [[list1[i],list2[i]] for i in range(int(len(sorted_x)/2))]
 
         bar_height = float(Window.height)*0.1
-        row_height = math.floor((float(Window.height)-bar_height)/(float(len(sorted_x))/2))
+        row_height = int((float(Window.height)-bar_height)/(float(len(sorted_x))/2))
 
         width_icon = row_height/Window.width
-        width_sep = math.floor(((1-width_icon*2)/2)*0.07)
-        width_pos = math.floor(((1-width_icon*2)/2)*0.10)
-        width_name = math.floor(((1-width_icon*2)/2)*0.5)
-        width_score = math.floor(((1-width_icon*2)/2)*0.33)
+        width_sep = int(((1-width_icon*2)/2)*0.07)
+        width_pos = int(((1-width_icon*2)/2)*0.10)
+        width_name = int(((1-width_icon*2)/2)*0.5)
+        width_score = int(((1-width_icon*2)/2)*0.33)
 
         rows_dict = dict(zip(range(len(listrighe)), [row_height]*len(listrighe)))
         rows_dict[len(listrighe)] = bar_height
