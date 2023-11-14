@@ -288,9 +288,9 @@ class ScoreQstScreen(Screen):
             g.add_widget(NAMEdx)
             g.add_widget(SCOREdx)
 
-        lBACK = Button(id='back_tmp', text="%s"%(iconfonts.icon('fa-backward')),font_size=50*app.scalatore,bold=True, halign='center', size_hint_x=width_icon, markup=True)
+        lBACK = Button(text="%s"%(iconfonts.icon('fa-backward')),font_size=50*app.scalatore,bold=True, halign='center', size_hint_x=width_icon, markup=True)
         lBACK.bind(on_press=lambda x : app.load_screen("Question"))
-        lSHOW = Button(id='show_tmp', text="%s"%(iconfonts.icon('fa-eye')),font_size=50*app.scalatore,bold=True, halign='center', size_hint_x=width_name, markup=True)
+        lSHOW = Button(text="%s"%(iconfonts.icon('fa-eye')),font_size=50*app.scalatore,bold=True, halign='center', size_hint_x=width_name, markup=True)
         lSHOW.bind(on_press=lambda x : self.toggleAnswers())
         iconBDCsx= Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0], size_hint_x=width_score)
 
