@@ -32,7 +32,6 @@ def result(qst_ans):
                 app.ABSTENTIONS[key] += 1
 
         ast = app.ABSTENTIONS[key]
-
         result = score_law(right, time, ast)
         tmp[key] = [result, time]
 
@@ -250,11 +249,11 @@ def DictOfAnswers():
 #return a dictionary {ID: [char, time], ...}
 def DictOfAnswers_fake():
     dizionario = {}
-    # dizionario['2142880870'] = ['A',2.0]
-    # dizionario['3893145282'] = ['B',3.0]
-    # dizionario['2142879773'] = ['C',4.0]
-    # dizionario['3893136493'] = ['D',5.0]
-    # dizionario['3893146321'] = ['E',7.0]
+    #dizionario['2142880870'] = ['A',2.0]
+    #dizionario['3893145282'] = ['B',3.0]
+    #dizionario['2142879773'] = ['C',4.0]
+    #dizionario['3893136493'] = ['D',5.0]
+    #dizionario['3893146321'] = ['E',7.0]
     return dizionario
 
 
@@ -263,7 +262,10 @@ def score_law(right, time, ast):
     if (ast > 5 and (time > app.QUESTION_TOTAL_TIME or time is None)):
         return -200
     else:
-        if (time > app.QUESTION_TOTAL_TIME or time is None):
+        # first check if tim is Name to avoid TypeError:
+        # if the first proposition of an or is already True 
+        # the second is not calculated because the or will be True
+        if (time is None or time > app.QUESTION_TOTAL_TIME):
             return 0
         else:
             a = 300-math.sqrt((12500.0/3)*time/app.QUESTION_TOTAL_TIME*15)
