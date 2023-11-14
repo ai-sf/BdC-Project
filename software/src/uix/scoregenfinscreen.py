@@ -244,7 +244,7 @@ class ScoreGenFinScreen(Screen):
 
                 NAMEsx = Button(text=textstr_sx, markup=True, halign='center',disabled=True, background_disabled_normal='',
                                 background_color=line_color, color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
-                                font_name='UbuntuMono-B.ttf')
+                                font_name='font/UbuntuMono-B.ttf')
                 SCOREsx = Button(text=str(int(sx[1])), disabled=True,  background_disabled_normal='', background_color=line_color,
                                 bold=True, font_size = 35*app.scalatore,size_hint_x=width_score)
 
@@ -317,7 +317,7 @@ class ScoreGenFinScreen(Screen):
 
                 NAMEdx = Button(text=textstr_dx, markup=True, halign='center',disabled=True, background_disabled_normal='',
                                 background_color=line_color, color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
-                                font_name='UbuntuMono-B.ttf')
+                                font_name='font/UbuntuMono-B.ttf')
                 SCOREdx = Button(text=str(int(dx[1])), disabled=True,background_disabled_normal='', background_color=line_color, bold=True,
                                  font_size = 35*app.scalatore,size_hint_x=width_score)
 

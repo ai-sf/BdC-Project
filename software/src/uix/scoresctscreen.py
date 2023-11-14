@@ -128,7 +128,7 @@ class ScoreSctScreen(Screen):
 
                 NAMEsx = Button(text=textstr_sx, halign='center',disabled=True, background_disabled_normal='',
                                 background_color=line_color, color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
-                                font_name='UbuntuMono-B.ttf')
+                                font_name='font/UbuntuMono-B.ttf')
 
                 num_win = len(app.SCT_FIRST_NAMES)
                 if sx[0] in app.SCT_FIRST_NAMES:
@@ -176,7 +176,7 @@ class ScoreSctScreen(Screen):
 
                 NAMEdx = Button(text=textstr_dx, halign='center',disabled=True, background_disabled_normal='',
                                 background_color=line_color, color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
-                                font_name='UbuntuMono-B.ttf')
+                                font_name='font/UbuntuMono-B.ttf')
 
                 if dx[0] in app.SCT_FIRST_NAMES:
                     points = str(app.PRIZE/num_win)

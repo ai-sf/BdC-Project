@@ -337,7 +337,7 @@ class Domanda(GridLayout):
 		text: '?'
 		disabled_color: 1,1,1,1
 		font_size: 150*app.scalatore
-		font_name: 'UbuntuMono-B.ttf'
+		font_name: 'font/UbuntuMono-B.ttf'
         #padding_x: 0.5*self.width
 		background_disabled_down: ''
 		background_disabled_normal: ''

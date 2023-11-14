@@ -88,7 +88,7 @@ class ScoreQstScreen(Screen):
 
         rows_dict = dict(zip(range(len(listrighe)), [row_height]*len(listrighe)))
         rows_dict[len(listrighe)] = bar_height
-        g = GridLayout(ids='grid',cols=9,rows_minimum=rows_dict)
+        g = GridLayout(cols=9,rows_minimum=rows_dict)
 
         list_of_pos = []
         score_prev = -123456789
