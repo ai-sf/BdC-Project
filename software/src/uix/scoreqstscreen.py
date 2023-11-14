@@ -15,6 +15,7 @@ from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 
 import operator
+import math
 
 app = App.get_running_app()
 
@@ -72,8 +73,8 @@ class ScoreQstScreen(Screen):
 
     def buildClassifica(self, sorted_x):
 
-        list1 = sorted_x[:len(sorted_x)/2]
-        list2 = sorted_x[len(sorted_x)/2:]
+        list1 = sorted_x[:math.floor(len(sorted_x)/2)]
+        list2 = sorted_x[math.floor(len(sorted_x)/2):]
         listrighe = [[list1[i],list2[i]] for i in range(len(sorted_x)/2)]
 
         bar_height = float(Window.height)*0.1

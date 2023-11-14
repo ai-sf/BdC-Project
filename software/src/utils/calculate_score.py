@@ -263,7 +263,7 @@ def score_law(right, time, ast):
     if (ast > 5 and (time > app.QUESTION_TOTAL_TIME or time is None)):
         return -200
     else:
-        if (time > app.QUESTION_TOTAL_TIME or time is None):
+        if (time is None or time > app.QUESTION_TOTAL_TIME):
             return 0
         else:
             a = 300-math.sqrt((12500.0/3)*time/app.QUESTION_TOTAL_TIME*15)
