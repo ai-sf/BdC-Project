@@ -75,20 +75,20 @@ class ScoreQstScreen(Screen):
 
         list1 = sorted_x[:math.floor(len(sorted_x)/2)]
         list2 = sorted_x[math.floor(len(sorted_x)/2):]
-        listrighe = [[list1[i],list2[i]] for i in range(len(sorted_x)/2)]
+        listrighe = [[list1[i],list2[i]] for i in range(math.floor(len(sorted_x)/2))]
 
         bar_height = float(Window.height)*0.1
-        row_height = (float(Window.height)-bar_height)/(float(len(sorted_x))/2)
+        row_height = math.floor((float(Window.height)-bar_height)/(float(len(sorted_x))/2))
 
         width_icon = row_height/Window.width
-        width_sep = ((1-width_icon*2)/2)*0.07
-        width_pos = ((1-width_icon*2)/2)*0.10
-        width_name = ((1-width_icon*2)/2)*0.5
-        width_score = ((1-width_icon*2)/2)*0.33
+        width_sep = math.floor(((1-width_icon*2)/2)*0.07)
+        width_pos = math.floor(((1-width_icon*2)/2)*0.10)
+        width_name = math.floor(((1-width_icon*2)/2)*0.5)
+        width_score = math.floor(((1-width_icon*2)/2)*0.33)
 
         rows_dict = dict(zip(range(len(listrighe)), [row_height]*len(listrighe)))
         rows_dict[len(listrighe)] = bar_height
-        g = GridLayout(id='grid',cols=9,rows_minimum=rows_dict)
+        g = GridLayout(ids='grid',cols=9,rows_minimum=rows_dict)
 
         list_of_pos = []
         score_prev = -123456789
@@ -187,7 +187,7 @@ class ScoreQstScreen(Screen):
 
                 if self.letterVisibility:
                     if sx[3] != '-':
-                        scoresx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+unichr(ord(sx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timesx+'[/color][/size]'
+                        scoresx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+chr(ord(sx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timesx+'[/color][/size]'
                     else:
                         scoresx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]-[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timesx+'[/color][/size]'
                 else:
@@ -270,7 +270,7 @@ class ScoreQstScreen(Screen):
 
                 if self.letterVisibility:
                     if dx[3] != '-':
-                        scoredx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+unichr(ord(dx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timedx+'[/color][/size]'
+                        scoredx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+chr(ord(dx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timedx+'[/color][/size]'
                     else:
                         scoredx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]-[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timedx+'[/color][/size]'
                 else:
@@ -341,7 +341,7 @@ class ScoreQstScreen(Screen):
             popup_color = [0.8,0,0,1]
 
         if popup_answer != '-':
-            popup_content = "[size=100][font=font/Symbola.ttf]" + unichr(ord(popup_answer)+9333) + "[/font][/size]\n[size=40] " + popup_text + " [/size]\n\n" + popup_text_2
+            popup_content = "[size=100][font=font/Symbola.ttf]" + chr(ord(popup_answer)+9333) + "[/font][/size]\n[size=40] " + popup_text + " [/size]\n\n" + popup_text_2
         else:
             popup_content = "[size=100][font=font/Symbola.ttf]-[/font][/size]\n[size=40] " + popup_text + " [/size]\n\n" + popup_text_2
 
