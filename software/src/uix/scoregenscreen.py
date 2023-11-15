@@ -88,7 +88,7 @@ class ScoreGenScreen(Screen):
             arrow_opacity=0
         else:
             arrow_opacity=1
-
+        
         app.score_seen = True
 
         list_of_pos = []

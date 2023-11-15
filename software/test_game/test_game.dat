@@ -30,10 +30,10 @@ backup: False
 no_serial: True
 
 # visualizzazione tempo di risposta
-countdown_domanda: True
+countdown_domanda: False
 
 # tempo di risposta (0 per visualizzazione istantanea)
-tempo_risposta: 4
+tempo_risposta: 0
 
 # no visualizzazione classifica sezione fino a fine sezione
 no_classifica_in_sezione: True

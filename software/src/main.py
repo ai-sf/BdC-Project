@@ -310,7 +310,7 @@ class BDCApp(App):
         self.load_screen('FirstScreen')
 
     def on_stop(self):
-        t.stop()
+        #t.stop()
         if self.no_serial is False:
             self.master.cleanup()
 

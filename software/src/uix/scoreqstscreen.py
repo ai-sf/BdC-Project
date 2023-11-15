@@ -78,12 +78,13 @@ class ScoreQstScreen(Screen):
 
         bar_height = float(Window.height)*0.1
         row_height = int((float(Window.height)-bar_height)/(float(len(sorted_x))/2))
-
+        
         width_icon = row_height/Window.width
-        width_sep = int(((1-width_icon*2)/2)*0.07)
-        width_pos = int(((1-width_icon*2)/2)*0.10)
-        width_name = int(((1-width_icon*2)/2)*0.5)
-        width_score = int(((1-width_icon*2)/2)*0.33)
+        width_arrow = ((1-width_icon*2)/2)*0.08
+        width_sep = ((1-width_icon*2)/2)*0.07
+        width_pos = ((1-width_icon*2)/2)*0.10
+        width_name = ((1-width_icon*2)/2)*0.5
+        width_score = ((1-width_icon*2)/2)*0.25
 
         rows_dict = dict(zip(range(len(listrighe)), [row_height]*len(listrighe)))
         rows_dict[len(listrighe)] = bar_height
