@@ -58,6 +58,10 @@ class ScoreSctScreen(Screen):
         self.buildClassifica(sorted_x_sct)
 
     def buildClassifica(self, sorted_x):
+        """
+        Costruzione classifica ancora non ho capito dove.
+        Durante l'esecuzione senza telecomandi non sembra venir chiamata.
+        """
 
         list1 = sorted_x[:int(len(sorted_x)/2)]
         list2 = sorted_x[int(len(sorted_x)/2):]
@@ -126,15 +130,20 @@ class ScoreSctScreen(Screen):
                 except:
                     textstr_sx = name[0]+app.sep_name+name[1]
 
-                NAMEsx = Button(text=textstr_sx, halign='center',disabled=True, background_disabled_normal='',
-                                background_color=line_color, color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
+                NAMEsx = Button(text=textstr_sx,
+                                halign='center',
+                                disabled=True,
+                                background_disabled_normal='',
+                                background_color=line_color,
+                                disabled_color=[1,1,1,1], # white color for names
+                                font_size=35*app.scalatore,
+                                size_hint_x=width_name,
                                 font_name='font/UbuntuMono-B.ttf')
 
                 num_win = len(app.SCT_FIRST_NAMES)
                 if sx[0] in app.SCT_FIRST_NAMES:
                     points = str(app.PRIZE/num_win)
-                    SCOREsx = Button(text=str(int(sx[1]))+app.sep_score+"[color=#6666cc][b]+"+points+"[/b][/color]", halign='center', markup=True, disabled=True,  background_disabled_normal='', background_color=line_color,
-                                    bold=True, font_size = 35*app.scalatore,size_hint_x=width_score)
+                    SCOREsx = Button(text=str(int(sx[1]))+app.sep_score+"[color=#6666cc][b]+"+points+"[/b][/color]", halign='center', markup=True, disabled=True,  background_disabled_normal='', background_color=line_color, bold=True, font_size = 35*app.scalatore,size_hint_x=width_score)
                 else:
                     SCOREsx = Button(text=str(int(sx[1])), halign='center', disabled=True,  background_disabled_normal='', background_color=line_color,
                                     bold=True, font_size = 35*app.scalatore,size_hint_x=width_score)
@@ -174,14 +183,19 @@ class ScoreSctScreen(Screen):
                 except:
                     textstr_dx = name[0]+app.sep_name+name[1]
 
-                NAMEdx = Button(text=textstr_dx, halign='center',disabled=True, background_disabled_normal='',
-                                background_color=line_color, color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
+                NAMEdx = Button(text=textstr_dx,
+                                halign='center',
+                                disabled=True,
+                                background_disabled_normal='',
+                                background_color=line_color,
+                                disabled_color=[1,1,1,1], # white color for names
+                                font_size=35*app.scalatore,
+                                size_hint_x=width_name,
                                 font_name='font/UbuntuMono-B.ttf')
 
                 if dx[0] in app.SCT_FIRST_NAMES:
                     points = str(app.PRIZE/num_win)
-                    SCOREdx = Button(text=str(int(dx[1]))+app.sep_score+"[color=#6666cc][b]+"+points+"[/b][/color]", halign='center', markup=True, disabled=True,  background_disabled_normal='', background_color=line_color,
-                                    bold=True, font_size = 35*app.scalatore,size_hint_x=width_score)
+                    SCOREdx = Button(text=str(int(dx[1]))+app.sep_score+"[color=#6666cc][b]+"+points+"[/b][/color]", halign='center', markup=True, disabled=True,  background_disabled_normal='', background_color=line_color, bold=True, font_size = 35*app.scalatore,size_hint_x=width_score)
                 else:
                     SCOREdx = Button(text=str(int(dx[1])), halign='center', disabled=True,  background_disabled_normal='', background_color=line_color,
                                     bold=True, font_size = 35*app.scalatore,size_hint_x=width_score)

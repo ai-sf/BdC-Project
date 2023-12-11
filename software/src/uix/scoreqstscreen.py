@@ -71,6 +71,9 @@ class ScoreQstScreen(Screen):
             self.buildClassifica(self.sorted_x)
 
     def buildClassifica(self, sorted_x):
+        """
+        Funzione per la classifica dopo ogni domanda
+        """
 
         list1 = sorted_x[:int(len(sorted_x)/2)]
         list2 = sorted_x[int(len(sorted_x)/2):]
@@ -150,7 +153,7 @@ class ScoreQstScreen(Screen):
                                 disabled=True,
                                 background_disabled_normal='',
                                 background_color=line_color,
-                                color=[1,1,1,1],
+                                disabled_color=[1,1,1,1], # white color for names
                                 font_size=35*app.scalatore,
                                 size_hint_x = width_name,
                                 font_name='font/UbuntuMono-B.ttf')
@@ -234,9 +237,16 @@ class ScoreQstScreen(Screen):
                     textstr_dx = name[0]+app.sep_name+name[1]+" "+name[2]
                 except:
                     textstr_dx = name[0]+app.sep_name+name[1]
-                NAMEdx = Button(text=textstr_dx, halign='center', disabled=True, background_disabled_normal='',
-                                background_color=line_color, disabled_color=[1,1,1,1], font_size=35*app.scalatore,size_hint_x=width_name,
+                NAMEdx = Button(text=textstr_dx,
+                                halign='center',
+                                disabled=True,
+                                background_disabled_normal='',
+                                background_color=line_color,
+                                disabled_color=[1,1,1,1], # white color for names
+                                font_size=35*app.scalatore,
+                                size_hint_x=width_name,
                                 font_name='font/UbuntuMono-B.ttf')
+                
 
                 if int(dx[1]) > 0:
                     colore = [0,0.8,0,1]
