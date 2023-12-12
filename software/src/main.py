@@ -59,8 +59,8 @@ class Master:
         try:
             print(port_name)
             self.ser = serial.Serial(port_name, 115200, timeout=None)
-        except:
-            print("Connection to serial port failed")
+        except Exception as e:
+            print("Connection to serial port failed"+f" error message: \n {str(e)}")
             exit()
 
     def write(self, string):
