@@ -245,7 +245,7 @@ class ScoreGenFinScreen(Screen):
                     for ic in app.WINNER_OF_SECTIONS[sx[0]]:
                         textstr_sx += " [color=#6666cc]%s[/color] "%(iconfonts.icon(ic))
 
-                NAMEsx = Button(text=textstr_sx+"AAAA",
+                NAMEsx = Button(text=textstr_sx,
                                 markup=True,
                                 halign='center',
                                 disabled=True,
