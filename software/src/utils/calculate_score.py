@@ -235,12 +235,14 @@ def DictOfAnswers():
     app.stop_time = None
 
     for key in app.saved_ans.keys():
+        print(key, start_time)
         if key > start_time:
-            dt = (key - start_time)*pow(10,-6)
+            #dt = (key - start_time)*pow(10,-6)
+            dt = (key - start_time) # key e start_time sono dello stesso ordine di grandezza, non dovrebbe esserci bisogno di 10^-6
         else:
             dt = (4294967296 - start_time + key)*pow(10,-6)
         ID = app.saved_ans[key][0]
-        if dizionario.has_key(ID) and dizionario[ID][1] < dt:
+        if ID in dizionario and dizionario[ID][1] < dt:
             pass
         elif key <= stop_time or (key - start_time < app.QUESTION_TOTAL_TIME*pow(10,6) and key - start_time > 0):
             dizionario[ID] = [app.saved_ans[key][1], dt]

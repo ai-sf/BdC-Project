@@ -56,15 +56,37 @@ iconfonts.register('fa-cogs', script_path+'/iconfonts/fontawesome-webfont.ttf', 
 class Master:
 
     def __init__(self, port_name):
+
         try:
-            print(port_name)
-            self.ser = serial.Serial(port_name, 115200, timeout=None)
+            #print(port_name)
+            #self.ser = serial.Serial(port_name, 115200, timeout=None) # questo era per /dev/ttyUSB0
+            
+            #Tutto il seguente è per emulare il master
+            import os, pty, serial
+            self.mastr, slave = pty.openpty()
+            s_name = os.ttyname(slave)
+            #print(self.mastr, slave, s_name)
+            self.ser = serial.Serial(s_name, 115200, timeout=None)
+            print(self.ser.name) # va messa come imput al codice che emula il master del tipo:
+            # python3 emulate_master/master.py self.ser.name 
+            # Il codice che emula va eseguito per ogni domanda dopo che parte il conto alla rovescia
+            # self.ser.name sarà qualcosa di parente di /dev/pts/n, con n un qualche numero intero
+            
         except Exception as e:
             print("Connection to serial port failed"+f" error message: \n {str(e)}")
             exit()
+    
+    def risp(self):
+        """per leggere da porta seriale dove l'emulatore scrive
+        """
+        answer = os.read(self.mastr, 1000)
+        answer = str(answer)[1:]
+        answer = answer[1:-1]
+        return answer
 
     def write(self, string):
-        self.ser.write(string)
+        #self.ser.write(string)
+        self.ser.write(string.encode())
 
     def cleanup(self):
         self.ser.close()
@@ -230,10 +252,11 @@ class BDCApp(App):
 
         while True:
             if self.no_serial is False:
-                tmp = self.master.ser.readline()
+                tmp = self.master.risp()
+                #tmp=self.master.ser.readline()
             else:
                 tmp = "Bella zio!"
-
+                
             letter = re.match(showman_msg, tmp)
             if letter:
                 letter = letter.group(1)
@@ -264,14 +287,15 @@ class BDCApp(App):
                 LETTER = answer.group(2)
                 TIME = answer.group(3)
                 self.saved_ans[int(TIME)] = [ID, LETTER]
-                print("Answer message:"), LETTER, " from ", self.dictIDName[ID], " at time ", TIME
+                print(ID, LETTER, TIME)
+                print("Answer message:", LETTER, " from ", self.dictIDName[ID], " at time ", TIME)
                 if answer.group(5):
                     self.BATTERY_STATUS[ID] = int(answer.group(5))
 
             time = re.match(timenow_msg, tmp)
             if time:
                 time = time.group(1)
-                print("--- Time ---------------------:"), time
+                print("--- Time ---------------------:", time)
                 self.times.append(int(time))
                 if self.startTimeGiven is True:
                     self.stop_time = int(time)
@@ -324,9 +348,14 @@ class BDCApp(App):
         # load LoginScreen
         module_path = screen.lower()
         if not hasattr(self, module_path):
-            import imp
-            module = imp.load_module(screen, *imp.find_module(module_path))
-            screen_class = getattr(module, screen)
+            from importlib import util
+            from importlib import abc
+            
+            toolbox_specs = util.find_spec(module_path)
+            toolbox = util.module_from_spec(toolbox_specs)
+            toolbox_specs.loader.exec_module(toolbox)
+            screen_class = getattr(toolbox, screen)
+
             sc = screen_class()
             setattr(self, module_path, sc)
             manager.add_widget(sc)
@@ -360,3 +389,4 @@ class BDCApp(App):
 
 if __name__ == '__main__':
     BDCApp().run()
+    

@@ -19,7 +19,8 @@
 
 # indicare la porta del master
 # per la comunicazione con i telecomandi
-nome_porta: /dev/ttyUSB0
+nome_porta: /dev/pts/1
+#/dev/ttyUSB0
 
 # stabilire se partire dal backup o da capo
 # (il file di backup e' 'backup.dat'
@@ -27,13 +28,14 @@ nome_porta: /dev/ttyUSB0
 backup: False
 
 # se si vogliono fare dei test senza master
-no_serial: True
+no_serial: False
 
 # visualizzazione tempo di risposta
-countdown_domanda: False
+countdown_domanda: True
 
 # tempo di risposta (0 per visualizzazione istantanea)
-tempo_risposta: 0
+# !!ACHTUNG!! se diverso da zero countdown_domanda vede essere True
+tempo_risposta: 20
 
 # no visualizzazione classifica sezione fino a fine sezione
 no_classifica_in_sezione: True
