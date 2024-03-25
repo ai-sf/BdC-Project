@@ -237,8 +237,13 @@ def DictOfAnswers():
     for key in app.saved_ans.keys():
         print(key, start_time)
         if key > start_time:
+            # DA USARE CON IL MASTER VERO QUESTO PERCHÈ L'AURDUINO
+            # DEL MASTER MISURA I TEMPI IN MICROSECONDI
             #dt = (key - start_time)*pow(10,-6)
-            dt = (key - start_time) # key e start_time sono dello stesso ordine di grandezza, non dovrebbe esserci bisogno di 10^-6
+
+            # DA USARE CON L'EMULATORE
+            dt = (key - start_time)
+
         else:
             dt = (4294967296 - start_time + key)*pow(10,-6)
         ID = app.saved_ans[key][0]
