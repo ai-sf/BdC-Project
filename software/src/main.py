@@ -5,6 +5,52 @@ AISF (Associazione Italiana Studenti di Fisica)
 Comitato Locale di Pavia
 
 Github Repo: http://github.com/
+
+######################################################################
+############################ ATTENZIONE ##############################
+######################################################################
+##   SE SI PASSA DALL'EMULATORE AL TELECOMANDO VERO VANNO FATTI I   ##
+##                 SEGUENTI CAMBIAMENTI AL CODICE:                  ##
+##                                                                  ##
+## 1) CAMBIARE IL NOME DELLA PORTA SUL FILE CHE DATE IN INPUT       ##
+##                                                                  ##
+## 2) MODIFICARE LE RIGHE PER LA LETTURA DELLA PORTA SERIALE        ##
+##    NELLO SPECIFICO (nell'__init__ del Master):                   ##
+##                                                                  ##
+##    A) PER IL TELECOMANDO VERO USARE LE RIGHE:                    ##
+##       print(port_name)                                           ##
+##       self.ser = serial.Serial(port_name, 115200, timeout=None)  ##
+##                                                                  ##
+##    B) PER L'EMULATORE USARE LE RIGHE:                            ##
+##       import os, pty, serial                                     ##
+##       self.mastr, slave = pty.openpty()                          ##
+##       s_name = os.ttyname(slave)                                 ##
+##       self.ser = serial.Serial(s_name, 115200, timeout=None)     ##
+##                                                                  ##
+## 3) MODIFICARE LE RIGHE PER IL CONFRONTO DELLE STRINGHE           ##
+##    NELLO SPECIFICO (in readserial di BDCApp):                    ##
+##                                                                  ##
+##    A) PER IL TELECOMANDO VERO USARE LE RIGHE:                    ##
+##       tmp = self.master.ser.readline()                           ##
+##       tmp = tmp.decode()                                         ##
+##                                                                  ##
+##    B) PER L'EMULATORE USARE LA RIGA:                             ##
+##       tmp = self.master.risp()                                   ##
+##                                                                  ##
+## 4) MODIFICARE IL CALCOLO DEL PUNTEGGIO PER LA MISURA DEI TEMPI   ##
+##    IN software/src/utils/calculate_score.py :                    ##
+##                                                                  ##
+##    A) PER IL TELECOMANDO VERO USARE LA RIGHA:                    ##
+##       dt = (key - start_time)*pow(10,-6)                         ##
+##                                                                  ##
+##    B) PER L'EMULATORE USARE LA RIGA:                             ##
+##       dt = (key - start_time)                                    ##
+##                                                                  ##
+######################################################################
+######################################################################
+
+
+
 '''
 
 __version__ = '2.0.0'
@@ -58,9 +104,11 @@ class Master:
     def __init__(self, port_name):
 
         try:
+            # DA USARE CON IL MASTER
             #print(port_name)
             #self.ser = serial.Serial(port_name, 115200, timeout=None) # questo era per /dev/ttyUSB0
             
+            # DA USARE CON L'EMULATORE
             #Tutto il seguente è per emulare il master
             import os, pty, serial
             self.mastr, slave = pty.openpty()
@@ -85,8 +133,8 @@ class Master:
         return answer
 
     def write(self, string):
-        #self.ser.write(string)
-        self.ser.write(string.encode())
+        self.ser.write(string)
+        #self.ser.write(string.encode())
 
     def cleanup(self):
         self.ser.close()
@@ -252,8 +300,11 @@ class BDCApp(App):
 
         while True:
             if self.no_serial is False:
+                # QUESTA RIGA È PER L'EMULATORE
                 tmp = self.master.risp()
-                #tmp=self.master.ser.readline()
+                # QUESTE DUE SONO INVECE PER IL MASTER
+                #tmp = self.master.ser.readline()
+                #tmp = tmp.decode()
             else:
                 tmp = "Bella zio!"
                 
