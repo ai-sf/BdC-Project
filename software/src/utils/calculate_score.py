@@ -34,7 +34,16 @@ def result(qst_ans):
         ast = app.ABSTENTIONS[key]
 
         result = score_law(right, time, ast)
-        tmp[key] = [result, time]
+
+        # Se ti astieni più di 5 volte il tuo tempo non conta
+        if ast <= 5 :
+            # Quindi se sei sotto 5 lasciamo tutto com'è ...
+            tmp[key] = [result, time]
+        if ast > 5 :
+            # ... se sei sopra finisci in Score_W_quest_term
+            # quindi per evitare problemi mettiamo un tempo fittizzio
+            # di 20 che non intaccherà comunque il punteggio già calcolato
+            tmp[key] = [result, 20]
 
         # updating also general score
         app.GENERAL_SCORE[key] += result
@@ -48,9 +57,12 @@ def result(qst_ans):
     app.do_backup()
 
     #print classifica domanda a terminale
+
     Score_R_quest_term = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] > 0]
     Score_A_quest_term = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] == 0]
     Score_W_quest_term = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] < 0]
+
+
     sorted_R_quest_term = sorted(Score_R_quest_term, key=operator.itemgetter(2))
     sorted_R_quest_term = sorted(sorted_R_quest_term, key=operator.itemgetter(1), reverse= True)
     sorted_W_quest_term = sorted(Score_W_quest_term, key=operator.itemgetter(2), reverse=True)
@@ -267,7 +279,9 @@ def DictOfAnswers_fake():
 
 #score_law: bool right, float time, int ast
 def score_law(right, time, ast):
-    if (ast > 5 and (time > app.QUESTION_TOTAL_TIME or time is None)):
+    # Se la prima condizione del or è vera la seconda non vine calcolata
+    # quindi prima controliamo se è None
+    if (ast > 5 and (time is None or time > app.QUESTION_TOTAL_TIME)):
         return -200
     else:
         if (time is None or time > app.QUESTION_TOTAL_TIME):

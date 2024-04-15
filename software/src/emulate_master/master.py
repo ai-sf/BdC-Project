@@ -21,7 +21,7 @@ ser = serial.Serial(args.name_port, 115200, timeout=None)
 print(ser.name) 
 
 TEL = [977148330, 977144982, 977143789, 977143982, 977141870, 977148973, 977149543, 981430530, 977151320, 977149772]
-ANS = ["A", "B", "C", "D", "E"]
+ANS = ["A", "", "D", "", ""]
 
 
 timenow_msg0 = f"--- TIME NOW -----------------:timeNow={time.time()}"

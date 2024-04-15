@@ -371,7 +371,6 @@ class BDCApp(App):
 
                 # Salvo la risposta in base al tempo
                 self.saved_ans[int(TIME)] = [ID, LETTER]
-                print(ID, LETTER, TIME)
                 print("Answer message:", LETTER, " from ", self.dictIDName[ID], " at time ", TIME)
 
                 # Aggiornamento stato batteria
