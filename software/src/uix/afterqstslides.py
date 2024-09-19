@@ -138,9 +138,9 @@ class AfterQstSlides(Screen):
                     #print classifica generale dopo sezione speciale a terminale
                     Score_term = [(key, app.GENERAL_SCORE[key]) for key in app.GENERAL_SCORE.keys()]
                     sorted_x_term = sorted(Score_term, key=operator.itemgetter(1), reverse= True)
-                    print "\033[1;97m\033[1;100m"
-                    print "CLASSIFICA GENERALE ----------------------------"
-                    print "                                AST     BAT"
+                    print("\033[1;97m\033[1;100m")
+                    print("CLASSIFICA GENERALE ----------------------------")
+                    print("                                AST     BAT")
                     for i in range(len(sorted_x_term)):
                         spacer = "\033[1;96m"
                         if sorted_x_term[i][1] >= 0:
@@ -197,8 +197,8 @@ class AfterQstSlides(Screen):
                         for k in range(26-len(app.dictIDName[sorted_x_term[i][0]].decode('utf-8'))):
                             separator += ' '
 
-                        print spacer + str(sorted_x_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_term[i][0]]) + separator + spacer_ast + str(app.ABSTENTIONS[sorted_x_term[i][0]]) + "\t" + batStr + "\033[25m"
-                    print "\033[0m\n"
+                        print(spacer + str(sorted_x_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_term[i][0]]) + separator + spacer_ast + str(app.ABSTENTIONS[sorted_x_term[i][0]]) + "\t" + batStr + "\033[25m")
+                    print("\033[0m\n")
                 #-----------------------------------------------------------
                 if app.SEC_CNT+1 == len(app.SECTIONS):
                     app.load_screen('LastScreen')

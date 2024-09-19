@@ -71,9 +71,9 @@ class ScoreGenBegin(Screen):
             sorted_x = app.sorted_x
 
             #print classifica a terminale
-            print "\033[1;97m\033[1;100m"
-            print "CLASSIFICA INIZIALE ----------------------------"
-            print "                                BAT"
+            print("\033[1;97m\033[1;100m")
+            print("CLASSIFICA INIZIALE ----------------------------")
+            print("                                BAT")
             for i in range(len(sorted_x)):
                 spacer = "\033[1;96m"
                 if sorted_x[i][1] >= 0:
@@ -122,8 +122,8 @@ class ScoreGenBegin(Screen):
                 for k in range(26-len(app.dictIDName[sorted_x[i][0]].decode('utf-8'))):
                     separator += ' '
 
-                print spacer + str(sorted_x[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x[i][0]]) + separator + batStr + "\033[25m"
-            print "\033[0m\n"
+                print(spacer + str(sorted_x[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x[i][0]]) + separator + batStr + "\033[25m")
+            print("\033[0m\n")
 
             while len(sorted_x) < 5:
                 sorted_x.append(('5355053550', -9999999))
@@ -136,10 +136,13 @@ class ScoreGenBegin(Screen):
             self.buildClassifica(sorted_x)
 
     def buildClassifica(self, sorted_x):
+        """
+        Funzione per la classifica iniziale
+        """
 
-        list1 = sorted_x[:len(sorted_x)/2]
-        list2 = sorted_x[len(sorted_x)/2:]
-        listrighe = [[list1[i],list2[i]] for i in range(len(sorted_x)/2)]
+        list1 = sorted_x[:int(len(sorted_x)/2)]
+        list2 = sorted_x[int(len(sorted_x)/2):]
+        listrighe = [[list1[i],list2[i]] for i in range(int(len(sorted_x)/2))]
 
         bar_height = float(Window.height)*0.1
         row_height = (float(Window.height)-bar_height)/(float(len(sorted_x))/2)
@@ -228,11 +231,25 @@ class ScoreGenBegin(Screen):
                     for ic in app.WINNER_OF_SECTIONS[sx[0]]:
                         textstr_sx += " [color=#6666cc]%s[/color] "%(iconfonts.icon(ic))
 
-                NAMEsx = Button(text=textstr_sx, markup=True, halign='center',disabled=True, background_disabled_normal='',
-                                background_color=line_color, color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
-                                font_name='UbuntuMono-B.ttf')
-                SCOREsx = Button(text=str(int(sx[1])), disabled=True,  background_disabled_normal='', background_color=line_color,
-                                bold=True, font_size = 35*app.scalatore,size_hint_x=width_score)
+                NAMEsx = Button(text=textstr_sx,
+                                markup=True,
+                                halign='center',
+                                disabled=True,
+                                background_disabled_normal='',
+                                background_color=line_color,
+                                disabled_color=[1,1,1,1], # white color for names
+                                font_size=35*app.scalatore,
+                                size_hint_x=width_name,
+                                font_name='font/UbuntuMono-B.ttf')
+                                
+                SCOREsx = Button(text=str(int(sx[1])),
+                                 disabled=True,
+                                 background_disabled_normal='',
+                                 background_color=line_color,
+                                 disabled_color=[1,1,1,1], # white color for score
+                                 bold=True,
+                                 font_size=35*app.scalatore,
+                                 size_hint_x=width_score)
 
             sep = Button(disabled=True,
                         background_disabled_normal='',
@@ -290,11 +307,25 @@ class ScoreGenBegin(Screen):
                     for ic in app.WINNER_OF_SECTIONS[dx[0]]:
                         textstr_dx += " [color=#6666cc]%s[/color] "%(iconfonts.icon(ic))
 
-                NAMEdx = Button(text=textstr_dx, markup=True, halign='center',disabled=True, background_disabled_normal='',
-                                background_color=line_color, color=[1,1,1,1], font_size=35*app.scalatore, size_hint_x = width_name,
-                                font_name='UbuntuMono-B.ttf')
-                SCOREdx = Button(text=str(int(dx[1])), disabled=True,background_disabled_normal='', background_color=line_color, bold=True,
-                                 font_size = 35*app.scalatore,size_hint_x=width_score)
+                NAMEdx = Button(text=textstr_dx,
+                                markup=True,
+                                halign='center',
+                                disabled=True,
+                                background_disabled_normal='',
+                                background_color=line_color,
+                                disabled_color=[1,1,1,1], # white color for names
+                                font_size=35*app.scalatore,
+                                size_hint_x=width_name,
+                                font_name='font/UbuntuMono-B.ttf')
+                                
+                SCOREdx = Button(text=str(int(dx[1])),
+                                 disabled=True,
+                                 background_disabled_normal='',
+                                 background_color=line_color,
+                                 disabled_color=[1,1,1,1], # white color for score
+                                 bold=True,
+                                 font_size=35*app.scalatore,
+                                 size_hint_x=width_score)
 
             g.add_widget(POSsx)
             g.add_widget(ICONsx)

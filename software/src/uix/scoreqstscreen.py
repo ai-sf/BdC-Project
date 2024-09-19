@@ -71,23 +71,27 @@ class ScoreQstScreen(Screen):
             self.buildClassifica(self.sorted_x)
 
     def buildClassifica(self, sorted_x):
+        """
+        Funzione per la classifica dopo ogni domanda
+        """
 
-        list1 = sorted_x[:len(sorted_x)/2]
-        list2 = sorted_x[len(sorted_x)/2:]
-        listrighe = [[list1[i],list2[i]] for i in range(len(sorted_x)/2)]
+        list1 = sorted_x[:int(len(sorted_x)/2)]
+        list2 = sorted_x[int(len(sorted_x)/2):]
+        listrighe = [[list1[i],list2[i]] for i in range(int(len(sorted_x)/2))]
 
         bar_height = float(Window.height)*0.1
-        row_height = (float(Window.height)-bar_height)/(float(len(sorted_x))/2)
-
+        row_height = int((float(Window.height)-bar_height)/(float(len(sorted_x))/2))
+        
         width_icon = row_height/Window.width
+        width_arrow = ((1-width_icon*2)/2)*0.08
         width_sep = ((1-width_icon*2)/2)*0.07
         width_pos = ((1-width_icon*2)/2)*0.10
         width_name = ((1-width_icon*2)/2)*0.5
-        width_score = ((1-width_icon*2)/2)*0.33
+        width_score = ((1-width_icon*2)/2)*0.25
 
         rows_dict = dict(zip(range(len(listrighe)), [row_height]*len(listrighe)))
         rows_dict[len(listrighe)] = bar_height
-        g = GridLayout(id='grid',cols=9,rows_minimum=rows_dict)
+        g = GridLayout(cols=9,rows_minimum=rows_dict)
 
         list_of_pos = []
         score_prev = -123456789
@@ -149,7 +153,7 @@ class ScoreQstScreen(Screen):
                                 disabled=True,
                                 background_disabled_normal='',
                                 background_color=line_color,
-                                color=[1,1,1,1],
+                                disabled_color=[1,1,1,1], # white color for names
                                 font_size=35*app.scalatore,
                                 size_hint_x = width_name,
                                 font_name='font/UbuntuMono-B.ttf')
@@ -186,7 +190,7 @@ class ScoreQstScreen(Screen):
 
                 if self.letterVisibility:
                     if sx[3] != '-':
-                        scoresx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+unichr(ord(sx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timesx+'[/color][/size]'
+                        scoresx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+chr(ord(sx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timesx+'[/color][/size]'
                     else:
                         scoresx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]-[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timesx+'[/color][/size]'
                 else:
@@ -233,9 +237,16 @@ class ScoreQstScreen(Screen):
                     textstr_dx = name[0]+app.sep_name+name[1]+" "+name[2]
                 except:
                     textstr_dx = name[0]+app.sep_name+name[1]
-                NAMEdx = Button(text=textstr_dx, halign='center', disabled=True, background_disabled_normal='',
-                                background_color=line_color, disabled_color=[1,1,1,1], font_size=35*app.scalatore,size_hint_x=width_name,
+                NAMEdx = Button(text=textstr_dx,
+                                halign='center',
+                                disabled=True,
+                                background_disabled_normal='',
+                                background_color=line_color,
+                                disabled_color=[1,1,1,1], # white color for names
+                                font_size=35*app.scalatore,
+                                size_hint_x=width_name,
                                 font_name='font/UbuntuMono-B.ttf')
+                
 
                 if int(dx[1]) > 0:
                     colore = [0,0.8,0,1]
@@ -269,7 +280,7 @@ class ScoreQstScreen(Screen):
 
                 if self.letterVisibility:
                     if dx[3] != '-':
-                        scoredx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+unichr(ord(dx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timedx+'[/color][/size]'
+                        scoredx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]'+chr(ord(dx[3])+9333)+'[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timedx+'[/color][/size]'
                     else:
                         scoredx_string = '[size='+str(int(40*app.scalatore))+'][color='+colorehtml+'][b][font=font/Symbola.ttf]-[/font][/b][/size][size='+str(int(30*app.scalatore))+']'+app.sep_score+timedx+'[/color][/size]'
                 else:
@@ -287,9 +298,9 @@ class ScoreQstScreen(Screen):
             g.add_widget(NAMEdx)
             g.add_widget(SCOREdx)
 
-        lBACK = Button(id='back_tmp', text="%s"%(iconfonts.icon('fa-backward')),font_size=50*app.scalatore,bold=True, halign='center', size_hint_x=width_icon, markup=True)
+        lBACK = Button(text="%s"%(iconfonts.icon('fa-backward')),font_size=50*app.scalatore,bold=True, halign='center', size_hint_x=width_icon, markup=True)
         lBACK.bind(on_press=lambda x : app.load_screen("Question"))
-        lSHOW = Button(id='show_tmp', text="%s"%(iconfonts.icon('fa-eye')),font_size=50*app.scalatore,bold=True, halign='center', size_hint_x=width_name, markup=True)
+        lSHOW = Button(text="%s"%(iconfonts.icon('fa-eye')),font_size=50*app.scalatore,bold=True, halign='center', size_hint_x=width_name, markup=True)
         lSHOW.bind(on_press=lambda x : self.toggleAnswers())
         iconBDCsx= Button(disabled=True, background_disabled_normal='', background_color=[0,0,0,0], size_hint_x=width_score)
 
@@ -340,7 +351,7 @@ class ScoreQstScreen(Screen):
             popup_color = [0.8,0,0,1]
 
         if popup_answer != '-':
-            popup_content = "[size=100][font=font/Symbola.ttf]" + unichr(ord(popup_answer)+9333) + "[/font][/size]\n[size=40] " + popup_text + " [/size]\n\n" + popup_text_2
+            popup_content = "[size=100][font=font/Symbola.ttf]" + chr(ord(popup_answer)+9333) + "[/font][/size]\n[size=40] " + popup_text + " [/size]\n\n" + popup_text_2
         else:
             popup_content = "[size=100][font=font/Symbola.ttf]-[/font][/size]\n[size=40] " + popup_text + " [/size]\n\n" + popup_text_2
 

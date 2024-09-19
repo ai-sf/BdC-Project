@@ -19,7 +19,8 @@
 
 # indicare la porta del master
 # per la comunicazione con i telecomandi
-nome_porta: /dev/ttyUSB0
+nome_porta: /dev/pts/1
+#/dev/ttyUSB0
 
 # stabilire se partire dal backup o da capo
 # (il file di backup e' 'backup.dat'
@@ -27,13 +28,14 @@ nome_porta: /dev/ttyUSB0
 backup: False
 
 # se si vogliono fare dei test senza master
-no_serial: True
+no_serial: False
 
 # visualizzazione tempo di risposta
 countdown_domanda: True
 
 # tempo di risposta (0 per visualizzazione istantanea)
-tempo_risposta: 0
+# !!ACHTUNG!! se diverso da zero countdown_domanda vede essere True
+tempo_risposta: 20
 
 # no visualizzazione classifica sezione fino a fine sezione
 no_classifica_in_sezione: True
@@ -49,10 +51,10 @@ num_domande_finali_senza_classifica: 0
 scalatore: 1.1
 
 # larghezza della finestra
-width: 1600
+width: 1920
 
 # altezza della finestra
-height: 1200
+height: 1080
 
 #-------------------------------------------------------------------------------------------------#
 
@@ -98,11 +100,11 @@ bkg:   img/sfondo_domanda.png
 977143982: 0,Richard FEYNMAN
 977141870: 0,Enrico FERMI
 977148973: 0,James MAXWELL
-977186140: 0,Erwin SCHRÖDINGER
+#977186140: 0,Erwin SCHRÖDINGER
 977149543: 0,Galileo GALILEI
 981430530: 0,Alessandro VOLTA
 977151320: 0,Marie CURIE
-# 977149772: 0,Werner HEISENBERG
+977149772: 0,Werner HEISENBERG
 # 977185902: 0,Paul DIRAC
 # 981465612: 0,Nikola TESLA
 # 977186205: 0,Niels BOHR

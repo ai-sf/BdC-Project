@@ -34,7 +34,16 @@ def result(qst_ans):
         ast = app.ABSTENTIONS[key]
 
         result = score_law(right, time, ast)
-        tmp[key] = [result, time]
+
+        # Se ti astieni più di 5 volte il tuo tempo non conta
+        if ast <= 5 :
+            # Quindi se sei sotto 5 lasciamo tutto com'è ...
+            tmp[key] = [result, time]
+        if ast > 5 :
+            # ... se sei sopra finisci in Score_W_quest_term
+            # quindi per evitare problemi mettiamo un tempo fittizzio
+            # di 20 che non intaccherà comunque il punteggio già calcolato
+            tmp[key] = [result, 20]
 
         # updating also general score
         app.GENERAL_SCORE[key] += result
@@ -48,18 +57,21 @@ def result(qst_ans):
     app.do_backup()
 
     #print classifica domanda a terminale
+
     Score_R_quest_term = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] > 0]
     Score_A_quest_term = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] == 0]
     Score_W_quest_term = [(key, app.QUESTION_SCORE[-1][key][0], app.QUESTION_SCORE[-1][key][1]) for key in app.QUESTION_SCORE[-1].keys() if app.QUESTION_SCORE[-1][key][0] < 0]
+
+
     sorted_R_quest_term = sorted(Score_R_quest_term, key=operator.itemgetter(2))
     sorted_R_quest_term = sorted(sorted_R_quest_term, key=operator.itemgetter(1), reverse= True)
     sorted_W_quest_term = sorted(Score_W_quest_term, key=operator.itemgetter(2), reverse=True)
     sorted_W_quest_term = sorted(sorted_W_quest_term, key=operator.itemgetter(1), reverse= True)
     sorted_x_quest_term = sorted_R_quest_term+Score_A_quest_term+sorted_W_quest_term
 
-    print "\033[1;97m\033[1;100m"
-    print "CLASSIFICA DOMANDA -----------------------------"
-    print "                                RIS    TEM"
+    print("\033[1;97m\033[1;100m")
+    print("CLASSIFICA DOMANDA -----------------------------")
+    print("                                RIS    TEM")
     for i in range(len(sorted_x_quest_term)):
         spacer = " "
         if sorted_x_quest_term[i][1] > 0:
@@ -101,15 +113,15 @@ def result(qst_ans):
         for k in range(26-len(app.dictIDName[sorted_x_quest_term[i][0]].decode('utf-8'))):
             separator += ' '
 
-        print spacer + spacer_2 + str(sorted_x_quest_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_quest_term[i][0]])+ separator + spacer + str(answer_quest) + "   " + str(time_quest)
-    print "\033[0m\n"
+        print(spacer + spacer_2 + str(sorted_x_quest_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_quest_term[i][0]])+ separator + spacer + str(answer_quest) + "   " + str(time_quest))
+    print("\033[0m\n")
 
     #print classifica sezione a terminale
     if app.SECTIONS[app.SEC_CNT]['type'] == 'special':
         Score_sect_term = [(key, app.SECTION_SCORE[app.SEC_CNT][key]) for key in app.SECTION_SCORE[app.SEC_CNT].keys()]
         sorted_x_sect_term = sorted(Score_sect_term, key=operator.itemgetter(1), reverse= True)
-        print "\033[1;97m\033[1;100m"
-        print "CLASSIFICA SEZIONE -----------------------------\n"
+        print("\033[1;97m\033[1;100m")
+        print("CLASSIFICA SEZIONE -----------------------------\n")
         for i in range(len(sorted_x_sect_term)):
             spacer = "\033[1;95m"
             if sorted_x_sect_term[i][1] >= 0:
@@ -128,16 +140,16 @@ def result(qst_ans):
                     spacer += " "
                 if sorted_x_sect_term[i][1] > -10:
                     spacer += " "
-            print spacer + str(sorted_x_sect_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_sect_term[i][0]])
-        print "\033[0m\n"
+            print(spacer + str(sorted_x_sect_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_sect_term[i][0]]))
+        print("\033[0m\n")
 
 
     #print classifica generale a terminale
     Score_term = [(key, app.GENERAL_SCORE[key]) for key in app.GENERAL_SCORE.keys()]
     sorted_x_term = sorted(Score_term, key=operator.itemgetter(1), reverse= True)
-    print "\033[1;97m\033[1;100m"
-    print "CLASSIFICA GENERALE ----------------------------"
-    print "                                AST     BAT"
+    print("\033[1;97m\033[1;100m")
+    print("CLASSIFICA GENERALE ----------------------------")
+    print("                                AST     BAT")
     for i in range(len(sorted_x_term)):
         spacer = "\033[1;96m"
         if sorted_x_term[i][1] >= 0:
@@ -194,8 +206,8 @@ def result(qst_ans):
         for k in range(26-len(app.dictIDName[sorted_x_term[i][0]].decode('utf-8'))):
             separator += ' '
 
-        print spacer + str(sorted_x_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_term[i][0]]) + separator + spacer_ast + str(app.ABSTENTIONS[sorted_x_term[i][0]]) + "\t" + batStr + "\033[25m"
-    print "\033[0m\n"
+        print(spacer + str(sorted_x_term[i][1]) + "\033[1;97m " + str(app.dictIDName[sorted_x_term[i][0]]) + separator + spacer_ast + str(app.ABSTENTIONS[sorted_x_term[i][0]]) + "\t" + batStr + "\033[25m")
+    print("\033[0m\n")
 
     return tmp
 
@@ -235,12 +247,19 @@ def DictOfAnswers():
     app.stop_time = None
 
     for key in app.saved_ans.keys():
+        print(key, start_time)
         if key > start_time:
-            dt = (key - start_time)*pow(10,-6)
+            # DA USARE CON IL MASTER VERO QUESTO PERCHÈ L'AURDUINO
+            # DEL MASTER MISURA I TEMPI IN MICROSECONDI
+            #dt = (key - start_time)*pow(10,-6)
+
+            # DA USARE CON L'EMULATORE
+            dt = (key - start_time)
+
         else:
             dt = (4294967296 - start_time + key)*pow(10,-6)
         ID = app.saved_ans[key][0]
-        if dizionario.has_key(ID) and dizionario[ID][1] < dt:
+        if ID in dizionario and dizionario[ID][1] < dt:
             pass
         elif key <= stop_time or (key - start_time < app.QUESTION_TOTAL_TIME*pow(10,6) and key - start_time > 0):
             dizionario[ID] = [app.saved_ans[key][1], dt]
@@ -260,10 +279,12 @@ def DictOfAnswers_fake():
 
 #score_law: bool right, float time, int ast
 def score_law(right, time, ast):
-    if (ast > 5 and (time > app.QUESTION_TOTAL_TIME or time is None)):
+    # Se la prima condizione del or è vera la seconda non vine calcolata
+    # quindi prima controliamo se è None
+    if (ast > 5 and (time is None or time > app.QUESTION_TOTAL_TIME)):
         return -200
     else:
-        if (time > app.QUESTION_TOTAL_TIME or time is None):
+        if (time is None or time > app.QUESTION_TOTAL_TIME):
             return 0
         else:
             a = 300-math.sqrt((12500.0/3)*time/app.QUESTION_TOTAL_TIME*15)

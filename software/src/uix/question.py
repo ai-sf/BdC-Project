@@ -337,7 +337,7 @@ class Domanda(GridLayout):
 		text: '?'
 		disabled_color: 1,1,1,1
 		font_size: 150*app.scalatore
-		font_name: 'UbuntuMono-B.ttf'
+		font_name: 'font/UbuntuMono-B.ttf'
         #padding_x: 0.5*self.width
 		background_disabled_down: ''
 		background_disabled_normal: ''
@@ -524,8 +524,8 @@ class Domanda(GridLayout):
 
     def start_time(self):
 
-        print "\033[1;97m\033[1;100m"
-        print "STATO DOMANDE ----------------------------------\n"
+        print("\033[1;97m\033[1;100m")
+        print("STATO DOMANDE ----------------------------------\n")
         if app.SECTIONS[app.SEC_CNT]['type'] == 'test':
             domanda_str = str(app.QST_DSP_CNT) + str(app.QST_PAR_CNT+1)
         else:
@@ -539,7 +539,7 @@ class Domanda(GridLayout):
         print("\033[1;97m        Tipo sezione: \033[1;92m"+str(app.SECTIONS[app.SEC_CNT]['type']))
         print("\033[1;97m  Domanda in sezione: \033[1;92m"+str(app.QST_PAR_CNT+1)+"/"+str(len(app.QUESTIONS[app.SEC_CNT].keys())))
         print("\033[1;97m      Numero sezione: \033[1;92m"+str(app.SEC_CNT+1)+"/"+str(len(app.SECTIONS)))
-        print "\033[0m\n"
+        print("\033[0m\n")
 
         self.MODE = 'ON'
 
@@ -571,7 +571,7 @@ class Domanda(GridLayout):
             app.master.write('timeNow\n')
 
     def sendRAW(self, dt):
-        for key, value in self.RAWdic.iteritems():
+        for key, value in self.RAWdic.items():
             if app.no_serial is False:
                 app.master.write('send '+key+' '+value+'\n')
             time.sleep(0.05)
