@@ -11,13 +11,29 @@ class internalShell(cmd.Cmd):
     def do_bonus(self, line):
         'bonus [last_name] [amount] ["hidden"] - gives bonus to selected team'
         try:
+            print(line)
             bonus_team_lastName = line.split(' ')[0]
-            bonus_team_id = app.dictIDLastName.keys()[app.dictIDLastName.values().index(bonus_team_lastName)]
+            print(22, bonus_team_lastName)
+            print('---------------------------')
+            print(app.dictIDLastName.keys())
+            print('---------------------------')
+            print(app.dictIDLastName.values())
+            print('---------------------------')
+            print(list(app.dictIDLastName.values())[0].decode('utf-8'))
+            print('---------------------------')
+            print([v.decode('utf-8') for v in app.dictIDLastName.values()].index(bonus_team_lastName))
+            print('---------------------------')
+            
+            bonus_team_id = list(app.dictIDLastName.keys())[[v.decode('utf-8') for v in app.dictIDLastName.values()].index(bonus_team_lastName)]
+            #bonus_team_id = app.dictIDLastName.keys()[app.dictIDLastName.values().index(bonus_team_lastName)]
+            print(33, bonus_team_id)
             bonus_amount = int(line.split(' ')[1])
             try:
                 bonus_hidden = (line.split(' ')[2] == 'hidden')
             except:
                 bonus_hidden = False
+            
+            print(bonus_team_lastName, 11, bonus_team_id, 11, bonus_amount, 11, bonus_hidden)
 
             if bonus_amount != 0:
                 app.GENERAL_SCORE[bonus_team_id] += bonus_amount
@@ -34,7 +50,17 @@ class internalShell(cmd.Cmd):
                         popup_color = [1,0,0,1]
 
                     popup_content = "[size=40]SQUADRA[/size]\n\n[b]" + str(app.dictIDName[bonus_team_id]) + "[/b]"
-                    popup = Popup(title=popup_title, title_align='center', title_color=popup_color, title_size='50sp', title_font='font/UbuntuMono-B.ttf', separator_color=popup_color, content=Label(text=popup_content, font_size=80, font_name='font/UbuntuMono-B.ttf', halign='center', markup=True),size_hint=(None, None), size=(800, 600))
+                    popup = Popup(title=popup_title, title_align='center', 
+                                  title_color=popup_color, title_size='50sp',
+                                  title_font='font/UbuntuMono-B.ttf',
+                                  separator_color=popup_color,
+                                  content=Label(text=popup_content, 
+                                  font_size=80, 
+                                  font_name='font/UbuntuMono-B.ttf', 
+                                  halign='center', 
+                                  markup=True),
+                                  size_hint=(None, None), 
+                                  size=(800, 600))
                     popup.open()
 
                 if app.SECTIONS[app.SEC_CNT]['type'] == 'test':

@@ -35,7 +35,7 @@ countdown_domanda: True
 
 # tempo di risposta (0 per visualizzazione istantanea)
 # !!ACHTUNG!! se diverso da zero countdown_domanda vede essere True
-tempo_risposta: 20
+tempo_risposta: 0
 
 # no visualizzazione classifica sezione fino a fine sezione
 no_classifica_in_sezione: True
