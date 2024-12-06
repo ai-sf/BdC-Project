@@ -11,30 +11,22 @@ class internalShell(cmd.Cmd):
     def do_bonus(self, line):
         'bonus [last_name] [amount] ["hidden"] - gives bonus to selected team'
         try:
-            print(line)
-            bonus_team_lastName = line.split(' ')[0]
-            print(22, bonus_team_lastName)
-            print('---------------------------')
-            print(app.dictIDLastName.keys())
-            print('---------------------------')
-            print(app.dictIDLastName.values())
-            print('---------------------------')
-            print(list(app.dictIDLastName.values())[0].decode('utf-8'))
-            print('---------------------------')
-            print([v.decode('utf-8') for v in app.dictIDLastName.values()].index(bonus_team_lastName))
-            print('---------------------------')
+            # Lower perchè sulla classifica i cognomi sono maiuscoli ma nel dizionario no
+            bonus_team_lastName = line.split(' ')[0].lower()
             
-            bonus_team_id = list(app.dictIDLastName.keys())[[v.decode('utf-8') for v in app.dictIDLastName.values()].index(bonus_team_lastName)]
-            #bonus_team_id = app.dictIDLastName.keys()[app.dictIDLastName.values().index(bonus_team_lastName)]
-            print(33, bonus_team_id)
+            # Trasformo tutto in una lista per popter accedere tramite indice all'elemento di interesse.
+            # L'utilizzo di decode è dovuto al fatto che all'interno di app.dictIDLastName.values() i nomi
+            # sono del tipo: b'nome' quindi in binario.
+            id_idx        = [v.decode('utf-8') for v in app.dictIDLastName.values()].index(bonus_team_lastName)
+            bonus_team_id = list(app.dictIDLastName.keys())[id_idx]
+            
             bonus_amount = int(line.split(' ')[1])
+           
             try:
                 bonus_hidden = (line.split(' ')[2] == 'hidden')
             except:
                 bonus_hidden = False
             
-            print(bonus_team_lastName, 11, bonus_team_id, 11, bonus_amount, 11, bonus_hidden)
-
             if bonus_amount != 0:
                 app.GENERAL_SCORE[bonus_team_id] += bonus_amount
 
