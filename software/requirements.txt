@@ -1,2 +1,3 @@
 serial
 kivy
+prompt_toolkit

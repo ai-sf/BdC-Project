@@ -1,31 +1,86 @@
+import time
 from kivy.app import App
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
-import cmd
-import time
+from prompt_toolkit import PromptSession
+from prompt_toolkit.completion import Completer, Completion
+
 
 app = App.get_running_app()
 
-class internalShell(cmd.Cmd):
+
+class internalShell:
+
+    def __init__(self):
+        self.app = app
+        self.session = PromptSession(completer=self.InternalCompleter())
+
+    def cmdloop(self):
+        print("Shell per attribuzione punti bonus! Digita 'exit' per uscire.")
+        print("Per farlo digitare: bonus [last_name] [amount] [hidden]")
+        print("Se non digitate hidden si vedrà una finestra che comunica a tutti i punti aggiunti.")
+        while True:
+            try:
+                # Mostra il prompt
+                line = self.session.prompt(">>> ")
+                # Se digito exit si esce dalla shell
+                if line.strip() == "exit":
+                    print("Uscita dalla shell.")
+                    break
+                self.onecmd(line)
+
+            except (KeyboardInterrupt, EOFError):
+                print("\nUscita dalla shell.")
+                break
+
+    def onecmd(self, line):
+        # Analizza e gestisce i comandi
+        command, *args = line.split()
+        if command == "bonus":
+            self.do_bonus(" ".join(args))
+        else:
+            print(f"Comando sconosciuto: {command}")
+    
+    class InternalCompleter(Completer):
+
+        def get_completions(self, document, complete_event):
+            # Restituisce i completamenti per il comando "bonus"
+            text = document.text_before_cursor.lower()
+
+            if text.startswith("bonus "):
+                partial_name = text[len("bonus "):]
+                completions = [
+                    Completion(v.decode('utf-8'), start_position=-len(partial_name))
+                    for v in app.dictIDLastName.values()
+                    if v.decode('utf-8').startswith(partial_name)
+                ]
+                yield from completions
 
     def do_bonus(self, line):
-        'bonus [last_name] [amount] ["hidden"] - gives bonus to selected team'
+        '''
+        bonus [last_name] [amount] ["hidden"] - assegna un bonus alla squadra selezionata
+        '''
         try:
-            # Lower perchè sulla classifica i cognomi sono maiuscoli ma nel dizionario no
-            bonus_team_lastName = line.split(' ')[0].lower()
+            parts = line.split()
+            # Utilizzo del comando
+            if len(parts) < 2:
+                print("<\033[1;91mERROR  \033[0m> Uso: bonus [last_name] [amount] ['hidden']")
+                return
             
+            
+            bonus_team_lastName = parts[0]
+    
             # Trasformo tutto in una lista per popter accedere tramite indice all'elemento di interesse.
             # L'utilizzo di decode è dovuto al fatto che all'interno di app.dictIDLastName.values() i nomi
             # sono del tipo: b'nome' quindi in binario.
-            id_idx        = [v.decode('utf-8') for v in app.dictIDLastName.values()].index(bonus_team_lastName)
+            id_idx = [v.decode('utf-8') for v in app.dictIDLastName.values()].index(bonus_team_lastName)
             bonus_team_id = list(app.dictIDLastName.keys())[id_idx]
-            
-            bonus_amount = int(line.split(' ')[1])
-           
-            try:
-                bonus_hidden = (line.split(' ')[2] == 'hidden')
-            except:
-                bonus_hidden = False
+            bonus_amount = int(parts[1])
+
+            # Se parts ha meno di due elementi, allora sarà False
+            # Sarà True solo se parts ha più di due elementi e se
+            # il terzo è la stringa "hidden"
+            bonus_hidden = len(parts) > 2 and parts[2] == "hidden"
             
             if bonus_amount != 0:
                 app.GENERAL_SCORE[bonus_team_id] += bonus_amount
@@ -41,7 +96,7 @@ class internalShell(cmd.Cmd):
                         popup_title = str(bonus_amount) + ' punti'
                         popup_color = [1,0,0,1]
 
-                    popup_content = "[size=40]SQUADRA[/size]\n\n[b]" + str(app.dictIDName[bonus_team_id]) + "[/b]"
+                    popup_content = "[size=40]SQUADRA[/size]\n\n[b]" + str(app.dictIDName[bonus_team_id].decode('utf-8')) + "[/b]"
                     popup = Popup(title=popup_title, title_align='center', 
                                   title_color=popup_color, title_size='50sp',
                                   title_font='font/UbuntuMono-B.ttf',
@@ -60,19 +115,10 @@ class internalShell(cmd.Cmd):
             else:
                 print("<\033[1;93mWARNING\033[0m> no bonus given")
 
-        except:
-            print("<\033[1;91mERROR  \033[0m> see help for usage")
+        except Exception as e:
+            print(f"<\033[1;91mERROR  \033[0m> Errore: {e}")
 
-    def complete_bonus(self, text, line, begidx, endidx):
-
-        lastNamesOnly = [app.dictIDLastName[key].lower() for key in app.dictIDLastName.keys()]
-
-        if not text:
-            completions = lastNamesOnly[:]
-        else:
-            completions = [f for f in lastNamesOnly if f.startswith(text)]
-        return completions
-
+    
     def do_brightness(self, line):
         'brightness [num_percent] - sets the slave LEDs to num_percent% brightness'
         try:
@@ -101,13 +147,3 @@ class internalShell(cmd.Cmd):
             app.topologyRead = False
         else:
             print("<\033[1;91mERROR  \033[0m> serial port not available [no_serial = True]")
-
-    def do_EOF(self, line):
-        'EOF (or ^D) - exits from the shell'
-        print("exit")
-        return True
-
-    def do_exit(self, line):
-        'exit - exits from the shell'
-        print("exit")
-        return True

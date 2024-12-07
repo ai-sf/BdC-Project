@@ -296,7 +296,9 @@ class BDCApp(App):
         return sm
 
     def cmd_line_start(self):
-        self.shell.cmdloop("type commands")
+        ''' Shell per assegnazione bonus punti
+        '''
+        self.shell.cmdloop()
 
     def checkForTimeNow(self):
         '''
